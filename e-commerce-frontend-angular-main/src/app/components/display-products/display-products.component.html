@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row align-items-start">
+       <div class="col" *ngFor="let product of allProducts">
+            <app-product-card
+                class="cardListItem"
+                [productInfo]="product"
+            ></app-product-card> 
+        </div> 
+    </div>
+</div>

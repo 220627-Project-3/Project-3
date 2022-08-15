@@ -1,0 +1,28 @@
+.card {
+    size: auto;
+    min-width: 275px;
+    max-width: 200px;
+    height: fit-content;
+    transition: .2s ease-out;
+  
+  }
+  
+  img
+  {
+    justify-content: center;
+    height: auto;
+    width: auto;
+    max-height: 200px;
+    max-width: 307px;
+    left:0;
+  }
+  
+  div {
+    position: relative;
+    transition: .2s ease-out;
+  }
+  
+  .card:hover{
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    transform: translate3d(0,-10px,0);
+  }

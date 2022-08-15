@@ -1,0 +1,22 @@
+<img src="../../../assets/images/rev-logo.png" width="30%" height="30%" alt="Revature">
+<form id="register-form" [formGroup]="registerForm">
+    <div class="form-group">
+        <label for="inputFirstName">First Name</label>
+        <input type="text" class="form-control" formControlName="fname" id="inputFirstName" placeholder="Enter First Name">
+      </div>
+    <div class="form-group">
+        <label for="inputLastName">Last Name</label>
+        <input type="text" class="form-control" formControlName="lname" id="inputLastName" placeholder="Enter Last Name">
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">Email address</label>
+      <input type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+      <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
+    </div>
+    <button class="btn btn-primary" (click)="onSubmit()">Register</button>
+</form>
+

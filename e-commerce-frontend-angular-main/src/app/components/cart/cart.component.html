@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<table class="table table-striped" id="cart-table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody id="cart-table-body">
+        <tr *ngFor="let product of products;">
+            <td>{{product.product.id}}</td>
+            <td>{{product.product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.product.description}}</td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-danger" [routerLink]="['/home']">Back</button>
+<button class="btn btn-warning" (click)="emptyCart()">Empty Cart</button>
+<button class="btn btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
