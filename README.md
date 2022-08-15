@@ -1,22 +1,23 @@
 # Project 3
 
-E-Commerce
+* E-Commerce
 
-## CoE Staff
+## Revature Staff
 
-Andrew Shields - centerofexcellence@revature.com
+* Trainer - Benjamin Petruzziello - benjamin.petruzziello@revature.com
+* COE - Andrew Shields - centerofexcellence@revature.com
 
 ## Point of Contact
 
-Dyllan Ellisor - dyllanellisor@gmail.com
+* Dyllan Ellisor - dyllanellisor@gmail.com
 
 ## Sub-Teams
 
-https://docs.google.com/document/d/1dHq1IMZnwZWowL-XmdtRnbzX1CtWxd5Ycb-caPOaT4w/edit
+* https://docs.google.com/document/d/1dHq1IMZnwZWowL-XmdtRnbzX1CtWxd5Ycb-caPOaT4w/edit
 
 ## Trello
 
-https://trello.com/b/JQGiHYqT/ben-p-commerce-capstone-1385
+* https://trello.com/b/JQGiHYqT/ben-p-commerce-capstone-1385
 
 ## Tips
 
