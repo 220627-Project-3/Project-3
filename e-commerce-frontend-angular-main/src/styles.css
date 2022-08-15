@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Futura-Std-Book;
+  src: url(/assets/css/fonts/Futura-Std-Book.otf);
+}
+
+@font-face {
+  font-family: Futura-Std-Bold;
+  src: url(/assets/css/fonts/Futura-Std-Bold.otf);
+}
+
+@font-face {
+  font-family: Futura-Std-Medium;
+  src: url(/assets/css/fonts/Futura-Std-Medium.otf);
+}
+
+@font-face {
+  font-family: Futura-Std-Heavy;
+  src: url(/assets/css/fonts/Futura-Std-Heavy.otf);
+}
+
+/* Apply regular font to all HTMLElement by default */
+* {
+  font-family: Futura-Std-Book;
+}
