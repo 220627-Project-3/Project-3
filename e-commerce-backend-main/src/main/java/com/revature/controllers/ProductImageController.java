@@ -10,6 +10,7 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MimeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.common.io.ByteStreams;
 import com.revature.models.Product;
 import com.revature.models.ProductImage;
 import com.revature.repositories.ProductImageRepository;
@@ -48,6 +50,7 @@ public class ProductImageController {
 	}
 
 	@GetMapping("/byId/{product_id}")
+	@Cacheable("productimages")
 	public ResponseEntity<InputStreamResource> getProductImageById(@PathVariable("product_id") int product_id) {
 		Optional<ProductImage> getImage = productImageService.findById(product_id);
 		try {
@@ -95,7 +98,8 @@ public class ProductImageController {
 	}
 
 	@GetMapping("/byProductId/{product_id}")
-	public ResponseEntity<InputStreamResource> getProductImageByProductId(@PathVariable("product_id") int product_id) {
+	@Cacheable("productimages")
+	public ResponseEntity<byte[]> getProductImageByProductId(@PathVariable("product_id") int product_id) {
 		ProductImage getImage = null;
 		try {
 			getImage = productImageRepository.findByProduct_Id(product_id);
@@ -106,7 +110,6 @@ public class ProductImageController {
 					Metadata metaData = new Metadata();
 
 					InputStream is = new ByteArrayInputStream(getImage.getProductImage());
-					InputStreamResource isr = new InputStreamResource(is);
 
 					org.apache.tika.mime.MediaType mediaType = tika.getDetector().detect(TikaInputStream.get(is),
 							metaData);
@@ -120,7 +123,7 @@ public class ProductImageController {
 							"Content-Type",
 							mediaType.getType() + "/" + mediaType.getSubtype());
 
-					return ResponseEntity.ok().headers(responseHeaders).body(isr);
+					return ResponseEntity.ok().headers(responseHeaders).body(getImage.getProductImage());
 				}
 			}
 
@@ -128,15 +131,14 @@ public class ProductImageController {
 			Resource resource = new ClassPathResource("imgs/default-product-image.png");
 
 			InputStream input = resource.getInputStream();
-			InputStreamResource isr = new InputStreamResource(input);
 
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.set("Content-Disposition", "inline; filename=\"default-product-image.png\"");
 			responseHeaders.set("Content-Type", "image/png");
 
-			return ResponseEntity.ok().headers(responseHeaders).body(isr);
+			return ResponseEntity.ok().headers(responseHeaders).body(ByteStreams.toByteArray(input));
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			ex.printStackTrace();
 		}
 		return ResponseEntity.status(500).body(null);
 	}
