@@ -32,3 +32,16 @@ app-root>div>*:not(router-outlet) {
   height: 100%;
   display: block;
 }
+
+.futura-medium {
+  font-family: Futura-Std-Medium;
+}
+
+
+.futura-bold {
+  font-family: Futura-Std-Bold;
+}
+
+.futura-heavy {
+  font-family: Futura-Std-Heavy;
+}
