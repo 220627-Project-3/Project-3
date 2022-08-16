@@ -13,6 +13,7 @@ import { DisplayProductsComponent } from './components/display-products/display-
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductsComponent } from './components/update-products/update-products.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UpdateProductsComponent } from './components/update-products/update-pro
     CartComponent,
     CheckoutComponent,
     DisplayProductsComponent,
-    UpdateProductsComponent
+    UpdateProductsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
