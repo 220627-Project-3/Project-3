@@ -9,8 +9,14 @@
 
 .card img.card-img-top {
   min-height: 200px;
+  background: #fff;
 }
 
+.card-img-loading-text {
+  z-index: -1;
+}
+
+/*
 .card img {
   justify-content: center;
   height: auto;
@@ -19,8 +25,19 @@
   max-width: 307px;
   left: 0;
 }
+*/
 
-div {
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+div.card {
   position: relative;
   transition: .2s ease-out;
 }
@@ -39,4 +56,9 @@ input.form-control[disabled] {
 span#inputGroup-sizing-sm {
   width: 64px;
   justify-content: center;
+}
+
+.card-img-container {
+  min-height: 200px;
+  position: relative;
 }
