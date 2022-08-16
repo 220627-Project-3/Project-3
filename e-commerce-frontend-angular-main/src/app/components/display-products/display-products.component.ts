@@ -5,20 +5,24 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-display-products',
   templateUrl: './display-products.component.html',
-  styleUrls: ['./display-products.component.css']
+  styleUrls: ['./display-products.component.css'],
 })
 export class DisplayProductsComponent implements OnInit {
-
   allProducts: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
-      (resp) => this.allProducts = resp,
-      (err) => console.log(err),
-      () => console.log("Products Retrieved")
-    );
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.allProducts = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('Products Retrieved');
+      },
+    });
   }
-
 }

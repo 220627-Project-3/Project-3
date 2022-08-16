@@ -21,55 +21,56 @@ import com.revature.services.AuthService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:3000" }, allowCredentials = "true")
 public class AuthController {
-	
+
 	Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    private final AuthService authService;
+	private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+	public AuthController(AuthService authService) {
+		this.authService = authService;
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
-        Optional<User> optional = authService.findByCredentials(loginRequest.getEmail(), loginRequest.getPassword());
+	@PostMapping("/login")
+	public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
+		Optional<User> optional = authService.findByCredentials(loginRequest.getEmail(), loginRequest.getPassword());
 
-        if(!optional.isPresent()) {
-            return ResponseEntity.badRequest().build();
-        }
+		if (!optional.isPresent()) {
+			return ResponseEntity.badRequest().build();
+		}
 
-        session.setAttribute("user", optional.get());
+		session.setAttribute("user", optional.get());
 
-        return ResponseEntity.ok(optional.get());
-    }
+		return ResponseEntity.ok(optional.get());
+	}
 
-    @PostMapping("/logout")
-    public ResponseEntity<Void> logout(HttpSession session) {
-        session.removeAttribute("user");
+	@PostMapping("/logout")
+	public ResponseEntity<Void> logout(HttpSession session) {
+		session.removeAttribute("user");
 
-        return ResponseEntity.ok().build();
-    }
+		return ResponseEntity.ok().build();
+	}
 
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
-    	
-    	User created = null;
-    	
-    	try {
-	        created = authService.register(new User(0,
-	                registerRequest.getEmail(),
-	                registerRequest.getPassword(),
-	                registerRequest.getFirstName(),
-	                registerRequest.getLastName()));
-	        
-	        return ResponseEntity.status(HttpStatus.CREATED).body(created);
-	        
-    	} catch (Exception ex) {
-    		logger.error(ex.getMessage());
-    	}
+	@PostMapping("/register")
+	public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
 
-        return ResponseEntity.badRequest().body(created);
-    }
+		User created = null;
+
+		try {
+			created = authService.register(new User(0,
+					registerRequest.getEmail(),
+					registerRequest.getPassword(),
+					registerRequest.getFirstName(),
+					registerRequest.getLastName(),
+					false));
+
+			return ResponseEntity.status(HttpStatus.CREATED).body(created);
+
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+
+		return ResponseEntity.badRequest().body(created);
+	}
 }
