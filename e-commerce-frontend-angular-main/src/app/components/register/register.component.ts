@@ -6,29 +6,41 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   registerForm = new FormGroup({
     fname: new FormControl(''),
     lname: new FormControl(''),
     email: new FormControl(''),
-    password: new FormControl('')
-  })
-  
+    password: new FormControl(''),
+  });
 
-  constructor(private authService: AuthService, private router: Router) { }
+  showError: boolean = false;
 
-  ngOnInit(): void {
-  }
-  
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {}
+
   onSubmit(): void {
-    this.authService.register(this.registerForm.get('fname')?.value, this.registerForm.get('lname')?.value, this.registerForm.get('email')?.value, this.registerForm.get('password')?.value).subscribe(
-      () => console.log("New user registered"),
-      (err) => console.log(err),
-      () => this.router.navigate(['login'])
-    );
+    this.authService
+      .register(
+        this.registerForm.get('fname')?.value,
+        this.registerForm.get('lname')?.value,
+        this.registerForm.get('email')?.value,
+        this.registerForm.get('password')?.value
+      )
+      .subscribe({
+        next: () => {
+          console.log('New user registered');
+        },
+        error: (err) => {
+          this.showError = true
+          console.log(err);
+        },
+        complete: () => {
+          this.router.navigate(['login']);
+        },
+      });
   }
-
 }

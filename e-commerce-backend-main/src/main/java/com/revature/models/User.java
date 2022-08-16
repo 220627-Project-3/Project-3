@@ -13,11 +13,15 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String email;
-    private String password;
-    private String firstName;
-    private String lastName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(unique = true, nullable = false)
+	private String email;
+	@Column(nullable = false)
+	private String password;
+	@Column(nullable = false)
+	private String firstName;
+	@Column(nullable = false)
+	private String lastName;
 }

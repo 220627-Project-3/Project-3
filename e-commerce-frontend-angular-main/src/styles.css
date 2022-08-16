@@ -23,3 +23,12 @@
 * {
   font-family: Futura-Std-Book;
 }
+
+html,
+body,
+app-root,
+app-root>div,
+app-root>div>*:not(router-outlet) {
+  height: 100%;
+  display: block;
+}

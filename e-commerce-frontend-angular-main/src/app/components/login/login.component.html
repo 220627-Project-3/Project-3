@@ -1,14 +1,37 @@
-<img src="../../../assets/images/rev-logo.png" width="30%" height="30%" alt="Revature">
-<form id="login-form" [formGroup]="loginForm">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
+<div class="m-auto d-flex flex-column h-100">
+  <div class="login-container m-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <img src="/assets/images/rev-logo.png" alt="Revature" class="text-center">
+          </div>
+          <form id="login-form" [formGroup]="loginForm" class="my-3">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1"
+                placeholder="Password">
+            </div>
+            <div class="login-btns text-center">
+              <button class="btn btn-primary" (click)="onSubmit()">Login</button>
+              <button class="btn btn-primary" [routerLink]="['/register']">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row" *ngIf="showError">
+        <div class="col">
+          <div class="alert alert-danger text-center" role="alert">
+            Incorrect credentials. Please try again.
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button class="btn btn-primary" (click)="onSubmit()">Login</button>
-    <button class="btn btn-primary" [routerLink]="['/register']">Register</button>
-</form>
+  </div>
+</div>
