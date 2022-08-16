@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.tika.config.TikaConfig;
@@ -10,7 +11,7 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MimeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -28,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.common.io.ByteStreams;
 import com.revature.models.Product;
 import com.revature.models.ProductImage;
+import com.revature.projections.ProductImageProjection;
 import com.revature.repositories.ProductImageRepository;
 import com.revature.services.ProductImageService;
 import com.revature.services.ProductService;
@@ -50,7 +52,7 @@ public class ProductImageController {
 	}
 
 	@GetMapping("/byId/{product_id}")
-	@Cacheable("productimages")
+	@CachePut("productimages")
 	public ResponseEntity<InputStreamResource> getProductImageById(@PathVariable("product_id") int product_id) {
 		Optional<ProductImage> getImage = productImageService.findById(product_id);
 		try {
@@ -98,7 +100,7 @@ public class ProductImageController {
 	}
 
 	@GetMapping("/byProductId/{product_id}")
-	@Cacheable("productimages")
+	@CachePut("productimages")
 	public ResponseEntity<byte[]> getProductImageByProductId(@PathVariable("product_id") int product_id) {
 		ProductImage getImage = null;
 		try {
@@ -144,18 +146,33 @@ public class ProductImageController {
 	}
 
 	@PutMapping(value = "/{product_id}", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Integer> updateProductImageByProductId(@PathVariable("product_id") int product_id,
+	public ResponseEntity<Product> updateProductImageByProductId(@PathVariable("product_id") int product_id,
 			@RequestPart("productimage") MultipartFile document) {
 		Optional<Product> product = productService.findById(product_id);
 		if (product.isPresent()) {
 			try {
-				return ResponseEntity.ok()
-						.body(productImageRepository.updateProductImage(product_id, document.getBytes()));
+				List<ProductImageProjection> pip = productImageRepository.findAllByProduct_Id(product_id);
+				if (pip.size() > 0) {
+
+					productImageRepository.updateProductImage(product_id, document.getBytes());
+
+					return ResponseEntity.ok()
+							.body(product.get());
+
+				} else {
+					logger.info("No record found. Inserting new record instead of updating");
+					ProductImage pi = new ProductImage();
+					pi.setProduct(product.get());
+					pi.setProductImage(document.getBytes());
+					productImageService.save(pi);
+					return ResponseEntity.ok()
+							.body(product.get());
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.status(404).body(new Product());
 	}
 
 }

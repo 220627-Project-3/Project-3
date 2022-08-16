@@ -1,5 +1,8 @@
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" [src]="environment.baseUrl + '/api/product/image/byProductId/' + productInfo.id" alt="Card image cap">
+  <div class="card-img-container">
+    <img class="card-img-top" [src]="environment.baseUrl + '/api/product/image/byProductId/' + productInfo.id"
+      alt="Card image cap">
+  </div>
   <div class="card-body">
     <h5 class="card-title futura-bold">{{productInfo.name}}</h5>
     <p class="card-text">{{productInfo.description}}</p>
