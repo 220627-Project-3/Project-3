@@ -7,7 +7,11 @@
 
 }
 
-img {
+.card img.card-img-top {
+  min-height: 200px;
+}
+
+.card img {
   justify-content: center;
   height: auto;
   width: auto;
