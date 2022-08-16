@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-card',
@@ -16,6 +17,7 @@ export class ProductCardComponent implements OnInit {
   }[] = [];
   subscription!: Subscription;
   totalPrice: number = 0;
+  environment = environment;
 
   @Input() productInfo!: Product;
 
