@@ -45,3 +45,7 @@ app-root>div>*:not(router-outlet) {
 .futura-heavy {
   font-family: Futura-Std-Heavy;
 }
+
+a {
+  cursor: pointer;
+}

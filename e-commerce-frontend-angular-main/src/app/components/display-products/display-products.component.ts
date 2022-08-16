@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DisplayProductsComponent implements OnInit {
   allProducts: Product[] = [];
+  currentUserInfo: any = {};
 
   constructor(private productService: ProductService) {}
 
@@ -24,5 +25,9 @@ export class DisplayProductsComponent implements OnInit {
         console.log('Products Retrieved');
       },
     });
+  }
+
+  getCurrentUserInfo(value: any) {
+    this.currentUserInfo = value;
   }
 }
