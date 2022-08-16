@@ -22,25 +22,32 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(): void {
-    this.authService
-      .register(
-        this.registerForm.get('fname')?.value,
-        this.registerForm.get('lname')?.value,
-        this.registerForm.get('email')?.value,
-        this.registerForm.get('password')?.value
-      )
-      .subscribe({
-        next: () => {
-          console.log('New user registered');
-        },
-        error: (err) => {
-          this.showError = true
-          console.log(err);
-        },
-        complete: () => {
-          this.router.navigate(['login']);
-        },
-      });
+  onSubmit(event: Event): void {
+    const form = event.currentTarget as HTMLFormElement;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      this.authService
+        .register(
+          this.registerForm.get('fname')?.value,
+          this.registerForm.get('lname')?.value,
+          this.registerForm.get('email')?.value,
+          this.registerForm.get('password')?.value
+        )
+        .subscribe({
+          next: () => {
+            console.log('New user registered');
+          },
+          error: (err) => {
+            this.showError = true;
+            console.log(err);
+          },
+          complete: () => {
+            this.router.navigate(['login']);
+          },
+        });
+    }
+    form.classList.add('was-validated');
   }
 }

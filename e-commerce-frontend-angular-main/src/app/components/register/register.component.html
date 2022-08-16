@@ -6,31 +6,44 @@
           <div class="text-center">
             <img src="/assets/images/rev-logo.png" alt="Revature" class="text-center">
           </div>
-          <form id="register-form" [formGroup]="registerForm" class="my-3">
+          <form id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit($event)"
+            class="my-3 needs-validation" novalidate>
             <div class="form-group">
               <label for="inputFirstName">First Name</label>
               <input type="text" class="form-control" formControlName="fname" id="inputFirstName"
-                placeholder="Enter First Name">
+                placeholder="Enter First Name" required>
+              <div class="invalid-feedback">
+                Cannot be empty
+              </div>
             </div>
             <div class="form-group">
               <label for="inputLastName">Last Name</label>
               <input type="text" class="form-control" formControlName="lname" id="inputLastName"
-                placeholder="Enter Last Name">
+                placeholder="Enter Last Name" required>
+              <div class="invalid-feedback">
+                Cannot be empty
+              </div>
             </div>
             <div class="form-group">
               <label for="inputEmail">Email address</label>
               <input type="email" class="form-control" formControlName="email" id="inputEmail"
-                aria-describedby="emailHelp" placeholder="Enter Email">
+                aria-describedby="emailHelp" placeholder="Enter Email" required>
               <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
+              <div class="invalid-feedback">
+                Cannot be empty
+              </div>
             </div>
             <div class="form-group">
               <label for="inputPassword">Password</label>
               <input type="password" class="form-control" formControlName="password" id="inputPassword"
-                placeholder="Enter Password">
+                placeholder="Enter Password" required>
+              <div class="invalid-feedback">
+                Cannot be empty
+              </div>
             </div>
             <div class="register-btns text-center">
-              <button class="btn btn-primary" (click)="onSubmit()">Register</button>
-              <button class="btn btn-primary" [routerLink]="['/']">Go Back</button>
+              <button class="btn btn-primary" type="submit">Register</button>
+              <button class="btn btn-primary" type="button" [routerLink]="['/']">Go Back</button>
             </div>
           </form>
         </div>
