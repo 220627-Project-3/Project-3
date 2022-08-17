@@ -42,8 +42,8 @@ public class ProductController {
     @Authorized
     @GetMapping("/search/{name}")
     public ResponseEntity<List<Product>> getProductByName(@PathVariable("name") String name) {
-        Optional<List<Product>> optional = productService.findByName(name);
-
+        Optional<List<Product>> optional = productService.findByNameContaining(name);
+ 
         if(!optional.isPresent()) {
             return ResponseEntity.notFound().build();
         }

@@ -25,8 +25,8 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public Optional<List<Product>> findByName(String name) {
-        return productRepository.findByName(name);
+    public Optional<List<Product>> findByNameContaining(String name) {
+        return productRepository.findByNameContaining(name);
     }
     
     public Product save(Product product) {

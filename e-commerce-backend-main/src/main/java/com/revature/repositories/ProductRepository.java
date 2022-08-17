@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
-	 public Optional<List<Product>> findByName(String name);
+	 public Optional<List<Product>> findByNameContaining(String name);
 
 }
