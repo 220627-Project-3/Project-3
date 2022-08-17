@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -21,7 +22,7 @@ export class ProductCardComponent implements OnInit {
 
   @Input() productInfo!: Product;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.subscription = this.productService.getCart().subscribe({
@@ -32,9 +33,11 @@ export class ProductCardComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.toastr.error("Failed to add your product to cart, please refresh and try again", "Failed to add product to cart")
       },
       complete: () => {
         console.log('Received data from parent component');
+        
       },
     });
   }
@@ -49,6 +52,7 @@ export class ProductCardComponent implements OnInit {
           cartCount: this.cartCount + 1,
           products: this.products,
           totalPrice: this.totalPrice + product.price,
+          this:this.toastr.success("Your product has successfully been added to cart", "Product Added to Cart")
         };
         this.productService.setCart(cart);
         inCart = true;
@@ -66,6 +70,7 @@ export class ProductCardComponent implements OnInit {
         cartCount: this.cartCount + 1,
         products: this.products,
         totalPrice: this.totalPrice + product.price,
+        this:this.toastr.success("Your product has successfully been added to cart", "New Product Added to Cart")
       };
       this.productService.setCart(cart);
     }

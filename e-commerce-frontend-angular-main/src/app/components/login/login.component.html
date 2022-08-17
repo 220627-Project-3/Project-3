@@ -19,7 +19,7 @@
                 placeholder="Password">
             </div>
             <div class="login-btns text-center">
-              <button class="btn btn-primary" type="submit">Login</button>
+              <button class="btn btn-primary" type="submit" (click)="showToastr">Login</button>
               <button class="btn btn-primary" type="button" [routerLink]="['/register']">Register</button>
             </div>
           </form>
