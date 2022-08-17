@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service'
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-product-card',
@@ -16,10 +19,15 @@ export class ProductCardComponent implements OnInit {
   }[] = [];
   subscription!: Subscription;
   totalPrice: number = 0;
+  environment = environment;
+  user?: User;
 
   @Input() productInfo!: Product;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private _authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.productService.getCart().subscribe({
@@ -34,6 +42,17 @@ export class ProductCardComponent implements OnInit {
       complete: () => {
         console.log('Received data from parent component');
       },
+    });
+    this._authService.getUser().subscribe({
+      next: (data) => {
+        this.user = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log("Retrieved user info from card component")
+      }
     });
   }
 
