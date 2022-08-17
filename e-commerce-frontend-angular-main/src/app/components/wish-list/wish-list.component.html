@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div class="container-fluid my-3">
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped" id="cart-table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 10%">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col" style="width: 10%">Quantity</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody id="wishlist-table-body">
+          <tr *ngFor="let product of products;">
+            <td>{{product.product.id}}</td>
+            <td>{{product.product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.product.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
+     <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
+      <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
+    </div>
+  </div>
+</div>
+
