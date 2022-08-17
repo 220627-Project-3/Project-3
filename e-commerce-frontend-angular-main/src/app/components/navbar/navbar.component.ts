@@ -33,6 +33,12 @@ export class NavbarComponent implements OnInit {
     this.getCurrentUserInformation();
   }
    public Searching: String='';
+   public value: number=0; 
+   public searchByValue: String='Id';
+   onChange(event: number){
+    this.value=event;
+    console.log(this.value);
+   }
   ChangeChange(){
     console.log("Changed")
     if (this.productService.z==2){
@@ -43,16 +49,27 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['home']);
   });}
   }
-
+  BigSearch(){
+    console.log(this.searchByValue);
+    if(this.searchByValue=="Id"){
+      this.SearchButt();
+    }else if(this.searchByValue=="Name"){
+      this.SearchButtwithName();
+    }
+  }
   SearchButt(){
     this.productService.Changer(2)
     var numeric = Number(this.Searching);
     this.productService.SearchMan(numeric);
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
     this.router.navigate(['home']);
-});
-
-  }
+});}
+  SearchButtwithName(){
+    this.productService.Changer(3);
+    this.productService.SearchManName(this.Searching);
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['home']);
+  });}
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

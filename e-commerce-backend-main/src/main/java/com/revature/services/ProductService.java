@@ -29,6 +29,10 @@ public class ProductService {
     	return productRepository.findByDescriptionContaining(description);
     }
 
+    public Optional<List<Product>> findByNameContaining(String name) {
+        return productRepository.findByNameContaining(name);
+    }
+    
     public Product save(Product product) {
         return productRepository.save(product);
     }
