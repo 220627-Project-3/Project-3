@@ -17,13 +17,13 @@
             <td>{{product.product.name}}</td>
             <td>{{product.quantity}}</td>
             <td>{{product.product.description}}</td>
-            <td><span>Qty:</span><input style="width:10%" type="number"><button class="btn btn-warning mr-2">Remove Item</button></td>
+            <td><span>Qty:</span><input type="number" size="3" style="width:10%"><button class="btn btn-warning mr-2"  (click)="removeItem(product.product.id)">Remove Item</button></td>
           </tr>
         </tbody>
       </table>
       <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
       <button class="btn btn-warning mr-2" (click)="emptyCart()">Empty Cart</button>
-      <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
+      <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout res(${{totalPrice}})</button>
     </div>
   </div>
 </div>

@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<body class="mx-5 my-3">
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+                <td><input type="text" [(ngModel)]="user.firstName"></td>
+                <td><input type="text" [(ngModel)]="user.lastName"></td>
+            </tr>
+            <tr>
+                <td><input type="text" [(ngModel)]="user.email"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-danger m-2" (click)="updateUser()">Update User Information</button>
+</body>
