@@ -20,10 +20,10 @@ export class UserProfileService {
     constructor(private http: HttpClient) { }
 
     public getUser(userId: number): Observable<HttpResponse<User>> {
-        return this.http.get("", { observe: "response" }) as Observable<HttpResponse<User>>;
+        return this.http.get("http://localhost:8080/users/" + userId, { observe: "response" }) as Observable<HttpResponse<User>>;
     }
 
     public updateUser(user: User): Observable<User> {
-        return this.http.put<User>("", user, this.httpOptions);
+        return this.http.put<User>("http://localhost:8080/users/" + user.id, user, this.httpOptions);
     }
 }

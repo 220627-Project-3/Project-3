@@ -22,21 +22,28 @@ export class UserProfileComponent implements OnInit {
   constructor(private us: UserProfileService, private as: AuthService) { }
 
   getUser() {
-    this.as.getUser().subscribe({
+    this.as.getSession().subscribe({
       next: (data: any) => {
+        //console.log(this.user);
         this.user = data;
-        //this.us.getUser(this.user.id).subscribe({
-          //next: (data: any) => {
-            //this.user = data;
-          //}
-        //});
+        //console.log(this.user);
+        this.us.getUser(this.user.id).subscribe({
+          next: (data: any) => {
+            this.user = data.body;
+          }
+        });
         //this.as.setUser(this.user);
       }
     });
   }
 
-  updateUser(user:User) {
-
+  updateUser() {
+    this.us.updateUser(this.user).subscribe({
+      next: (data:any) => {
+        this.user = data;
+        //this.as.setUser(this.user);
+      }
+    });
   }
 
   ngOnInit(): void {
