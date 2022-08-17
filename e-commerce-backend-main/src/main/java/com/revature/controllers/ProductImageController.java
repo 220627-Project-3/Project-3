@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.io.ByteStreams;
+import com.revature.annotations.Authorized;
 import com.revature.models.Product;
 import com.revature.models.ProductImage;
 import com.revature.projections.ProductImageProjection;
@@ -51,6 +52,7 @@ public class ProductImageController {
 		this.productService = productService;
 	}
 
+	@Authorized
 	@GetMapping("/byId/{product_id}")
 	@CachePut("productimages")
 	public ResponseEntity<InputStreamResource> getProductImageById(@PathVariable("product_id") int product_id) {
@@ -98,7 +100,8 @@ public class ProductImageController {
 		}
 		return ResponseEntity.status(500).body(null);
 	}
-
+	
+	@Authorized
 	@GetMapping("/byProductId/{product_id}")
 	@CachePut("productimages")
 	public ResponseEntity<byte[]> getProductImageByProductId(@PathVariable("product_id") int product_id) {
@@ -145,6 +148,7 @@ public class ProductImageController {
 		return ResponseEntity.status(500).body(null);
 	}
 
+	@Authorized
 	@PutMapping(value = "/{product_id}", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Product> updateProductImageByProductId(@PathVariable("product_id") int product_id,
 			@RequestPart("productimage") MultipartFile document) {

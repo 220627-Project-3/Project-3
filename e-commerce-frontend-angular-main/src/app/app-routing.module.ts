@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home', component: DisplayProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'update-products', component: UpdateProductsComponent },
+  { path: 'update-products/:id', component: UpdateProductsComponent },
   //Wild Card Route for 404 request
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
