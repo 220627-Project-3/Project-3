@@ -41,24 +41,4 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  removeItem(id: number){
-    console.log(id);
-    let index = this.products.findIndex(e => e.product.id === id);
-    if(index !== -1){
-      this.products[index].quantity = this.products[index].quantity - 1;
-      this.totalPrice = this.totalPrice - this.products[index].product.price;
-      if(this.products[index].quantity < 1){
-        this.products.splice(index,1);
-      }
-    }
-    let count = 0;
-    this.products.forEach(e => count = count + e.quantity)
-    let cart = {
-      cartCount: count,
-      products: this.products,
-      totalPrice: this.totalPrice
-    };
-    this.productService.setCart(cart);
-  }
-
 }

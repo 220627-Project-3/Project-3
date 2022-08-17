@@ -42,7 +42,6 @@ export class NavbarComponent implements OnInit {
       next: (data: any) => {
         this.currentUserInfo = data;
         console.log(this.currentUserInfo);
-        this.authService.setUser(data);
         this.passCurrentUserInfo.emit(data);
       },
       error: (err: any) => {
