@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -48,24 +47,5 @@ export class AuthService {
     return this.http.get(this._getSessionPath, {
       withCredentials: environment.withCredentials,
     });
-  }
-
-  private _user = new BehaviorSubject<User>({
-    id: 0,
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    admin: false,
-  });
-
-  private _user$ = this._user.asObservable();
-
-  getUser(): Observable<User> {
-    return this._user$;
-  }
-
-  setUser(latestValue: User) {
-    return this._user.next(latestValue);
   }
 }
