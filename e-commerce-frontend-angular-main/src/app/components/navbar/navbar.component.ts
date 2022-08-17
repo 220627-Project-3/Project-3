@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -21,13 +21,38 @@ export class NavbarComponent implements OnInit {
     private productService: ProductService
   ) {}
 
+  SearchProductByID(id: number){
+    this.productService.getSingleProduct(id).subscribe({next:(data)=>{
+    
+    }})
+  }
   ngOnInit(): void {
     this.subscription = this.productService
       .getCart()
       .subscribe((cart) => (this.cartCount = cart.cartCount));
     this.getCurrentUserInformation();
   }
+   public Searching: String='';
+  ChangeChange(){
+    console.log("Changed")
+    if (this.productService.z==2){
+    this.productService.Changer(1)
+    /*var numeric = Number(this.Searching);
+    this.productService.SearchMan(numeric)*/
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+  });}
+  }
 
+  SearchButt(){
+    this.productService.Changer(2)
+    var numeric = Number(this.Searching);
+    this.productService.SearchMan(numeric);
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['home']);
+});
+
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -42,6 +67,7 @@ export class NavbarComponent implements OnInit {
       next: (data: any) => {
         this.currentUserInfo = data;
         console.log(this.currentUserInfo);
+        this.authService.setUser(data);
         this.passCurrentUserInfo.emit(data);
       },
       error: (err: any) => {

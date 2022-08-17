@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -10,23 +11,40 @@ import { ProductService } from 'src/app/services/product.service';
 export class DisplayProductsComponent implements OnInit {
   allProducts: Product[] = [];
   currentUserInfo: any = {};
-
   constructor(private productService: ProductService) {}
-
+  
   ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.allProducts = data;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-      complete: () => {
-        console.log('Products Retrieved');
-      },
-    });
+    this.SearchButtonStuff(this.productService.idPr);
+    }
+  
+  SearchButtonStuff(Luis: number){
+    if(this.productService.z==1){
+      this.productService.getProducts().subscribe({
+        next: (data) => {
+          this.allProducts = data;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.log('Products Retrieved');
+        },
+      });}else if(this.productService.z==2){
+        this.productService.getSingleProduct(Luis).subscribe({
+          next: (data) => {
+            this.allProducts = [data];
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          complete: () => {
+            console.log('Products Retrieved');
+          },
+        });
+        
+        
+      }
   }
-
   getCurrentUserInfo(value: any) {
     this.currentUserInfo = value;
   }
