@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a [routerLink]="['/']" class="navbar-brand">
+  <a [routerLink]="['/home']" class="navbar-brand">
     <img class="align-middle mr-2" src="/assets/images/favicon.png" width="36" height="36" alt="Revature">
     <span class="h4 align-middle">Revature Swag Shop</span>
   </a>
@@ -28,13 +28,16 @@
                 <span class="futura-heavy mr-2">Welcome,
                   {{currentUserInfo != null ? currentUserInfo.firstName : '' | titlecase}}
                   {{currentUserInfo != null ? currentUserInfo.lastName : '' |
-                  titlecase}}</span><i class="admin-indicator fa fa-star" aria-hidden="true"
-                  *ngIf="currentUserInfo.admin"></i>
+                  titlecase}}</span>
+                <div style="display: inline;" *ngIf="currentUserInfo.admin">
+                  [ <i class="admin-indicator fa fa-star mr-1" aria-hidden="true"></i>
+                  <span class="admin-indicator">Admin</span> ]
+                </div>
               </button>
 
             </div>
           </li>
-          <li class="nav-item ml-3">
+          <li class="nav-item ml-2">
             <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout();"><i class="fa fa-sign-out"
                 aria-hidden="true"></i> Logout</button>
           </li>
