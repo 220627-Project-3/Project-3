@@ -40,10 +40,23 @@ export class DisplayProductsComponent implements OnInit {
           complete: () => {
             console.log('Products Retrieved');
           },
-        });
-        
-        
-      }
+        });}
+  
+  }
+  SearchButtonStuffName(Luis: string){
+    if(this.productService.z==3){
+      this.productService.getSingleProductByName(Luis).subscribe({
+        next: (data) => {
+          this.allProducts = [data];
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.log('Products Retrieved');
+        },
+      });}
+
   }
   getCurrentUserInfo(value: any) {
     this.currentUserInfo = value;
