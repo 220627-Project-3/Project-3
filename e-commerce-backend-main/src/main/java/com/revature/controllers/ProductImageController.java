@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -147,7 +150,35 @@ public class ProductImageController {
 		}
 		return ResponseEntity.status(500).body(null);
 	}
+	
+	@Authorized
+	@PostMapping(consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<Product> createProductImageByProductId(@RequestBody Product product,
+			@RequestPart("productimage") MultipartFile document){
+		Optional<Product> check = productService.findById(product.getId());
+		try {
+			if(check.isEmpty()) {
+				ProductImage pi = new ProductImage();
+				Product prodResult = productService.save(product);
+				pi.setProduct(prodResult);
+				pi.setProductImage(document.getBytes());
+				productImageService.save(pi);
+				return ResponseEntity.ok()
+						.body(prodResult);
+			} else {
+				//If check is not empty, then product already exists and we can call updateProduct.
+				ResponseEntity<Product> prodResult = updateProductImageByProductId(product.getId(),document);
+				return ResponseEntity.ok()
+						.body(prodResult.getBody());
+			}
 
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			
+		}
+		return ResponseEntity.status(500).body(null);
+	}
+	
 	@Authorized
 	@PutMapping(value = "/{product_id}", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Product> updateProductImageByProductId(@PathVariable("product_id") int product_id,

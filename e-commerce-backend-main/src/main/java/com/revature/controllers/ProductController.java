@@ -38,7 +38,13 @@ public class ProductController {
         }
         return ResponseEntity.ok(optional.get());
     }
-
+    
+    @Authorized
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product){
+    	return ResponseEntity.ok(productService.save(product));
+    }
+    
     @Authorized
     @PutMapping
     public ResponseEntity<Product> upsert(@RequestBody Product product) {
