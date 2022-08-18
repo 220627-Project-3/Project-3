@@ -25,12 +25,12 @@ public class ProductService {
         return productRepository.findById(id);
     }
     
-    public Optional<List<Product>> findByDescriptionContaining(String description) {
-    	return productRepository.findByDescriptionContaining(description);
+    public Optional<List<Product>> findByDescriptionContainingIgnoreCase(String description) {
+    	return productRepository.findByDescriptionContainingIgnoreCase(description);
     }
 
-    public Optional<List<Product>> findByNameContaining(String name) {
-        return productRepository.findByNameContaining(name);
+    public Optional<List<Product>> findByNameContainingIgnoreCase(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
     }
     
     public Product save(Product product) {
