@@ -39,4 +39,15 @@ public class WishlistItemService {
         return false;
     }
 
+    public boolean deleteWishlistItem(int wishlistItemId){
+        try {
+            wishlistitemRepository.deleteById(wishlistItemId);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+
 }
