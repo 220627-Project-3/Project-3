@@ -41,9 +41,9 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  removeItem(id: number){
-    const qtyInput = document.getElementById('quantity') as HTMLInputElement;
-    let qty = qtyInput?.value;
+  removeItem(id: number, qty: string){
+    // const qtyInput = document.getElementById('quantity') as HTMLInputElement;
+    // let qty = qtyInput?.value;
     console.log(qty);
     let index = this.products.findIndex(e => e.product.id === id);
     //if quantity input is empty, remove 1 of the product
