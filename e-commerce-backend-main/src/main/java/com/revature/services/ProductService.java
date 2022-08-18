@@ -25,6 +25,10 @@ public class ProductService {
         return productRepository.findById(id);
     }
     
+    public Optional <List<Product>> findByAny(String searchTerm) {
+    	return productRepository.findByDescriptionContainingOrNameContaining(searchTerm, searchTerm);
+    }
+    
     public Optional<List<Product>> findByDescriptionContaining(String description) {
     	return productRepository.findByDescriptionContaining(description);
     }
