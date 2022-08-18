@@ -125,3 +125,9 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
     color: #fdcc49; 
 }
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
