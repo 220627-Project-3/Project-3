@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CartDto {
 	private int id;
-    private int user_Id;
+    private int userId;
     private int quantity;
-    private int product_id;
+    private int productId;
     private Product product;
+    
     
 }
 
