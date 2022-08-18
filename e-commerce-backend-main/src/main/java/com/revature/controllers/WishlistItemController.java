@@ -42,10 +42,14 @@ public class WishlistItemController {
     @Authorized
     @GetMapping("/{userId}")
     public ResponseEntity<List<WishlistItem>> getWishlistItems(@PathVariable("userId") int userId){
-
-        List<WishlistItem> items =  wishlistItemService.findByUser(userId);
-        return ResponseEntity.ok().body(items);
-    
+        Optional<User> optionalUser = userService.findById(userId);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            List<WishlistItem> items =  wishlistItemService.findByUser(user);
+            return ResponseEntity.ok().body(items);
+        }
+        
+        return ResponseEntity.badRequest().build();
     }
 
     @Authorized
