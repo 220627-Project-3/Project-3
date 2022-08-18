@@ -17,9 +17,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
 	// Searching for a match in either column
 	@Query(value = "SELECT * FROM product WHERE description = :searchWord OR name = :searchWord OR id = :searchWord;", nativeQuery = true)
-	public List<Product> findByAny(String searchWord);
-	
-//	@Query(value = "UPDATE productimage SET product_image = :productImage WHERE product_id = :id", nativeQuery = true)
-	
+	public List<Product> findByAny(String searchWord);	
 	
 }
