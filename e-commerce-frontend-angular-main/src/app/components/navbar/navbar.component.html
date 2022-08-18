@@ -37,11 +37,11 @@
               <input type="text" [(ngModel)]="Searching" name="Searching">
               
               <span style="margin-left:10px;">Search by:</span>
-              <select placeholder="Search by" name="searchBy" id="searchBy" >
-                <option value="id">Id</option>
-                <option value="name">Product Name</option>
+              <select placeholder="Search by" name="searchBy" id="searchBy" [(ngModel)]="searchByValue">
+                <option value="Id">Id</option>
+                <option value="Name">Product Name</option>
               </select>
-              <span><button class="btn btn-danger mr-1" style="margin-left:5px;" (click)="SearchButt()">Search</button></span> <!-- Needs to be a dropdown -->
+              <span><button class="btn btn-danger mr-1" style="margin-left:5px;" (click)="BigSearch()">Search</button></span> <!-- Needs to be a dropdown -->
               
             </div>
           </li>

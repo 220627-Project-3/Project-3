@@ -38,6 +38,17 @@ public class ProductController {
         }
         return ResponseEntity.ok(optional.get());
     }
+    
+    @Authorized
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<Product>> getProductByName(@PathVariable("name") String name) {
+        Optional<List<Product>> optional = productService.findByNameContaining(name);
+ 
+        if(!optional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(optional.get());
+    }
 
     @Authorized
     @PutMapping

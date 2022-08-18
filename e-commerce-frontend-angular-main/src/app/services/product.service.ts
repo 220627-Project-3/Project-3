@@ -45,15 +45,27 @@ export class ProductService {
   }
   z: number = 1;
   idPr: number = 1;
+  NamePr: String="";
   public Changer(z: number){
     this.z=z
   }
   public SearchMan(id: number){
     this.idPr=id;
   }
+  public SearchManName(name: String){
+    this.NamePr=name;
+  }
   public getSingleProduct(id: number): Observable<Product> {
     return this.http.get<Product>(
       environment.baseUrl + this.productUrl + '/' + id,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
+  public getSingleProductByName(name: String): Observable<Product> {
+    return this.http.get<Product>(
+      environment.baseUrl + this.productUrl + '/' + name,
       {
         withCredentials: environment.withCredentials,
       }
