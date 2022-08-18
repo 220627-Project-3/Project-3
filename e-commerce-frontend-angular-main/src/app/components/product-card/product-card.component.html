@@ -1,6 +1,8 @@
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" [src]="productInfo.image ? productInfo.image : '/assets/images/default-product-image.png'"
-    alt="Card image cap">
+  <div class="card-img-container">
+    <img class="card-img-top" [src]="environment.baseUrl + '/api/product/image/byProductId/' + productInfo.id"
+      alt="Card image cap">
+  </div>
   <div class="card-body">
     <h5 class="card-title futura-bold">{{productInfo.name}}</h5>
     <p class="card-text">{{productInfo.description}}</p>
@@ -19,7 +21,10 @@
         aria-describedby="inputGroup-sizing-sm" disabled>
     </div>
     <div class="text-center">
+      <button class="btn btn-outline-info w-100" (click)="addToWishList(productInfo)">Add to WishList</button>
       <button class="btn btn-outline-success w-100" (click)="addToCart(productInfo)">Add to Cart</button>
+      <button class="btn btn-outline-primary w-100 mt-3" *ngIf="user?.admin"
+        [routerLink]="['/update-products/' + productInfo.id]">Update Product</button>
     </div>
   </div>
 </div>
