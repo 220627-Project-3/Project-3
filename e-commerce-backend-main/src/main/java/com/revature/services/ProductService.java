@@ -24,7 +24,21 @@ public class ProductService {
     public Optional<Product> findById(int id) {
         return productRepository.findById(id);
     }
+    
 
+    public Optional<List<Product>> findByDescriptionContainingIgnoreCase(String description) {
+    	return productRepository.findByDescriptionContainingIgnoreCase(description);
+    }
+    
+    public Optional <List<Product>> findByAny(String searchTerm) {
+    	return productRepository.findByDescriptionContainingIgnoreCaseOrNameContainingIgnoreCase(searchTerm, searchTerm);
+    }
+    
+
+    public Optional<List<Product>> findByNameContainingIgnoreCase(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
+    }
+    
     public Product save(Product product) {
         return productRepository.save(product);
     }

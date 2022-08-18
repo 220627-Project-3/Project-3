@@ -8,8 +8,8 @@
 }
 
 .card img.card-img-top {
-  min-height: 200px;
-  background: #fff;
+  height: 200px;
+  object-fit: cover;
 }
 
 .card-img-loading-text {
@@ -61,4 +61,5 @@ span#inputGroup-sizing-sm {
 .card-img-container {
   min-height: 200px;
   position: relative;
+  background: #F8F9FA;
 }
