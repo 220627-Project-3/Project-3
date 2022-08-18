@@ -14,6 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductsComponent } from './components/update-products/update-products.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,16 +29,19 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CheckoutComponent,
     DisplayProductsComponent,
     UpdateProductsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProductDetailsComponent,
+    WishListComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
