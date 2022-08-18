@@ -29,9 +29,9 @@ public class ProductService {
     public Optional<List<Product>> findByDescriptionContainingIgnoreCase(String description) {
     	return productRepository.findByDescriptionContainingIgnoreCase(description);
     }
-
+    
     public Optional <List<Product>> findByAny(String searchTerm) {
-    	return productRepository.findByDescriptionContainingOrNameContaining(searchTerm, searchTerm);
+    	return productRepository.findByDescriptionContainingIgnoreCaseOrNameContainingIgnoreCase(searchTerm, searchTerm);
     }
     
 
