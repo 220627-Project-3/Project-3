@@ -42,15 +42,39 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(id: number){
-    console.log(id);
+    const qtyInput = document.getElementById('quantity') as HTMLInputElement;
+    let qty = qtyInput?.value;
+    console.log(qty);
     let index = this.products.findIndex(e => e.product.id === id);
-    if(index !== -1){
-      this.products[index].quantity = this.products[index].quantity - 1;
-      this.totalPrice = this.totalPrice - this.products[index].product.price;
-      if(this.products[index].quantity < 1){
-        this.products.splice(index,1);
+    //if quantity input is empty, remove 1 of the product
+    if(qty == ''){
+      if(index !== -1){
+        this.products[index].quantity = this.products[index].quantity - 1;
+        this.totalPrice = this.totalPrice - this.products[index].product.price;
+        if(this.products[index].quantity < 1){
+          this.products.splice(index,1);
+        }
+      }
+    } 
+    //if it is not empty, convert to number and continue
+    else{
+      let qtyNum:number = +qty;
+      //if we can remove the specified amount - do it
+      if(qtyNum > 0 && qtyNum <= this.products[index].quantity){
+        if(index !== -1){
+          this.products[index].quantity = this.products[index].quantity - qtyNum;
+          this.totalPrice = this.totalPrice - (qtyNum * this.products[index].product.price);
+          if(this.products[index].quantity < 1){
+            this.products.splice(index,1);
+          }
+        }
+      } 
+      //input is negative or greater than what we have
+      else{
+        console.log("Invalid Input");
       }
     }
+    //update cart
     let count = 0;
     this.products.forEach(e => count = count + e.quantity)
     this.totalPrice = + Number(this.totalPrice).toFixed(2);
