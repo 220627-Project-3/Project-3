@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
         this.products.forEach(
           (element) => this.cartProducts.push(element.product)
         );
-        this.totalPrice = cart.totalPrice;
+        this.totalPrice = +Number(cart.totalPrice).toFixed(2);
       }
     );
   }
@@ -53,6 +53,7 @@ export class CartComponent implements OnInit {
     }
     let count = 0;
     this.products.forEach(e => count = count + e.quantity)
+    this.totalPrice = + Number(this.totalPrice).toFixed(2);
     let cart = {
       cartCount: count,
       products: this.products,
