@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
    public Searching: String='';
    public value: number=0; 
-   public searchByValue: String='Name';
+   public searchByValue: String='Any';
    onChange(event: number){
     this.value=event;
     console.log(this.value);
@@ -57,7 +57,11 @@ export class NavbarComponent implements OnInit {
     }else if(this.searchByValue=="Desc"){
       this.SearchButtwithDesc();
       
-  }}
+  }else if(this.searchByValue=="Any"){
+    this.SearchButtwithAny();
+    
+}
+}
   SearchButt(){
     this.productService.Changer(2)
     var numeric = Number(this.Searching);
@@ -74,6 +78,13 @@ export class NavbarComponent implements OnInit {
 
   SearchButtwithDesc(){
     this.productService.Changer(4);
+    console.log(this.productService.z);
+    this.productService.SearchManName(this.Searching);
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['home']);
+  });}
+  SearchButtwithAny(){
+    this.productService.Changer(5);
     console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {

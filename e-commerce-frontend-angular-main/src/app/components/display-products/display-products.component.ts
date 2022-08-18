@@ -16,7 +16,7 @@ export class DisplayProductsComponent implements OnInit {
   ngOnInit(): void {
     if(this.productService.z==2||this.productService.z==1){
     this.SearchButtonStuff(this.productService.idPr);}
-    else if(this.productService.z==3||this.productService.z==4){
+    else if(this.productService.z==3||this.productService.z==4||this.productService.z==5){
     this.SearchButtonStuffName(this.productService.NamePr);}
     
     }
@@ -70,7 +70,18 @@ export class DisplayProductsComponent implements OnInit {
           complete: () => {
             console.log('Products Retrieved');
           },
-        });}
+        });}else if(this.productService.z==5){
+          this.productService.getSingleProductByAny(Luis).subscribe({
+            next: (data) => {
+              this.allProducts = data;
+            },
+            error: (err) => {
+              console.log(err);
+            },
+            complete: () => {
+              console.log('Products Retrieved');
+            },
+          });}
       
 
   }

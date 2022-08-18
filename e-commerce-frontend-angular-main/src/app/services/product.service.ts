@@ -65,7 +65,15 @@ export class ProductService {
   }
   public getSingleProductByName(name: String): Observable<Product[]> {
     return this.http.get<Product[]>(
-      environment.baseUrl + this.productUrl + '/search/' + name,
+      environment.baseUrl + this.productUrl + '/search/name/' + name,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
+  public getSingleProductByAny(name: String): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      environment.baseUrl + this.productUrl + '/search/any/' + name,
       {
         withCredentials: environment.withCredentials,
       }
@@ -73,7 +81,7 @@ export class ProductService {
   }
   public getSingleProductByDesc(name: String): Observable<Product[]> {
     return this.http.get<Product[]>(
-      environment.baseUrl + this.productUrl + '/description/' + name,
+      environment.baseUrl + this.productUrl + '/search/description/' + name,
       {
         withCredentials: environment.withCredentials,
       }
