@@ -30,7 +30,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     DisplayProductsComponent,
     UpdateProductsComponent,
     NotFoundComponent,
-    ProductDetailsComponent,,
+    ProductDetailsComponent,
     WishListComponent,
     UserProfileComponent,
   ],
