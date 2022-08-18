@@ -35,7 +35,6 @@ export class UserProfileComponent implements OnInit {
             this.user = data.body;
           }
         });
-        this.as.setUser(this.user);
       }
     });
   }
@@ -44,7 +43,7 @@ export class UserProfileComponent implements OnInit {
     this.us.updateUser(this.user).subscribe({
       next: (data: any) => {
         this.user = data;
-        this.as.setUser(this.user);
+        // NEED A WAY TO FIX THE NAVBAR AFTER UPDATING USER INFO.
       }
     });
   }
