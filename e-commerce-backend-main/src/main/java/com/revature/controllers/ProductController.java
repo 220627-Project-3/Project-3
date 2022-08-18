@@ -3,9 +3,12 @@ package com.revature.controllers;
 import com.revature.annotations.Authorized;
 import com.revature.dtos.ProductInfo;
 import com.revature.models.Product;
+import com.revature.models.ProductImage;
+import com.revature.services.ProductImageService;
 import com.revature.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +20,11 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
+    private final ProductImageService productImageService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductImageService productImageService) {
         this.productService = productService;
+        this.productImageService = productImageService;
     }
 
     @Authorized
@@ -28,6 +33,20 @@ public class ProductController {
         return ResponseEntity.ok(productService.findAll());
     }
 
+	@Authorized
+	@PostMapping
+	public ResponseEntity<Product> createProductImageByProductId(@RequestBody Product product){
+		try {
+
+			Product prodResult = productService.save(product);
+			return ResponseEntity.ok()
+					.body(prodResult);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return ResponseEntity.status(500).body(null);
+	}
+	
     @Authorized
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
