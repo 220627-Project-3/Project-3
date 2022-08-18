@@ -23,11 +23,11 @@ public class WishlistItem {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, unique = true)
+    @JoinColumn(name = "product_id", nullable = false, unique = false)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false, unique = true)
+    @JoinColumn(name = "users_id", nullable = false, unique = false)
     private User user;
 
 }
