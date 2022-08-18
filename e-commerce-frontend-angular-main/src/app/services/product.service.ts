@@ -43,7 +43,14 @@ export class ProductService {
       withCredentials: environment.withCredentials,
     });
   }
-
+  z: number = 1;
+  idPr: number = 1;
+  public Changer(z: number){
+    this.z=z
+  }
+  public SearchMan(id: number){
+    this.idPr=id;
+  }
   public getSingleProduct(id: number): Observable<Product> {
     return this.http.get<Product>(
       environment.baseUrl + this.productUrl + '/' + id,
