@@ -6,17 +6,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
 	public Optional<List<Product>> findByNameContainingIgnoreCase(String name);
 	
-	// For searching by partial match (similar to SQL LIKE command) 
 	public Optional<List<Product>> findByDescriptionContainingIgnoreCase(String description);
-	
-	// Searching for a match in either column
-	@Query(value = "SELECT * FROM product WHERE description = :searchWord OR name = :searchWord OR id = :searchWord;", nativeQuery = true)
-	public List<Product> findByAny(String searchWord);	
+
+	public Optional<List<Product>> findByDescriptionContainingOrNameContaining(String seachTerm, String searchTerm);
 	
 }

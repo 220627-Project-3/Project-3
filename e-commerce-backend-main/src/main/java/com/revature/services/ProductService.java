@@ -25,9 +25,15 @@ public class ProductService {
         return productRepository.findById(id);
     }
     
+
     public Optional<List<Product>> findByDescriptionContainingIgnoreCase(String description) {
     	return productRepository.findByDescriptionContainingIgnoreCase(description);
     }
+
+    public Optional <List<Product>> findByAny(String searchTerm) {
+    	return productRepository.findByDescriptionContainingOrNameContaining(searchTerm, searchTerm);
+    }
+    
 
     public Optional<List<Product>> findByNameContainingIgnoreCase(String name) {
         return productRepository.findByNameContainingIgnoreCase(name);

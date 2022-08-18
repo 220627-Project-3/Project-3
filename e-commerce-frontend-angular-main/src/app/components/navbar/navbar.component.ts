@@ -34,17 +34,15 @@ export class NavbarComponent implements OnInit {
   }
    public Searching: String='';
    public value: number=0; 
-   public searchByValue: String='Id';
+   public searchByValue: String='Name';
    onChange(event: number){
     this.value=event;
     console.log(this.value);
    }
   ChangeChange(){
     console.log("Changed")
-    if (this.productService.z==2){
+    if (this.productService.z!=1){
     this.productService.Changer(1)
-    /*var numeric = Number(this.Searching);
-    this.productService.SearchMan(numeric)*/
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['home']);
   });}
@@ -55,8 +53,11 @@ export class NavbarComponent implements OnInit {
       this.SearchButt();
     }else if(this.searchByValue=="Name"){
       this.SearchButtwithName();
-    }
-  }
+      
+    }else if(this.searchByValue=="Desc"){
+      this.SearchButtwithDesc();
+      
+  }}
   SearchButt(){
     this.productService.Changer(2)
     var numeric = Number(this.Searching);
@@ -66,6 +67,14 @@ export class NavbarComponent implements OnInit {
 });}
   SearchButtwithName(){
     this.productService.Changer(3);
+    this.productService.SearchManName(this.Searching);
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['home']);
+  });}
+
+  SearchButtwithDesc(){
+    this.productService.Changer(4);
+    console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
     this.router.navigate(['home']);
