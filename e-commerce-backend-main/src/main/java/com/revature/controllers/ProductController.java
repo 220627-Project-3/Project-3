@@ -40,15 +40,45 @@ public class ProductController {
     }
     
     @Authorized
-    @GetMapping("/search/{name}")
+    @GetMapping("/search/any/{searchTerm}")
+    public ResponseEntity<List<Product>> findByAny(@PathVariable String searchTerm) {
+    	
+    	Optional<List<Product>> productOptional = productService.findByAny(searchTerm);
+    	
+    	if (!productOptional.isPresent()) {
+    		return ResponseEntity.notFound().build();
+    	}
+    	
+    	return ResponseEntity.ok(productOptional.get());
+    	
+    }
+        
+    @Authorized
+    @GetMapping("/search/name/{name}")
     public ResponseEntity<List<Product>> getProductByName(@PathVariable("name") String name) {
-        Optional<List<Product>> optional = productService.findByNameContaining(name);
+        Optional<List<Product>> optional = productService.findByNameContainingIgnoreCase(name);
  
         if(!optional.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(optional.get());
     }
+
+    @Authorized
+    @GetMapping("/search/description/{description}")
+    public ResponseEntity<List<Product>> findByDescriptionContaining(@PathVariable String description) {
+    	
+    	Optional<List<Product>> productOptional = productService.findByDescriptionContainingIgnoreCase(description);
+    	
+    	if (!productOptional.isPresent()) {
+    		return ResponseEntity.notFound().build();
+    	}
+    	
+    	return ResponseEntity.ok(productOptional.get());
+    	
+    }
+    
+
 
     @Authorized
     @PutMapping
