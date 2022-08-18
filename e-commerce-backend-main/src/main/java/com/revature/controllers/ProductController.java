@@ -35,7 +35,7 @@ public class ProductController {
 
 	@Authorized
 	@PostMapping
-	public ResponseEntity<Product> createProductImageByProductId(@RequestBody Product product){
+	public ResponseEntity<Product> createProduct(@RequestBody Product product){
 		try {
 
 			Product prodResult = productService.save(product);
