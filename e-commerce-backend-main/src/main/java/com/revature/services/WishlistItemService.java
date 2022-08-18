@@ -20,8 +20,8 @@ public class WishlistItemService {
     }
 
     // find all of a user's wishlistitems
-    public List<WishlistItem> findByUser(int users_id){
-        return wishlistitemRepository.findByUser(users_id);
+    public List<WishlistItem> findByUser(User user){
+        return wishlistitemRepository.findByUser(user);
     }
 
     // add a product to a user's wishlist
