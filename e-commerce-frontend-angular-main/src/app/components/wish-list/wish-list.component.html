@@ -20,7 +20,16 @@
             <td>{{product.product.description}}</td>
             <td></td>
           </tr>
+          <br>
+          <div>
+            <!-- myimage:string = "assets/images/climbingFlower.jpg"; -->
+            <!-- <img [src]="myimage" alt=""> -->
+            <!-- <img src="../../../assets/images/HEART.png" height="20" width="20"> -->
+            <img src="../../../assets/images/climbingFlower.jpg" alt="" height="500" width="200">
+
+          </div>
         </tbody>
+        
       </table>
       <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
      <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
@@ -30,14 +39,15 @@
 </div>
 <footer class="footer">
 <div class="container text-black">
-  <figure>
-      <blockquote class="blockquote">
-        <p>I generally buy things for people that I'd love to receive myself - so I have plenty of time to curate my own wish list while I shop.</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">Zoe Ball
+  <figure class="figure">
+      <blockquote class="blockquote-figure">        
+        <p><b><i>I generally buy things for people, that I'd love to receive myself - so I have plenty of time to curate my own wish list while I shop.</i></b></p>      
+      </blockquote>
+        <figcaption class="blockquote-footer">Zoe Ball.
           <cite title="Brainyquote">www.brainyquote.com</cite>
         </figcaption>
     </figure>
+    
 </div>
 </footer>
 
