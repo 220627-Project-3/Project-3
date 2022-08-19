@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   SearchProductByID(id: number){
-    this.productService.getSingleProduct(id).subscribe({next:(data)=>{
+    this.productService.getProductById(id).subscribe({next:(data)=>{
     
     }})
   }
