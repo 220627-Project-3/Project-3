@@ -27,6 +27,12 @@ describe('ProductService', () => {
     }
     expect(service.z==2).toBeTruthy();
   });
+  it('this Should also change but is named Search man',()=>{
+    if(service.idPr!=1){
+      service.SearchMan(1);
+    }
+    expect(service.idPr==1).toBeTruthy();
+  });
 
 
 });
