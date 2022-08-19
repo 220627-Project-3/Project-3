@@ -49,3 +49,14 @@ app-root>div>*:not(router-outlet) {
 a {
   cursor: pointer;
 }
+
+body.dark-theme{
+  color:rgb(220, 128, 22);
+  background: #252222;
+}
+
+#btn-dark{
+  padding: 10px;
+  border: none;
+  border-radius:2px;
+}

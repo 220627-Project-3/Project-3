@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { DarkModeService } from 'src/app/services/dark-mode.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -15,10 +16,15 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
+  localDarkTheme(): void{
+    this.darkModeService.toggleDarkTheme()
+  }
+
   constructor(
     private authService: AuthService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private darkModeService: DarkModeService
   ) {}
 
   SearchProductByID(id: number){
