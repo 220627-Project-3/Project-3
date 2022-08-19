@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
+import { HttpClientModule} from '@angular/common/http';
 
 interface Cart {
   cartCount: number;
@@ -63,31 +64,53 @@ export class ProductService {
       }
     );
   }
-  public getSingleProductByName(name: String): Observable<Product> {
-    return this.http.get<Product>(
-      environment.baseUrl + this.productUrl + '/' + name,
+  public getSingleProductByName(name: String): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      environment.baseUrl + this.productUrl + '/search/name/' + name,
       {
         withCredentials: environment.withCredentials,
       }
     );
   }
-
+  public getSingleProductByAny(name: String): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      environment.baseUrl + this.productUrl + '/search/any/' + name,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
+  public getSingleProductByDesc(name: String): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      environment.baseUrl + this.productUrl + '/search/description/' + name,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
   public updateProduct(product: Product) {
     return this.http.put(environment.baseUrl + this.productUrl, product, {
       withCredentials: environment.withCredentials,
     });
   }
-
   public uploadProductImage(product_id: number, formData: FormData) {
     return this.http.put<any>(
-      environment.baseUrl + '/api/product/image/' + product_id,
+      environment.baseUrl + '/api/product/image/' + product_id ,
       formData,
       {
         withCredentials: true,
       }
     );
   }
-
+  public uploadProductImageByName(Name: String, formData: FormData) {
+    return this.http.put<any>(
+      environment.baseUrl + '/api/product/image/' + Name ,
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
+  }
   public purchase(
     products: { id: number; quantity: number }[]
   ): Observable<any> {
