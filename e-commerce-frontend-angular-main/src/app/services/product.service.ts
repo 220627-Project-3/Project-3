@@ -56,7 +56,7 @@ export class ProductService {
   public SearchManName(name: String){
     this.NamePr=name;
   }
-  public getSingleProduct(id: number): Observable<Product> {
+  public getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(
       environment.baseUrl + this.productUrl + '/' + id,
       {
@@ -64,7 +64,7 @@ export class ProductService {
       }
     );
   }
-  public getSingleProductByName(name: String): Observable<Product[]> {
+  public getProductsByName(name: String): Observable<Product[]> {
     return this.http.get<Product[]>(
       environment.baseUrl + this.productUrl + '/search/name/' + name,
       {
@@ -72,7 +72,7 @@ export class ProductService {
       }
     );
   }
-  public getSingleProductByAny(name: String): Observable<Product[]> {
+  public getProductsByAny(name: String): Observable<Product[]> {
     return this.http.get<Product[]>(
       environment.baseUrl + this.productUrl + '/search/any/' + name,
       {
@@ -80,7 +80,7 @@ export class ProductService {
       }
     );
   }
-  public getSingleProductByDesc(name: String): Observable<Product[]> {
+  public getProductsByDesc(name: String): Observable<Product[]> {
     return this.http.get<Product[]>(
       environment.baseUrl + this.productUrl + '/search/description/' + name,
       {

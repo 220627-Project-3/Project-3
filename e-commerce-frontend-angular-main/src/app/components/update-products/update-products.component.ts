@@ -120,7 +120,7 @@ export class UpdateProductsComponent implements OnInit {
 
   retrieveProductData(param_id: string) {
     const id = parseInt(param_id);
-    this._productService.getSingleProduct(id).subscribe({
+    this._productService.getProductById(id).subscribe({
       next: (data) => {
         this.product = data;
         this.imagePreviewUrl =
