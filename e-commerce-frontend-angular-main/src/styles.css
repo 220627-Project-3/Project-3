@@ -59,7 +59,7 @@ body.dark-theme{
 table{
   background-color: white;
 }
-table.dark-theme{
+.dark-theme table{
   color:rgb(237, 142, 32);
   background: #252222;
 }

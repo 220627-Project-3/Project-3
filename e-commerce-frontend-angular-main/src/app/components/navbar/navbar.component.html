@@ -46,7 +46,7 @@
             </button>
           </div>
         </li>
-        <li class="searchDropdown justify-content-center nav-item d-flex align-items-center">
+        <li class="searchDropdown justify-content-center nav-item d-flex align-items-center text-nowrap">
           <div class="input-group">
             <div class="input-group-prepend text-right">
               <div class="input-group-text" id="searchTermLabel" style="padding-top: 0; padding-bottom: 0">
@@ -65,6 +65,11 @@
                   aria-hidden="true"></i>
               </button>
             </div>
+          </div>
+        </li>
+        <li class="nav-item justify-content-center d-flex align-items-center text-nowrap">
+          <div id="btn-dark">
+          <button class="btn btn-outline-secondary" (click)="localDarkTheme()">Toggle dark theme</button>
           </div>
         </li>
         <li class="nav-item justify-content-center d-flex align-items-center text-nowrap">
