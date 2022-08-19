@@ -14,6 +14,7 @@ export class DisplayProductsComponent implements OnInit {
   constructor(private productService: ProductService) {}
   
   ngOnInit(): void {
+    
     if(this.productService.z==2||this.productService.z==1){
     this.SearchButtonStuff(this.productService.idPr);}
     else if(this.productService.z==3||this.productService.z==4||this.productService.z==5){

@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
       .subscribe((cart) => (this.cartCount = cart.cartCount));
     this.getCurrentUserInformation();
   }
-   public Searching: String='';
+   public Searching: String="";
    public value: number=0; 
    public searchByValue: String='Any';
    onChange(event: number){
@@ -49,15 +49,21 @@ export class NavbarComponent implements OnInit {
   }
   BigSearch(){
     console.log(this.searchByValue);
+    console.log(this.Searching.length);
+    if(this.Searching.length<1){
+      console.log("this.Searching.length");
+      this.productService.z=2;
+      this.searchByValue=="Bob"
+      this.ChangeChange();
+      return;
+    }
     if(this.searchByValue=="Id"){
       this.SearchButt();
     }else if(this.searchByValue=="Name"){
       this.SearchButtwithName();
-      
     }else if(this.searchByValue=="Desc"){
       this.SearchButtwithDesc();
-      
-  }else if(this.searchByValue=="Any"){
+    }else if(this.searchByValue=="Any"){
     this.SearchButtwithAny();
     
 }
