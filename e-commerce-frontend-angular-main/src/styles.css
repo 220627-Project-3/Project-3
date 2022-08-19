@@ -56,12 +56,35 @@ body.dark-theme{
   color:rgb(237, 142, 32);
   background: #252222;
 }
-table{
+.table{
   background-color: white;
 }
-.dark-theme table{
+.dark-theme .table{
   color:rgb(237, 142, 32);
   background: #252222;
+}
+.card {
+  background-color: white;
+}
+.dark-theme .card {
+  background-color: #252222;
+}
+
+.tbody {
+  background-color: white;
+}
+
+.dark-theme .tbody{
+  background-color: #252222;
+}
+
+
+.navbar{
+  background-color: white;
+}
+
+.dark-theme .navbar{
+  background-color: #191919;
 }
 
 #btn-dark{
