@@ -17,7 +17,7 @@ select#searchBy {
   font-size: 12px;
 }
 
-.searchDropdown {
+.searchDropdown .input-group {
   max-width: 320px;
 }
 

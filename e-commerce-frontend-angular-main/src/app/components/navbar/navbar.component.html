@@ -16,7 +16,7 @@
 
     <div class="navbar-container">
       <ul class="navbar-nav main-nav mr-auto d-flex align-items-center">
-        <li class="nav-item d-flex align-items-center">
+        <li class="nav-item d-flex justify-content-center align-items-center">
           <div>
             <div class="welcome-user btn btn-light py-0" routerLink="/user-profile">
               <div class="welcome-text">Welcome,&nbsp;</div>
@@ -31,18 +31,22 @@
             </div>
           </div>
         </li>
-        <li class="nav-item d-flex align-items-center text-nowrap">
-          <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/wish-list']">
-            Wishlist <i class="fa fa-heart text-danger" aria-hidden="true"></i>
-          </button>
+        <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
+          <div>
+            <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/wish-list']">
+              Wishlist <i class="fa fa-heart text-danger" aria-hidden="true"></i>
+            </button>
+          </div>
         </li>
-        <li class="nav-item d-flex align-items-center text-nowrap">
-          <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/cart']">
-            Cart
-            <span class="badge badge-info">{{cartCount}}</span>
-          </button>
+        <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
+          <div>
+            <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/cart']">
+              Cart
+              <span class="badge badge-info">{{cartCount}}</span>
+            </button>
+          </div>
         </li>
-        <li class="searchDropdown nav-item d-flex align-items-center">
+        <li class="searchDropdown justify-content-center nav-item d-flex align-items-center">
           <div class="input-group">
             <div class="input-group-prepend text-right">
               <div class="input-group-text" id="searchTermLabel" style="padding-top: 0; padding-bottom: 0">
@@ -63,7 +67,7 @@
             </div>
           </div>
         </li>
-        <li class="nav-item d-flex align-items-center text-nowrap">
+        <li class="nav-item justify-content-center d-flex align-items-center text-nowrap">
           <button class="btn btn-outline-danger" (click)="logout();">
             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
         </li>
