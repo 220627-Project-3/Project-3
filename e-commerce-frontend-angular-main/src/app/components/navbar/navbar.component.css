@@ -1,3 +1,49 @@
 .admin-indicator {
   color: #F36A26
 }
+
+.input-group-prepend span {
+  width: 100px;
+}
+
+select#searchBy {
+  border: 0;
+  background: none;
+  max-width: 48px;
+  font-size: 12px;
+}
+
+.welcome-user {
+  font-size: 12px;
+}
+
+.searchDropdown .input-group {
+  max-width: 320px;
+}
+
+.welcome-text,
+  .welcome-name,
+  .welcome-admin {
+    display: inline-block;
+    font-size: 16px;
+  }
+
+@media (min-width: 992px) {
+  .welcome-text,
+  .welcome-name {
+    display: block;
+    font-size: 12px;
+  }
+  .welcome-admin {
+    font-size: 12px;
+  }
+}
+
+.navbar-container li.nav-item {
+  margin-left: 8px;
+  min-height: 48px;
+}
+
+.navbar-reg-btn {
+  border: 1px solid #ced4da;
+}
