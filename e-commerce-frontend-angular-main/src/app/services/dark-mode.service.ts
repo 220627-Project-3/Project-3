@@ -7,6 +7,7 @@ export class DarkModeService {
   
   toggleDarkTheme(): void{
     document.body.classList.toggle('dark-theme');
+    
   }
   constructor() { }
 }

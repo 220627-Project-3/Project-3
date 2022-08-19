@@ -49,9 +49,18 @@ app-root>div>*:not(router-outlet) {
 a {
   cursor: pointer;
 }
-
+body{
+  background-color: white;
+}
 body.dark-theme{
-  color:rgb(220, 128, 22);
+  color:rgb(237, 142, 32);
+  background: #252222;
+}
+table{
+  background-color: white;
+}
+table.dark-theme{
+  color:rgb(237, 142, 32);
   background: #252222;
 }
 
