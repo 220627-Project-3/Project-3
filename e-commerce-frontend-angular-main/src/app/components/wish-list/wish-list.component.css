@@ -147,5 +147,12 @@ figure{
 }
 
 
+.btn {
+    border: 1px solid #ced4da;
+    background-color: solid #ced4ec;
+  }
 
+.btn:hover {
+    background-color: #acd4dc;
+}
 

@@ -9,7 +9,7 @@
           <tr>
             <th scope="col" style="width: 10%">ID</th>
             <th scope="col">Name</th>
-            <th scope="col" style="width: 10%">Quantity</th>
+            <th scope="col" style="width: 10%">Stock</th>
             <th scope="col">Description</th>
             <th scope="col">Add to Cart</th>
             <th scope="col">Remove from Wishlist</th>
@@ -21,8 +21,8 @@
             <td>{{product.product.name}}</td>
             <td>{{product.product.quantity}}</td>
             <td>{{product.product.description}}</td>
-            <td><button (click)="addToCart(product.id)">Add to Cart</button></td>
-            <td><button (click)="removeFromWishList()">Remove</button></td>
+            <td><button class="btn" (click)="addToCart(product.id)">Add to Cart</button></td>
+            <td><button class="btn" (click)="removeFromWishList()">Remove from Wishlist</button></td>
           </tr>
           <br>
           <div>
