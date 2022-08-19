@@ -34,30 +34,27 @@ export class WishListComponent implements OnInit {
     private router: Router, 
     private as: AuthService, 
     private ws: WishListService) { }
-/*
-    getWishList() {
+
+    addToWishList() {
       this.ws.getWishlist(this.as.getSession().id).subscribe(
         (wish) => {
-          this.products = wish.product;
-          this.products.forEach(
-            (element) => this.wishProducts.push(element.product)
-          );
+          const wishString = wish.body?.toString;
+          console.log(wishString);
+
+          // this.products = wish.
+          // this.products.forEach(
+          //   (element) => this.wishProducts.push(element.product)
+          // );
         }
       );
     }
-*/
+
   ngOnInit(): void {
     
   }
 
 
   
-  products: {
-    product: Product,
-    quantity: number
-  }[] = [];
-  totalPrice!: number;
-  cartProducts: Product[] = [];
 // I commented 
   addToCart(product: Product): void {
     let inCart = false;
