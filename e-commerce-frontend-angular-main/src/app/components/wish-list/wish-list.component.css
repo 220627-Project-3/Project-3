@@ -19,6 +19,7 @@ body{
 .container{
 
     height: 100vh;
+    opacity: 0.0;
 
 }
 
@@ -137,9 +138,12 @@ figure{
     font-size:small;
 
 }
-body {
-    background-color: rgba(201, 76, 76, 0.3);
-    background-image: url("../../../assets/images/climbingFlower.jpg");
+#background {
+    background-color: rgba(201, 76, 76, 0.05);
+    background-image: url("../../../assets/images/climbingFlower.png");
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+    background-position: right top;
 }
 
 
