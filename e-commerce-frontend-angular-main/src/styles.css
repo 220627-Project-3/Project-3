@@ -60,14 +60,15 @@ body.dark-theme{
   background-color: white;
 }
 .dark-theme .table{
-  color:rgb(237, 142, 32);
   background: #252222;
+  color: rgb(190,190,190);
 }
 .card {
   background-color: white;
 }
 .dark-theme .card {
   background-color: #252222;
+  color: rgb(190,190,190);
 }
 
 .tbody {
@@ -76,8 +77,8 @@ body.dark-theme{
 
 .dark-theme .tbody{
   background-color: #252222;
+  color: rgb(190,190,190);
 }
-
 
 .navbar{
   background-color: white;
@@ -85,6 +86,30 @@ body.dark-theme{
 
 .dark-theme .navbar{
   background-color: #191919;
+}
+
+.navbar-brand{
+  color: black
+}
+
+.dark-theme .navbar-brand{
+  color: rgb(190,190,190);
+}
+
+.navbar-toggler{
+  color: black
+}
+
+.dark-theme .navbar-toggler{
+  color: rgb(190,190,190);
+}
+
+.navbar-collapse{
+  color: black
+}
+
+.dark-theme .navbar-collapse{
+  color: rgb(190,190,190);
 }
 
 #btn-dark{
