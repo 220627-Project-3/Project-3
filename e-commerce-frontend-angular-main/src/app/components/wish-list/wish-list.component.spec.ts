@@ -1,4 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { WishListComponent } from './wish-list.component';
 
@@ -8,7 +12,10 @@ describe('WishListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WishListComponent ]
+      declarations: [ WishListComponent ],imports: [ HttpClientTestingModule, RouterTestingModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        FormsModule  ]
     })
     .compileComponents();
   });
