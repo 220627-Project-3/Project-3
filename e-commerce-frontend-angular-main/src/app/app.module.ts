@@ -17,6 +17,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ProductDetailsComponent,
     WishListComponent,
     UserProfileComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,
