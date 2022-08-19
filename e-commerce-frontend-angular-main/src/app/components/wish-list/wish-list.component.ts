@@ -27,7 +27,7 @@ export class WishListComponent implements OnInit {
     quantity: number
   }[] = [];
   totalPrice!: number;
-  wishProducts: Product[] = [];
+  totalProducts: any[] = [];
 
   constructor(
     private productService: ProductService, 
@@ -35,22 +35,27 @@ export class WishListComponent implements OnInit {
     private as: AuthService, 
     private ws: WishListService) { }
 
-    addToWishList() {
-      this.ws.getWishlist(this.as.getSession().id).subscribe(
+    addToWishList(user: any) {
+      console.log("HOWDYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+      
+      this.ws.getWishlist(user).subscribe(
         (wish) => {
-          const wishString = wish.body?.toString;
-          console.log(wishString);
-
-          // this.products = wish.
-          // this.products.forEach(
-          //   (element) => this.wishProducts.push(element.product)
-          // );
+          console.log(wish);
         }
       );
     }
 
-  ngOnInit(): void {
     
+  ngOnInit(): void {
+    let LOG = this.as.getSession().subscribe(
+      (user: any) => {
+        console.log(user.id);
+        this.addToWishList(user.id);
+      }
+    );
+   // setTimeout(() => {console.log("sleeping"), console.log(LOG);}, 2000);
+    
+    // this.addToWishList();
   }
 
 

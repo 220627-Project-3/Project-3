@@ -22,9 +22,8 @@ export class WishListService {
 
   constructor(private http: HttpClient) { }
 
-  getWishlist(user_id: number): Observable<HttpResponse<WishListItem[]>> {
-    let wishlist = this.http.get("http://localhost:8080/api/wishlist/" + user_id, { observe: "response"}) as Observable<HttpResponse<WishListItem[]>>;
-    console.log(wishlist); 
+  getWishlist(user_id: number) {
+    let wishlist = this.http.get("http://localhost:8080/api/wishlist/" + user_id, this.environment);
     return wishlist;
     
   }
