@@ -16,75 +16,89 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
 import com.revature.dtos.CartItemDto;
-
+import com.revature.models.Cart;
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
-
+import com.revature.repositories.CartRepository;
 import com.revature.services.CartItemService;
 import com.revature.services.ProductService;
 import com.revature.services.UserService;
 
-
-
-
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:3000" }, allowCredentials = "true")
 public class CartController {
 
-    private final CartItemService cartItemService;
-    private final ProductService productService;
-    private final UserService userService;
+	private final CartItemService cartItemService;
+	private final ProductService productService;
+	private final UserService userService;
+	private final CartRepository cartRepository;
 
-    @Autowired
-    public CartController(CartItemService cartItemService, ProductService productService,
-            UserService userService) {
-        this.cartItemService = cartItemService;
-        this.productService = productService;
-        this.userService = userService;
-    }
+	@Autowired
+	public CartController(CartItemService cartItemService, ProductService productService,
+			UserService userService, CartRepository cartRepository) {
+		this.cartItemService = cartItemService;
+		this.productService = productService;
+		this.userService = userService;
+		this.cartRepository = cartRepository;
+	}
 
-    @Authorized
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<CartItem>> getCartItems(@PathVariable("userId") int userId){
-        Optional<User> optionalUser = userService.findById(userId);
-        if(optionalUser.isPresent()){
-            User user = optionalUser.get();
-            List<CartItem> items =  cartItemService.findByUser(user);
-            return ResponseEntity.ok().body(items);
-        }
-        
-        return ResponseEntity.badRequest().build();
-    }
+	@Authorized
+	@GetMapping("/{userId}")
+	public ResponseEntity<List<CartItem>> getCartItems(@PathVariable("userId") int userId) {
+		Optional<User> optionalUser = userService.findById(userId);
+		if (optionalUser.isPresent()) {
+			User user = optionalUser.get();
+			List<CartItem> items = cartItemService.findByUser(user);
+			return ResponseEntity.ok().body(items);
+		}
 
-    @Authorized
-    @PostMapping("/{userId}")
-    public ResponseEntity<Product> addCartItem(@RequestBody CartItemDto cartItemDTO, @PathVariable("userId") int userId){
-        Optional<Product> optionalProduct = productService.findById(cartItemDTO.getProductId());
-        Optional<User> optionalUser = userService.findById(userId);
+		return ResponseEntity.badRequest().build();
+	}
 
-        if(optionalProduct.isPresent() && optionalUser.isPresent()){
-            Product product = optionalProduct.get();
-            User user = optionalUser.get();
+	@Authorized
+	@PostMapping("/{userId}")
+	public ResponseEntity<CartItem> addCartItem(@RequestBody CartItemDto cartItemDTO,
+			@PathVariable("userId") int userId) {
 
-            cartItemService.addProduct(product,user);
-            return ResponseEntity.accepted().body(product);
-        }
-        return ResponseEntity.badRequest().build();
-    }
-    
-    @Authorized
-    @DeleteMapping("/{cartItemId}")
-    public ResponseEntity<Boolean> deleteCartItem(@PathVariable("cartItemId") int cartItemId){
+		CartItem cartItem = cartRepository.findByProduct_IdAndUser_Id(cartItemDTO.getProductId(), userId);
 
-        if(cartItemService.deleteCartItem(cartItemId)){
-            return ResponseEntity.accepted().body(true);
-        }
+		if (cartItem != null) {
+			int newQty = cartItem.getQuantity() + 1;
+			cartItem.setQuantity(newQty);
+			cartItem = cartRepository.save(cartItem);
+			return ResponseEntity.ok().body(cartItem);
+		} else {
+			Optional<Product> optionalProduct = productService.findById(cartItemDTO.getProductId());
+			Optional<User> optionalUser = userService.findById(userId);
 
-        return ResponseEntity.badRequest().build();
-    }
+			if (optionalProduct.isPresent() && optionalUser.isPresent()) {
+				Product product = optionalProduct.get();
+				User user = optionalUser.get();
+				cartItem = new CartItem();
+				cartItem.setProduct(product);
+				cartItem.setUser(user);
+				cartItem.setQuantity(1);
+				cartItem = cartRepository.save(cartItem);
+
+				cartItemService.addProduct(product, user);
+				return ResponseEntity.accepted().body(cartItem);
+			}
+
+		}
+		return ResponseEntity.badRequest().build();
+	}
+
+	@Authorized
+	@DeleteMapping("/{cartItemId}")
+	public ResponseEntity<Boolean> deleteCartItem(@PathVariable("cartItemId") int cartItemId) {
+
+		if (cartItemService.deleteCartItem(cartItemId)) {
+			return ResponseEntity.accepted().body(true);
+		}
+
+		return ResponseEntity.badRequest().build();
+	}
 
 }
-
-
