@@ -9,8 +9,12 @@
   </button>
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        &nbsp;
+      <li class="nav-item" *ngIf="currentUserInfo.admin">
+        <div>
+          <button class="btn btn-light" routerLink="/create-product">
+            Create Product
+          </button>
+        </div>
       </li>
     </ul>
 
@@ -31,6 +35,8 @@
             </div>
           </div>
         </li>
+
+
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
           <div>
             <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/wish-list']">
