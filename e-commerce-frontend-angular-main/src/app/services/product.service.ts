@@ -93,6 +93,13 @@ export class ProductService {
       withCredentials: environment.withCredentials,
     });
   }
+
+  public createProduct(product: Product){
+    return this.http.post(environment.baseUrl + this.productUrl, product, {
+      withCredentials: environment.withCredentials,
+    });
+  }
+  
   public uploadProductImage(product_id: number, formData: FormData) {
     return this.http.put<any>(
       environment.baseUrl + '/api/product/image/' + product_id ,

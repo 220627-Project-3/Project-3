@@ -1,39 +1,70 @@
-<app-navbar></app-navbar>
-<div class="container-fluid my-3">
-  <div class="row">
-    <div class="col">
-      <div class="main-heading mb-10">My Wishlist</div>
-      <table class="table table-striped" id="cart-table">
-        <thead>
-          <tr>
-            <th scope="col" style="width: 10%">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col" style="width: 10%">Quantity</th>
-            <th scope="col">Description</th>
-          </tr>
-        </thead>
-        <tbody id="wishlist-table-body">
-          <tr *ngFor="let product of wishProducts;">
-            <td>{{product.product.id}}</td>
-            <td>{{product.product.name}}</td>
-            <td>{{product.product.quantity}}</td>
-            <td>{{product.product.description}}</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-      <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
-     <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
-      <!-- <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button> -->
+<div id="background">
+  <app-navbar></app-navbar>
+
+  <div class="container-fluid my-3">
+    <div class="row">
+      <div class="col">
+        <div class="main-heading mb-10">My Wishlist</div>
+        <table class="table table-striped" id="cart-table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 10%">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col" style="width: 10%">Stock</th>
+              <th scope="col">Description</th>
+              <th scope="col">Add to Cart</th>
+              <th scope="col">Remove from Wishlist</th>
+            </tr>
+          </thead>
+          <tbody id="wishlist-table-body">
+            <tr *ngFor="let product of wishProducts">
+              <td>{{ product.product.id }}</td>
+              <td>{{ product.product.name }}</td>
+              <td>{{ product.product.quantity }}</td>
+              <td>{{ product.product.description }}</td>
+              <td>
+                <button class="btn" (click)="addToCart(product.product)">
+                  Add to Cart
+                </button>
+              </td>
+              <td>
+                <button class="btn" (click)="removeFromWishList(product.id)">
+                  Remove from Wishlist
+                </button>
+              </td>
+            </tr>
+            <br />
+            <div></div>
+          </tbody>
+        </table>
+        <button class="btn btn-danger mr-2" [routerLink]="['/home']">
+          Back
+        </button>
+        <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
+        <!-- <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button> -->
+      </div>
     </div>
-    <figure>
-      <blockquote class="blockquote">
-        <p>•	I generally buy things for people that I'd love to receive myself - so I have plenty of time to curate my own wish list while I shop</p>
+  </div>
+
+  <footer class="footer">
+    <div class="container text-black">
+      <figure class="figure">
+        <blockquote class="blockquote-figure">
+          <p>
+            <b
+              ><i
+                >I generally buy things for people, that I'd love to receive
+                myself - so I have plenty of time to curate my own wish list
+                while I shop.</i
+              ></b
+            >
+          </p>
         </blockquote>
-        <figcaption class="blockquote-footer">Zoe Ball
+        <figcaption class="blockquote-footer">
+          Zoe Ball.
           <cite title="Brainyquote">www.brainyquote.com</cite>
         </figcaption>
-    </figure>
-  </div>
+      </figure>
+    </div>
+  </footer>
 </div>
-

@@ -19,6 +19,7 @@ body{
 .container{
 
     height: 100vh;
+    opacity: 0.0;
 
 }
 
@@ -125,3 +126,33 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
     color: #fdcc49; 
 }
+
+#footer {
+    position: absolute; 
+    bottom: 0;
+    min-width: 100%;
+}
+
+figure{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:small;
+
+}
+#background {
+    background-color: rgba(208, 118, 118, 0.01);
+    background-image: url("../../../assets/images/climbingFlower.png");
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+    background-position: right top;
+}
+
+
+.btn {
+    border: 1px solid #ced4da;
+    background-color: solid #ced4ec;
+  }
+
+.btn:hover {
+    background-color: #acd4dc;
+}
+
