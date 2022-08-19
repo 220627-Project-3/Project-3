@@ -8,7 +8,10 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
+
 export class UserProfileComponent implements OnInit {
+
+  edit: boolean = false;
 
   user: User = {
     id: 0,
@@ -32,16 +35,15 @@ export class UserProfileComponent implements OnInit {
             this.user = data.body;
           }
         });
-        //this.as.setUser(this.user);
       }
     });
   }
 
   updateUser() {
     this.us.updateUser(this.user).subscribe({
-      next: (data:any) => {
+      next: (data: any) => {
         this.user = data;
-        //this.as.setUser(this.user);
+        // NEED A WAY TO FIX THE NAVBAR AFTER UPDATING USER INFO.
       }
     });
   }
