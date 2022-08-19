@@ -22,13 +22,16 @@ export class WishListComponent implements OnInit {
     admin: false
   };
 
+  wishProducts: any = [];
+  
+/*
   products: {
     product: Product,
     quantity: number
   }[] = [];
   totalPrice!: number;
   totalProducts: any[] = [];
-
+*/
   constructor(
     private productService: ProductService, 
     private router: Router, 
@@ -41,6 +44,7 @@ export class WishListComponent implements OnInit {
       this.ws.getWishlist(user).subscribe(
         (wish) => {
           console.log(wish);
+          this.wishProducts = wish;
         }
       );
     }
@@ -60,7 +64,7 @@ export class WishListComponent implements OnInit {
 
 
   
-// I commented 
+/* I commented 
   addToCart(product: Product): void {
     let inCart = false;
 
@@ -92,4 +96,5 @@ export class WishListComponent implements OnInit {
       // this.productService.setCart(cart);
     }
   }
+  */
 }

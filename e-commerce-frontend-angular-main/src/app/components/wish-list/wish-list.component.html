@@ -13,10 +13,10 @@
           </tr>
         </thead>
         <tbody id="wishlist-table-body">
-          <tr *ngFor="let product of products;">
+          <tr *ngFor="let product of wishProducts;">
             <td>{{product.product.id}}</td>
             <td>{{product.product.name}}</td>
-            <td>{{product.quantity}}</td>
+            <td>{{product.product.quantity}}</td>
             <td>{{product.product.description}}</td>
             <td></td>
           </tr>
@@ -24,7 +24,7 @@
       </table>
       <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
      <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
-      <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
+      <!-- <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button> -->
     </div>
   </div>
 </div>
