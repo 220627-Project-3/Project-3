@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
+import { HttpClientModule} from '@angular/common/http';
 
 interface Cart {
   cartCount: number;
@@ -110,7 +111,6 @@ export class ProductService {
       }
     );
   }
-
   public purchase(
     products: { id: number; quantity: number }[]
   ): Observable<any> {
