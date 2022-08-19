@@ -33,6 +33,16 @@ describe('ProductService', () => {
     }
     expect(service.idPr==1).toBeTruthy();
   });
+  it('get Product By Id',()=>{
+      let z =service.getProductById(1);
+    
+    expect(z).toBeTruthy();
+  });
 
-
+  it('get Products By Name',()=>{
+    let z =service.getProductsByName("sneak");
+  
+  expect(z).toBeTruthy();
+});
+  
 });
