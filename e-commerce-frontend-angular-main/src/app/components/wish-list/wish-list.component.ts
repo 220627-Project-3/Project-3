@@ -23,7 +23,12 @@ export class WishListComponent implements OnInit {
   };
 
   wishProducts: any = [];
-  
+  products: {
+    product: Product,
+    quantity: number
+  }[] = [];
+  totalPrice!: number;
+
 /*
   products: {
     product: Product,
@@ -49,7 +54,19 @@ export class WishListComponent implements OnInit {
       );
     }
 
-    removeFromWishList() {
+    removeFromWishList(id: number) {
+      console.log(id);
+
+      this.ws.deleteItemFromWishlist(id).subscribe({
+        next: data => {
+          console.log(data);
+          console.log("Delete successful");
+          location.reload();
+        },
+        error: err => {
+          console.log("Something went wrong deleting the wishlist item");
+        }
+      })
 
     }
 

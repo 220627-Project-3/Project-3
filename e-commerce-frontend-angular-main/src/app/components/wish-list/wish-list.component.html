@@ -23,7 +23,7 @@
             <td>{{product.product.quantity}}</td>
             <td>{{product.product.description}}</td>
             <td><button class="btn" (click)="addToCart(product.id)">Add to Cart</button></td>
-            <td><button class="btn" (click)="removeFromWishList()">Remove from Wishlist</button></td>
+            <td><button class="btn" (click)="removeFromWishList(product.id)">Remove from Wishlist</button></td>
           </tr>
           <br>
           <div>

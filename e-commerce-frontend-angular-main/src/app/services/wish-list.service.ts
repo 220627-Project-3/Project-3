@@ -32,8 +32,8 @@ export class WishListService {
     return this.http.post<any>("http://localhost:8080/api/wishlist/" + user_id, wishlistItem ,this.environment);
   }
 
-  deleteItemFromWishlist(wishlistItem: any) {
-    
+  deleteItemFromWishlist(wishlistItemId: number) {
+    return this.http.delete("http://localhost:8080/api/wishlist/" + wishlistItemId, this.environment);
   }
 
 }
