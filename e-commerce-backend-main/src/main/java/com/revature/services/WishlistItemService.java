@@ -30,6 +30,16 @@ public class WishlistItemService {
             WishlistItem newItem = new WishlistItem();
             newItem.setProduct(product);
             newItem.setUser(user);
+            List<WishlistItem> list = wishlistitemRepository.findByUser(user);
+
+            // if item is already in user's wishlist, just return
+            for(WishlistItem item : list){
+                if(item.getProduct() == product && item.getUser() == user){
+                    //System.out.println("USER ALREADY HAS IT IN D LISTTTTTTTTTTTTTTTTT");
+                    return true;
+                }
+            }
+
             wishlistitemRepository.save(newItem);
             return true;
 
