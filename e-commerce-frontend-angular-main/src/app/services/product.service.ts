@@ -56,6 +56,14 @@ export class ProductService {
   public SearchManName(name: String){
     this.NamePr=name;
   }
+  public getSingleProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(
+      environment.baseUrl + this.productUrl + '/' + id,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
   public getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(
       environment.baseUrl + this.productUrl + '/' + id,
@@ -99,7 +107,7 @@ export class ProductService {
       withCredentials: environment.withCredentials,
     });
   }
-  
+
   public uploadProductImage(product_id: number, formData: FormData) {
     return this.http.put<any>(
       environment.baseUrl + '/api/product/image/' + product_id ,
