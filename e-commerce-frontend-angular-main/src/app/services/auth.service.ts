@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(email: any, password: any): Observable<any> {
     const payload = { email: email, password: password };
     return this.http.post<any>(`${this.authUrl}/login`, payload, {
       headers: environment.headers,
@@ -27,10 +27,10 @@ export class AuthService {
   }
 
   register(
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string
+    firstName: any,
+    lastName: any,
+    email: any,
+    password: any
   ): Observable<any> {
     const payload = {
       firstName: firstName,
