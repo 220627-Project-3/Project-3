@@ -49,6 +49,10 @@ export class WishListComponent implements OnInit {
       );
     }
 
+    removeFromWishList() {
+
+    }
+
     
   ngOnInit(): void {
     let LOG = this.as.getSession().subscribe(
@@ -63,38 +67,36 @@ export class WishListComponent implements OnInit {
   }
 
 
-  
-/* I commented 
+
   addToCart(product: Product): void {
-    let inCart = false;
+  //   let inCart = false;
 
-    this.products.forEach((element) => {
-      if (element.product == product) {
-        ++element.quantity;
-        let cart = {
-          // cartCount: this.cartCount + 1,
-          products: this.products,
-          totalPrice: this.totalPrice + product.price,
-        };
-        // this.productService.setCart(cart);
-        inCart = true;
-        return;
-      }
-    });
+  //   this.products.forEach((element) => {
+  //     if (element.product == product) {
+  //       ++element.quantity;
+  //       let cart = {
+  //         // cartCount: this.cartCount + 1,
+  //         products: this.products,
+  //         totalPrice: this.totalPrice + product.price,
+  //       };
+  //       // this.productService.setCart(cart);
+  //       inCart = true;
+  //       return;
+  //     }
+  //   });
 
-    if (inCart == false) {
-      let newProduct = {
-        product: product,
-        quantity: 1,
-      };
-      this.products.push(newProduct);
-      let cart = {
-        // cartCount: this.cartCount + 1,
-        products: this.products,
-        totalPrice: this.totalPrice + product.price,
-      };
-      // this.productService.setCart(cart);
-    }
+  //   if (inCart == false) {
+  //     let newProduct = {
+  //       product: product,
+  //       quantity: 1,
+  //     };
+  //     this.products.push(newProduct);
+  //     let cart = {
+  //       // cartCount: this.cartCount + 1,
+  //       products: this.products,
+  //       totalPrice: this.totalPrice + product.price,
+  //     };
+  //     // this.productService.setCart(cart);
+  //   }
   }
-  */
 }

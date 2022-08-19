@@ -128,9 +128,9 @@ input::-webkit-inner-spin-button {
 }
 
 #footer {
-    position: fixed;
+    position: absolute; 
     bottom: 0;
-    width: 100%;
+    min-width: 100%;
 }
 
 figure{
@@ -139,7 +139,7 @@ figure{
 
 }
 #background {
-    background-color: rgba(201, 76, 76, 0.05);
+    background-color: rgba(208, 118, 118, 0.01);
     background-image: url("../../../assets/images/climbingFlower.png");
     background-repeat: no-repeat;
     background-blend-mode: luminosity;

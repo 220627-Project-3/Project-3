@@ -11,6 +11,8 @@
             <th scope="col">Name</th>
             <th scope="col" style="width: 10%">Quantity</th>
             <th scope="col">Description</th>
+            <th scope="col">Add to Cart</th>
+            <th scope="col">Remove from Wishlist</th>
           </tr>
         </thead>
         <tbody id="wishlist-table-body">
@@ -19,13 +21,11 @@
             <td>{{product.product.name}}</td>
             <td>{{product.product.quantity}}</td>
             <td>{{product.product.description}}</td>
-            <td></td>
+            <td><button (click)="addToCart(product.id)">Add to Cart</button></td>
+            <td><button (click)="removeFromWishList()">Remove</button></td>
           </tr>
           <br>
           <div>
-            <!-- myimage:string = "assets/images/climbingFlower.jpg"; -->
-            <!-- <img [src]="myimage" alt=""> -->
-            <!-- <img src="../../../assets/images/climbingFlower.jpg" height="20" width="20"> -->
 
           </div>
         </tbody>
