@@ -1,62 +1,74 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a [routerLink]="['/home']" class="navbar-brand"(click)="ChangeChange()">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
+  <a [routerLink]="['/home']" class="navbar-brand" (click)="ChangeChange()">
     <img class="align-middle mr-2" src="/assets/images/favicon.png" width="36" height="36" alt="Revature">
-    <span class="h4 align-middle" >Revature Swag Shop</span>
+    <span class="h4 align-middle">Revature Swag Shop</span>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         &nbsp;
       </li>
     </ul>
-    <form class="form-inline d-flex justify-content-end">
-      <div>
-        <ul class="navbar-nav mr-auto text-right">
-          <li class="nav-item">
-            <button class="btn btn-light" [routerLink]="['/cart']">
-              Cart
-              <span class="badge badge-info">{{cartCount}}</span>
-            </button>
-          </li>
-          <li class="nav-item">
-            <button [routerLink]="['/wish-list']">
-              <img src="../../../assets/images/HEART.png" height="20" width="20">
-            </button>
 
-          </li>
-          <li class="nav-item d-flex align-items-center">
-            <div>
-              <button type="button" class="btn btn-light" routerLink="/user-profile">
-                <span class="futura-heavy mr-2">Welcome,
-                  {{currentUserInfo != null ? currentUserInfo.firstName : '' | titlecase}}
-                  {{currentUserInfo != null ? currentUserInfo.lastName : '' |
-                  titlecase}}</span>
-                <div style="display: inline;" *ngIf="currentUserInfo.admin">
-                  [ <i class="admin-indicator fa fa-star mr-1" aria-hidden="true"></i>
-                  <span class="admin-indicator">Admin</span> ]
+    <div class="navbar-container">
+      <ul class="navbar-nav main-nav mr-auto d-flex align-items-center">
+        <li class="nav-item d-flex align-items-center">
+          <div>
+            <div class="welcome-user btn btn-light py-0" routerLink="/user-profile">
+              <div class="welcome-text">Welcome,&nbsp;</div>
+              <div class="welcome-name futura-heavy text-nowrap">{{currentUserInfo != null ? currentUserInfo.firstName :
+                ''
+                | titlecase}}
+                {{currentUserInfo != null ? currentUserInfo.lastName : '' |
+                titlecase}} <div class="welcome-admin" *ngIf="currentUserInfo.admin"><i
+                    class="admin-indicator fa fa-star" aria-hidden="true"></i>
                 </div>
-              </button>
-              <input type="text" [(ngModel)]="Searching" name="Searching">
-              <span style="margin-left:10px;">Search by:</span>
-              <select placeholder="Search by" name="searchBy" id="searchBy" [(ngModel)]="searchByValue">
-                <option value="Id">Id</option>
-                <option value="Name">Product Name</option>
-                <option value="Desc">Product Description</option>
-                <option value="Any">Any</option>
-              </select>
-              <span><button class="btn btn-primary mr-1" style="margin-left:5px;" (click)="BigSearch()">Search</button></span> <!-- Needs to be a dropdown -->
+              </div>
             </div>
-          </li>
-          <li class="nav-item ml-2">
-            <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout();"><i class="fa fa-sign-out"
-                aria-hidden="true"></i> Logout</button>
-          </li>
-        </ul>
-      </div>
-    </form>
+          </div>
+        </li>
+        <li class="nav-item d-flex align-items-center text-nowrap">
+          <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/wish-list']">
+            Wishlist <i class="fa fa-heart text-danger" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li class="nav-item d-flex align-items-center text-nowrap">
+          <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/cart']">
+            Cart
+            <span class="badge badge-info">{{cartCount}}</span>
+          </button>
+        </li>
+        <li class="searchDropdown nav-item d-flex align-items-center">
+          <div class="input-group">
+            <div class="input-group-prepend text-right">
+              <div class="input-group-text" id="searchTermLabel" style="padding-top: 0; padding-bottom: 0">
+                <select placeholder="Search by" name="searchBy" id="searchBy" [(ngModel)]="searchByValue">
+                  <option value="Id">Id</option>
+                  <option value="Name">Product Name</option>
+                  <option value="Desc">Product Description</option>
+                  <option value="Any">Any</option>
+                </select>
+              </div>
+            </div>
+            <input class="form-control" type="text" placeholder="Search Products..." [(ngModel)]="Searching"
+              name="Searching" (keyup.enter)="BigSearch()">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary navbar-reg-btn" (click)="BigSearch()"><i class="fa fa-search"
+                  aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item d-flex align-items-center text-nowrap">
+          <button class="btn btn-outline-danger" (click)="logout();">
+            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </nav>
