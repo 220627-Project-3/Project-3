@@ -22,6 +22,8 @@ export class UpdateProductsComponent implements OnInit {
 
   showError: boolean = false;
   showSuccess: boolean = false;
+  showLoading: boolean = false;
+  showLoadingImage: boolean = false;
 
   imageBackup: any = '';
   imagePreviewUrl: any = '/assets/images/default-product-image.png';
@@ -51,6 +53,7 @@ export class UpdateProductsComponent implements OnInit {
   updateDetails(event: Event) {
     this.showError = false;
     this.showSuccess = false;
+    this.showLoading = true;
     const form = event.currentTarget as HTMLFormElement;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -65,6 +68,9 @@ export class UpdateProductsComponent implements OnInit {
           console.log(err);
           this.showError = true;
         },
+        complete: () => {
+          this.showLoading = false;
+        },
       });
     }
     form.classList.add('was-validated');
@@ -74,7 +80,7 @@ export class UpdateProductsComponent implements OnInit {
 
   submitProductImage() {
     let formData: any = new FormData();
-
+    this.showLoadingImage = true;
     formData.append(
       'productimage',
       this.formProductImage.get('productimage')?.value
@@ -88,6 +94,9 @@ export class UpdateProductsComponent implements OnInit {
           this.showConfirmUpload = false;
         },
         error: (error) => console.log(error),
+        complete: () => {
+          this.showLoadingImage = false;
+        },
       });
   }
 
