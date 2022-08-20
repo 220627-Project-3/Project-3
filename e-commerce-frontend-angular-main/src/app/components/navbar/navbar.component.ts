@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +23,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private _cookieService: CookieService
   ) {}
 
   SearchProductByID(id: number) {
@@ -119,19 +121,27 @@ export class NavbarComponent implements OnInit {
   }
 
   getCurrentUserInformation() {
-    this.authService.getSession().subscribe({
-      next: (data: any) => {
-        this.currentUserInfo = data;
-        console.log(this.currentUserInfo);
-        this.authService.setUser(data);
-        this.passCurrentUserInfo.emit(data);
-      },
-      error: (err: any) => {
-        console.log('User is not logged on');
-        console.log(err);
-      },
-      complete: () => {},
-    });
+    if (this._cookieService.get('JSESSIONID') != undefined) {
+      console.log('%c[User is logged in]', 'color: blue');
+      this.authService.getSession().subscribe({
+        next: (data: any) => {
+          this.currentUserInfo = data;
+          console.log(this.currentUserInfo);
+          this.authService.setUser(data);
+          this.passCurrentUserInfo.emit(data);
+        },
+        error: (err: any) => {
+          console.log('%c[User is not logged on]', 'color: orange');
+          this._cookieService.removeAll();
+          this.router.navigate(['login']);
+          console.log(err);
+        },
+        complete: () => {},
+      });
+    } else {
+      console.log('%c[User is not logged on]', 'color: orange');
+      this.router.navigate(['login']);
+    }
   }
 
   resizeSelect(event: Event) {
