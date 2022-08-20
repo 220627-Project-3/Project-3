@@ -15,87 +15,100 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
+  public Searching: String = '';
+  public value: number = 0;
+  public searchByValue: String = 'Any';
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private productService: ProductService
   ) {}
 
-  SearchProductByID(id: number){
-    this.productService.getProductById(id).subscribe({next:(data)=>{
-    
-    }})
+  SearchProductByID(id: number) {
+    this.productService.getProductById(id).subscribe({ next: (data) => {} });
   }
+
   ngOnInit(): void {
     this.subscription = this.productService
       .getCart()
       .subscribe((cart) => (this.cartCount = cart.cartCount));
     this.getCurrentUserInformation();
   }
-   public Searching: String="";
-   public value: number=0; 
-   public searchByValue: String='Any';
-   onChange(event: number){
-    this.value=event;
+
+  onChange(event: number) {
+    this.value = event;
     console.log(this.value);
-   }
-  ChangeChange(){
-    console.log("Changed")
-    if (this.productService.z!=1){
-    this.productService.Changer(1)
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['home']);
-  });}
   }
-  BigSearch(){
+
+  ChangeChange() {
+    console.log('Changed');
+    if (this.productService.z != 1) {
+      this.productService.Changer(1);
+      this.router
+        .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+        .then(() => {
+          this.router.navigate(['home']);
+        });
+    }
+  }
+
+  BigSearch() {
     console.log(this.searchByValue);
     console.log(this.Searching.length);
-    if(this.Searching.length<1){
-      console.log("this.Searching.length");
-      this.productService.z=2;
-      this.searchByValue=="Bob"
+    if (this.Searching.length < 1) {
+      console.log('this.Searching.length');
+      this.productService.z = 2;
+      this.searchByValue == 'Bob';
       this.ChangeChange();
       return;
     }
-    if(this.searchByValue=="Id"){
+    if (this.searchByValue == 'Id') {
       this.SearchButt();
-    }else if(this.searchByValue=="Name"){
+    } else if (this.searchByValue == 'Name') {
       this.SearchButtwithName();
-    }else if(this.searchByValue=="Desc"){
+    } else if (this.searchByValue == 'Desc') {
       this.SearchButtwithDesc();
-    }else if(this.searchByValue=="Any"){
-    this.SearchButtwithAny();
-    
-}
-}
-  SearchButt(){
-    this.productService.Changer(2)
+    } else if (this.searchByValue == 'Any') {
+      this.SearchButtwithAny();
+    }
+  }
+
+  SearchButt() {
+    this.productService.Changer(2);
     var numeric = Number(this.Searching);
     this.productService.SearchMan(numeric);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-});}
-  SearchButtwithName(){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
+
+  SearchButtwithName() {
     this.productService.Changer(3);
     this.productService.SearchManName(this.Searching);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-  });}
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
 
-  SearchButtwithDesc(){
+  SearchButtwithDesc() {
     this.productService.Changer(4);
     console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-  });}
-  SearchButtwithAny(){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
+
+  SearchButtwithAny() {
     this.productService.Changer(5);
     console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-  });}
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -119,5 +132,22 @@ export class NavbarComponent implements OnInit {
       },
       complete: () => {},
     });
+  }
+
+  resizeSelect(event: Event) {
+    let mySelect = event.currentTarget as HTMLSelectElement;
+    switch (mySelect.value.toLowerCase()) {
+      case 'any':
+        mySelect.style.width = '43px';
+        break;
+      case 'name':
+        mySelect.style.width = '97px';
+        break;
+      case 'desc':
+        mySelect.style.width = '123px';
+        break;
+      default:
+        break;
+    }
   }
 }
