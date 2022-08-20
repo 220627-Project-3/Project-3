@@ -6,7 +6,7 @@
 
         <h2>Confirm order and pay</h2>
     <span>please make the payment, after that you can enjoy all the features and benefits.</span>
-        
+
     </div>
     <div class="row">
         <div class="col-md-8">
@@ -19,7 +19,7 @@
 
                     <div class="col-md-6">
 
-                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span> 
+                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
                         </div>
 
                     </div>
@@ -28,8 +28,8 @@
                             <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Expiry</span> </div>
 
                         <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>CVV</span> </div>
-                        </div>                        
-                    </div>                   
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mt-4 mb-4">
@@ -40,14 +40,14 @@
                         <div class="col-md-6">
 
                             <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Street Address</span> </div>
-                            
+
                         </div>
 
 
                         <div class="col-md-6">
 
                             <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>City</span> </div>
-                            
+
                         </div>
                     </div>
 
@@ -55,14 +55,14 @@
 
                         <div class="col-md-6">
 
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>State/Province</span> </div>        
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>State/Province</span> </div>
 
                         </div>
                         <div class="col-md-6">
 
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Zip code</span> </div>              
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Zip code</span> </div>
 
-                        </div>                      
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
 
                 <button class="btn btn-danger" [routerLink]="['/cart']">Back to Cart</button>
 
-                <button class="btn btn-success px-3" (click)="onSubmit();">Pay ${{totalPrice}}</button>
+                <button class="btn btn-success px-3" (click)="onSubmit();">Pay ${{totalPrice | number : '1.2-2'}}</button>
 
             </div>
 
@@ -83,19 +83,19 @@
 
             <span>You have to pay</span>
                 <div class="d-flex flex-row align-items-end mb-3">
-                    <h1 class="mb-0 yellow">${{totalPrice}}</h1>
+                    <h1 class="mb-0 yellow">${{totalPrice | number : '1.2-2'}}</h1>
                 </div>
 
                 <div class="hightlight">
 
                     <span>100% Guaranteed Satisfaction!</span>
-                    
+
 
                 </div>
-                
+
             </div>
-            
+
         </div>
-        
+
     </div>
 </div>

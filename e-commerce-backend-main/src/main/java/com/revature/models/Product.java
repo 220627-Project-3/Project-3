@@ -25,7 +25,6 @@ public class Product {
     private double price;
     @Column(nullable = false)
     private String description;
-    private String image;
     @Column(nullable = false)
     private String name;
 }

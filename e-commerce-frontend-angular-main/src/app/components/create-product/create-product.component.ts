@@ -71,13 +71,14 @@ export class CreateProductComponent implements OnInit {
               next: (response) => {
                 console.log(response);
                 this.showSuccess = true;
-                this.showLoading = false;
                 this.showConfirmUpload = false;
               },
               error: (error) => {
                 console.log(error);
-                this.showLoading = false;
                 this.showError = true;
+              },
+              complete: () => {
+                this.showLoading = false;
               },
             });
         },
