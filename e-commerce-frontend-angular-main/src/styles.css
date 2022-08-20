@@ -59,7 +59,7 @@ body{
 
 body.dark-theme{
   color:rgba(215, 220, 214, 0.906);
-  background-color: #191919;;
+  background-color: #191919;
 }
 
 /* Dark-Mode Cards->Tables->Form->Input->etc */
@@ -124,7 +124,7 @@ body.dark-theme{
 
 .dark-theme .navbar{
   
-  background-color: rgb(62, 61, 61);
+  background-color: rgb(46,46,46);
   box-shadow: 0 2px 4px 0 #ece2e2d6;
 }
 
