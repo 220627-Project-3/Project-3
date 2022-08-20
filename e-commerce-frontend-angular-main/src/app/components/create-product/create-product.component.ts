@@ -8,13 +8,9 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
+  styleUrls: ['./create-product.component.css'],
 })
-
 export class CreateProductComponent implements OnInit {
-
-
-
   product: Product = new Product(0, '', 0, '', 0, '');
 
   environment = environment;
@@ -23,6 +19,7 @@ export class CreateProductComponent implements OnInit {
 
   showError: boolean = false;
   showSuccess: boolean = false;
+  showLoading: boolean = false;
 
   imageBackup: any = '';
   imagePreviewUrl: any = 'assets/images/default-product-image.png';
@@ -42,17 +39,17 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe({
       next: (data) => {
-       // this.param_id = data.id;
+        // this.param_id = data.id;
         //this.retrieveProductData(this.param_id);
       },
       error: (err) => console.log(err),
     });
   }
 
-  
   createDetails(event: Event) {
     this.showError = false;
     this.showSuccess = false;
+    this.showLoading = true;
     const form = event.currentTarget as HTMLFormElement;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -62,7 +59,6 @@ export class CreateProductComponent implements OnInit {
         next: (data) => {
           console.log(data);
           let createdProduct = data as Product;
-          this.showSuccess = true;
           let formData: any = new FormData();
           formData.append(
             'productimage',
@@ -74,13 +70,20 @@ export class CreateProductComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 console.log(response);
+                this.showSuccess = true;
+                this.showLoading = false;
                 this.showConfirmUpload = false;
               },
-              error: (error) => console.log(error),
+              error: (error) => {
+                console.log(error);
+                this.showLoading = false;
+                this.showError = true;
+              },
             });
         },
         error: (err) => {
           console.log(err);
+          this.showLoading = false;
           this.showError = true;
         },
       });

@@ -18,6 +18,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { CreateProductComponent } from './components/create-product/create-produ
     ProductDetailsComponent,
     WishListComponent,
     UserProfileComponent,
-    CreateProductComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,7 @@ import { CreateProductComponent } from './components/create-product/create-produ
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CookieModule.withOptions()
   ],
   providers: [],
   bootstrap: [AppComponent],
