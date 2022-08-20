@@ -29,7 +29,7 @@ public class ProductImage {
 	private byte[] productImage;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "product_id_fk", foreignKeyDefinition = "FOREIGN KEY (product_id) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE"))
+	@JoinColumn(name = "product_id", nullable = false, unique = true)
 	private Product product;
 
 }
