@@ -24,6 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "bootstrap": "^5.2.0",
     "ngx-bootstrap": "^9.0.0",
+    "ngx-cookie": "^6.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

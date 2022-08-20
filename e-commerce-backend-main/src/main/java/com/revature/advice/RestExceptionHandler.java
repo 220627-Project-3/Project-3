@@ -1,12 +1,13 @@
 package com.revature.advice;
 
-import com.revature.exceptions.NotLoggedInException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
+import com.revature.exceptions.NotLoggedInException;
 
 @RestControllerAdvice
 public class RestExceptionHandler {

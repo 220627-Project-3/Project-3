@@ -69,13 +69,19 @@
                             </div>
                           </div>
                           <div class="btn-containers text-center">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="showLoading">
+                              <span *ngIf="!showLoading">Create</span>
+                              <span *ngIf="showLoading" class="spinner-border spinner-border-sm" role="status">
+                                <i class="sr-only">Loading...</i>
+                              </span>
+                              <span *ngIf="showLoading"> Saving...</span>
+                            </button>
                           </div>
                           <div class="alert alert-success text-center mt-3" role="alert" *ngIf="showSuccess">
-                            Create success
+                            Added new product.
                           </div>
                           <div class="alert alert-danger text-center mt-3" role="alert" *ngIf="showError">
-                            Create failed. Make sure all fields are filled out.
+                            Add new product failed. Make sure all fields are filled out.
                           </div>
                         </form>
                       </div>

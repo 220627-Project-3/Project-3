@@ -23,8 +23,8 @@ spring:
     password: revature2022
   h2:
     console.enabled: false
-  jackson:
-    default-property-inclusion: NON_NULL
+  # jackson:
+  #   default-property-inclusion: NON_NULL
   servlet:
     multipart:
       max-file-size: -1

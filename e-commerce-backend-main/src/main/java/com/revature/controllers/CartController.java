@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
 import com.revature.dtos.CartItemDto;
-
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
-
 import com.revature.services.CartItemService;
 import com.revature.services.ProductService;
 import com.revature.services.UserService;

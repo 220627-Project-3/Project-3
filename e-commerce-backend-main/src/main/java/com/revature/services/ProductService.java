@@ -1,12 +1,13 @@
 package com.revature.services;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.revature.dtos.ProductInfo;
 import com.revature.models.Product;
 import com.revature.repositories.ProductRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {

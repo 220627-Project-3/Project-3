@@ -3,15 +3,18 @@
  */
 
 plugins {
-    id 'java'
-    id 'maven-publish'
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
 }
 
+group = 'com.revature'
+version = '0.0.1-SNAPSHOT'
+description = 'e-commerce'
+sourceCompatibility = '8'
+
 repositories {
-    mavenLocal()
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
+    mavenCentral()
 }
 
 dependencies {
@@ -31,19 +34,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.3'
 }
 
-group = 'com.revature'
-version = '0.0.1-SNAPSHOT'
-description = 'e-commerce'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
-
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
 }

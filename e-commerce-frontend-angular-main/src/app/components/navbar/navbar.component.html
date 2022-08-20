@@ -9,7 +9,7 @@
   </button>
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngIf="currentUserInfo.admin">
+      <li class="d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.admin">
         <div>
           <button class="btn btn-light" routerLink="/create-product">
             Create Product
@@ -52,15 +52,15 @@
             </button>
           </div>
         </li>
-        <li class="searchDropdown justify-content-center nav-item d-flex align-items-center">
-          <div class="input-group">
+        <li class="searchContainer justify-content-center nav-item d-flex align-items-center">
+          <div class="input-group flex-nowrap">
             <div class="input-group-prepend text-right">
-              <div class="input-group-text" id="searchTermLabel" style="padding-top: 0; padding-bottom: 0">
-                <select placeholder="Search by" name="searchBy" id="searchBy" [(ngModel)]="searchByValue">
-                  <option value="Id">Id</option>
+              <div class="input-group-text p-1" id="searchTermLabel">
+                <select placeholder="Search by" name="searchBy" id="searchBy" (change)="resizeSelect($event)" [(ngModel)]="searchByValue" style="width:43px">
+                  <!-- <option value="Id">Id</option> -->
+                  <option value="Any">Any</option>
                   <option value="Name">Product Name</option>
                   <option value="Desc">Product Description</option>
-                  <option value="Any">Any</option>
                 </select>
               </div>
             </div>
