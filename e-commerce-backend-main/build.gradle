@@ -21,17 +21,24 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.3'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.3'
-    implementation 'org.projectlombok:lombok:1.18.24'
     implementation 'org.springframework.boot:spring-boot-starter:2.7.3'
     implementation 'org.apache.tika:tika-core:2.4.1'
     implementation 'org.springframework:spring-context:5.3.22'
     implementation 'org.springframework:spring-context-support:5.3.22'
     implementation 'org.springframework.boot:spring-boot-starter-cache:2.7.3'
     implementation 'com.google.guava:guava:29.0-jre'
+    
     runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.7.3'
     runtimeOnly 'com.h2database:h2:2.1.214'
     runtimeOnly 'org.postgresql:postgresql:42.3.6'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.3'
+    
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 tasks.withType(JavaCompile) {
