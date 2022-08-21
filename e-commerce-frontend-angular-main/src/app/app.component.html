@@ -1,3 +1,5 @@
 <div>
   <router-outlet></router-outlet>
+  <ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"
+                (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 </div>

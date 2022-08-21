@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductsComponent } from './components/update-products/update-products.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NgParticlesModule } from "ng-particles";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgParticlesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
