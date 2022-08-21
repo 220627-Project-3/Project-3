@@ -12,11 +12,6 @@ export class AppComponent {
   id = "tsparticles";
 
   particlesOptions = {
-    background: {
-      color: {
-        value: "#0d47a1"
-      }
-    },
     fpsLimit: 120,
     interactivity: {
       events: {
@@ -35,14 +30,14 @@ export class AppComponent {
           quantity: 4
         },
         repulse: {
-          distance: 200,
-          duration: 0.4
+          distance: 80,
+          duration: 0.8
         }
       }
     },
     particles: {
       color: {
-        value: "#ffffff"
+        value: "#ffa500"
       },
       links: {
         color: "#ffffff",
@@ -61,7 +56,7 @@ export class AppComponent {
           default: OutMode.bounce
         },
         random: false,
-        speed: 6,
+        speed: 3,
         straight: false
       },
       number: {
@@ -72,14 +67,13 @@ export class AppComponent {
         value: 80
       },
       opacity: {
-        value: 0.5
+        value: 0.3
       },
       shape: {
-        type: "star",
-        opacity: 0.5
+        type: "star"
       },
       size: {
-        value: {min: 1, max: 5 },
+        value: {min: 3, max: 8 },
       }
     },
     detectRetina: true
