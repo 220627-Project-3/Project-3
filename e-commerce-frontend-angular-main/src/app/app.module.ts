@@ -15,6 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateProductsComponent } from './components/update-products/update-products.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CheckoutComponent,
     DisplayProductsComponent,
     UpdateProductsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProductDetailsComponent,
+    WishListComponent,
+    UserProfileComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,10 +44,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CookieModule.withOptions(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

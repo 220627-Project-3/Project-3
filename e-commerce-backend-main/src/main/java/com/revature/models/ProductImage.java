@@ -23,7 +23,7 @@ public class ProductImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	private byte[] productImage;
 

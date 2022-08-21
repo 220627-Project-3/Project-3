@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +21,7 @@ import com.revature.dtos.LoginRequest;
 import com.revature.dtos.RegisterRequest;
 import com.revature.models.User;
 import com.revature.services.AuthService;
+import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/auth")
@@ -32,8 +32,11 @@ public class AuthController {
 
 	private final AuthService authService;
 
-	public AuthController(AuthService authService) {
+	private final UserService userService;
+
+	public AuthController(AuthService authService, UserService userService) {
 		this.authService = authService;
+		this.userService = userService;
 	}
 
 	@PostMapping("/login")
@@ -51,20 +54,22 @@ public class AuthController {
 
 	@GetMapping("/session")
 	public ResponseEntity<User> currentSession(HttpSession session, HttpServletResponse response) {
-		
-		User curUser = (User) session.getAttribute("user");
-		
-		if(curUser != null) {
-			return ResponseEntity.ok().body(curUser);
+
+		User sessionData = (User) session.getAttribute("user");
+
+		Optional<User> curUser = userService.findById(sessionData.getId());
+
+		if (curUser.isPresent()) {
+			return ResponseEntity.ok().body(curUser.get());
 		}
-		
+
 		// Destroy JSESSIONID if session is invalid
 		Cookie cookie = new Cookie("JSESSIONID", null);
 		cookie.setPath("/");
 		cookie.setHttpOnly(false);
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
-		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(curUser);
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	}
 
 	@PostMapping("/logout")
@@ -80,12 +85,8 @@ public class AuthController {
 		User created = null;
 
 		try {
-			created = authService.register(new User(0,
-					registerRequest.getEmail(),
-					registerRequest.getPassword(),
-					registerRequest.getFirstName(),
-					registerRequest.getLastName(),
-					false));
+			created = authService.register(new User(0, registerRequest.getEmail(), registerRequest.getPassword(),
+					registerRequest.getFirstName(), registerRequest.getLastName(), false));
 
 			return ResponseEntity.status(HttpStatus.CREATED).body(created);
 

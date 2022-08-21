@@ -1,13 +1,22 @@
 .card {
-  size: auto;
-  min-width: 275px;
-  max-width: 200px;
+  max-width: 320px;
+  min-width: 320px;
   height: fit-content;
   transition: .2s ease-out;
 
 }
 
-img {
+.card img.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-img-loading-text {
+  z-index: -1;
+}
+
+/*
+.card img {
   justify-content: center;
   height: auto;
   width: auto;
@@ -15,8 +24,19 @@ img {
   max-width: 307px;
   left: 0;
 }
+*/
 
-div {
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+div.card {
   position: relative;
   transition: .2s ease-out;
 }
@@ -35,4 +55,27 @@ input.form-control[disabled] {
 span#inputGroup-sizing-sm {
   width: 64px;
   justify-content: center;
+}
+
+.card-img-container {
+  min-height: 200px;
+  position: relative;
+  background: #F8F9FA;
+}
+
+.card-header {
+  border: none;
+}
+
+p.card-text {
+  font-size: 14px;
+  height: 40px;
+  overflow: hidden;
+}
+.card-buttons {
+  gap: 8px;
+}
+
+.card-buttons button.btn {
+  font-size: 14px;
 }

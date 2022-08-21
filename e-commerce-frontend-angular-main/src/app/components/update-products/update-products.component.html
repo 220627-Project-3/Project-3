@@ -1,6 +1,107 @@
-<app-navbar></app-navbar>
-<div class="container-fluid my-3">
-  <div class="row">
-    <div class="col"></div>
+<div class="m-auto d-flex flex-column h-100">
+  <app-navbar></app-navbar>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+      <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/home']">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Update Products</li>
+    </ol>
+  </nav>
+  <div class="flex-grow-1">
+    <div class="update-product-main container">
+      <div class="row">
+        <div class="col-lg">
+          <div class="update-product-image-container text-center">
+            <form id="update-product-image-form" [formGroup]="formProductImage">
+              <div class="proceedUpload d-flex justify-content-center align-items-center" *ngIf="showConfirmUpload">
+                <div *ngIf="!showLoadingImage">
+                  <button class="btn btn-outline-danger m-1 futura-heavy" (click)="cancelUploadImage()">Cancel</button>
+                  <button class="btn btn-outline-success m-1 futura-heavy" (click)="submitProductImage()">Upload</button>
+                </div>
+                <div *ngIf="showLoadingImage">
+                  <span class="spinner-border spinner-border-sm" role="status">
+                    <i class="sr-only">Loading...</i>
+                  </span>
+                  <span> Updating...</span>
+                </div>
+              </div>
+              <div class="product-image">
+                <label class="-label" for="file">
+                  <span class="glyphicon glyphicon-camera"></span>
+                  <span>Change Image</span>
+                </label>
+                <input id="file" type="file" (change)="selectProductImage($event)" />
+                <img [src]="imagePreviewUrl" id="productimage" name="productimage" />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg">
+          <div class="container h-100">
+            <div class="row h-100">
+              <div class="col d-flex align-items-center">
+                <div class="w-100">
+                  <form id="update-product-form" (ngSubmit)="updateDetails($event)" class="w-100 needs-validation"
+                    novalidate>
+                    <div class="form-group">
+                      <input type="hidden" id="productId" name="productId" [(ngModel)]="product.id">
+                      <label for="productName" class="futura-bold">Product Name</label>
+                      <input type="text" class="form-control" id="productName" name="productName"
+                        placeholder="Enter a name..." [(ngModel)]="product.name" required>
+                      <div class="invalid-feedback">
+                        Cannot be empty
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="productPrice" class="futura-bold">Product Price</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" class="form-control" id="productPrice" name="productPrice"
+                          placeholder="0.00" step="0.01" [(ngModel)]="product.price" required>
+                        <div class="invalid-feedback">
+                          Cannot be empty
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="productQuantity" class="futura-bold">Product Quantity</label>
+                      <input type="number" class="form-control" id="productQuantity" name="productQuantity"
+                        placeholder="0" step="1" [(ngModel)]="product.quantity" required>
+                      <div class="invalid-feedback">
+                        Cannot be empty
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="productDescription" class="futura-bold">Product Description</label>
+                      <textarea class="form-control" id="productDescription" rows="3" name="productDescription"
+                        placeholder="Enter a description..." [(ngModel)]="product.description" required></textarea>
+                      <div class="invalid-feedback">
+                        Cannot be empty
+                      </div>
+                    </div>
+                    <div class="btn-containers text-center">
+                      <button type="submit" class="btn btn-primary" [disabled]="showLoading">
+                        <span *ngIf="!showLoading">Update</span>
+                        <span *ngIf="showLoading" class="spinner-border spinner-border-sm" role="status">
+                          <i class="sr-only">Loading...</i>
+                        </span>
+                        <span *ngIf="showLoading"> Updating...</span>
+                      </button>
+                    </div>
+                    <div class="alert alert-success text-center mt-3" role="alert" *ngIf="showSuccess">
+                      Update success
+                    </div>
+                    <div class="alert alert-danger text-center mt-3" role="alert" *ngIf="showError">
+                      Update failed. Make sure all fields are filled out.
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
