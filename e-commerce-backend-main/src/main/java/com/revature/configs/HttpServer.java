@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HttpServer {
-	@Bean
-	public ServletWebServerFactory servletContainer(@Value("${server.http.port}") int httpPort) {
-		Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
-		connector.setPort(httpPort);
+    @Bean
+    ServletWebServerFactory servletContainer(@Value("${server.http.port}") int httpPort) {
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setPort(httpPort);
 
-		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-		tomcat.addAdditionalTomcatConnectors(connector);
-		return tomcat;
-	}
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+        tomcat.addAdditionalTomcatConnectors(connector);
+        return tomcat;
+    }
 }
