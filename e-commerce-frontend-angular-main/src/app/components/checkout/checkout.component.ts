@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -19,17 +19,17 @@ export class CheckoutComponent implements OnInit {
   cartProducts: Product[] = [];
   finalProducts: {id: number, quantity: number}[] = []; 
 
-  checkoutForm = new FormGroup({
-    fname: new FormControl('', Validators.required),
-    lname: new FormControl('', Validators.required),
-    cardName: new FormControl('', Validators.required),
-    detail: new FormControl('', Validators.required),
-    addOne: new FormControl('', Validators.required),
-    addTwo: new FormControl(''),
-    city: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
-    zipCode: new FormControl('', Validators.required),
-    country: new FormControl('', Validators.required)
+  checkoutForm = new UntypedFormGroup({
+    fname: new UntypedFormControl('', Validators.required),
+    lname: new UntypedFormControl('', Validators.required),
+    cardName: new UntypedFormControl('', Validators.required),
+    detail: new UntypedFormControl('', Validators.required),
+    addOne: new UntypedFormControl('', Validators.required),
+    addTwo: new UntypedFormControl(''),
+    city: new UntypedFormControl('', Validators.required),
+    state: new UntypedFormControl('', Validators.required),
+    zipCode: new UntypedFormControl('', Validators.required),
+    country: new UntypedFormControl('', Validators.required)
   });
 
   constructor(private productService: ProductService, private router: Router) { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,11 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm = new FormGroup({
-    fname: new FormControl(''),
-    lname: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+  registerForm = new UntypedFormGroup({
+    fname: new UntypedFormControl(''),
+    lname: new UntypedFormControl(''),
+    email: new UntypedFormControl(''),
+    password: new UntypedFormControl(''),
   });
 
   showError: boolean = false;
