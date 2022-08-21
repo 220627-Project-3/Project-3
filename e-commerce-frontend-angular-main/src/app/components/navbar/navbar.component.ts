@@ -126,7 +126,7 @@ export class NavbarComponent implements OnInit {
       this.authService.getSession().subscribe({
         next: (data: any) => {
           this.currentUserInfo = data;
-          console.log(this.currentUserInfo);
+          // console.log(this.currentUserInfo);
           this.authService.setUser(data);
           this.passCurrentUserInfo.emit(data);
         },
@@ -134,7 +134,7 @@ export class NavbarComponent implements OnInit {
           console.log('%c[User is not logged on]', 'color: orange');
           this._cookieService.removeAll();
           this.router.navigate(['login']);
-          console.log(err);
+          //console.log(err);
         },
         complete: () => {},
       });

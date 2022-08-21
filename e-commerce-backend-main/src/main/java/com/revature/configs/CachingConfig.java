@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.configs;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
