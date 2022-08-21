@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 interface Cart {
   cartCount: number;
@@ -46,20 +46,21 @@ export class ProductService {
   }
   z: number = 1;
   idPr: number = 1;
-  NamePr: String="";
-  public Changer(z: number){
-    this.z=z
+  NamePr: String = '';
+  public Changer(z: number) {
+    this.z = z;
   }
-  public SearchMan(id: number){
-    this.idPr=id;
+  public SearchMan(id: number) {
+    this.idPr = id;
   }
-  public SearchManName(name: String){
-    this.NamePr=name;
+  public SearchManName(name: String) {
+    this.NamePr = name;
   }
   public getSingleProduct(id: number): Observable<Product> {
     return this.http.get<Product>(
       environment.baseUrl + this.productUrl + '/' + id,
       {
+        headers: environment.headers,
         withCredentials: environment.withCredentials,
       }
     );
@@ -68,6 +69,7 @@ export class ProductService {
     return this.http.get<Product>(
       environment.baseUrl + this.productUrl + '/' + id,
       {
+        headers: environment.headers,
         withCredentials: environment.withCredentials,
       }
     );
@@ -76,6 +78,7 @@ export class ProductService {
     return this.http.get<Product[]>(
       environment.baseUrl + this.productUrl + '/search/name/' + name,
       {
+        headers: environment.headers,
         withCredentials: environment.withCredentials,
       }
     );
@@ -84,6 +87,7 @@ export class ProductService {
     return this.http.get<Product[]>(
       environment.baseUrl + this.productUrl + '/search/any/' + name,
       {
+        headers: environment.headers,
         withCredentials: environment.withCredentials,
       }
     );
@@ -92,37 +96,42 @@ export class ProductService {
     return this.http.get<Product[]>(
       environment.baseUrl + this.productUrl + '/search/description/' + name,
       {
+        headers: environment.headers,
         withCredentials: environment.withCredentials,
       }
     );
   }
   public updateProduct(product: Product) {
     return this.http.put(environment.baseUrl + this.productUrl, product, {
+      headers: environment.headers,
       withCredentials: environment.withCredentials,
     });
   }
 
-  public createProduct(product: Product){
+  public createProduct(product: Product) {
     return this.http.post(environment.baseUrl + this.productUrl, product, {
+      headers: environment.headers,
       withCredentials: environment.withCredentials,
     });
   }
 
   public uploadProductImage(product_id: number, formData: FormData) {
     return this.http.put<any>(
-      environment.baseUrl + '/api/product/image/' + product_id ,
+      environment.baseUrl + '/api/product/image/' + product_id,
       formData,
       {
-        withCredentials: true,
+        headers: environment.headers,
+        withCredentials: environment.withCredentials,
       }
     );
   }
   public uploadProductImageByName(Name: String, formData: FormData) {
     return this.http.put<any>(
-      environment.baseUrl + '/api/product/image/' + Name ,
+      environment.baseUrl + '/api/product/image/' + Name,
       formData,
       {
-        withCredentials: true,
+        headers: environment.headers,
+        withCredentials: environment.withCredentials,
       }
     );
   }
