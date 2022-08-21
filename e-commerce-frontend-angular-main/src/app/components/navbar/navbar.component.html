@@ -71,8 +71,10 @@
           </div>
         </li>
         <li class="nav-item justify-content-center d-flex align-items-center text-nowrap">
-          <div id="btn-dark">
-          <button class="btn btn-outline-secondary" (click)="localDarkTheme()">Toggle dark theme</button>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1" (click)="localDarkTheme()">
+            </label>
           </div>
         </li>
         <li class="nav-item justify-content-center d-flex align-items-center text-nowrap">
