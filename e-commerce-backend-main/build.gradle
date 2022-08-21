@@ -6,6 +6,10 @@ plugins {
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id 'java'
+	id 'java-library'
+	id 'application'
+    id 'distribution'
+    id 'eclipse'
 }
 
 group = 'com.revature'
@@ -47,4 +51,17 @@ tasks.withType(JavaCompile) {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+distZip {
+	into(project.name + '-' + version + '/bin') {
+		from '.'
+		include 'certs/*'
+	}
+}
+
+copy {
+	from '.'
+	include 'certs/*'
+	into 'build/libs/'
 }
