@@ -143,6 +143,7 @@ export class WishListComponent implements OnInit {
         this: this.toastr.success(
           'Your product has successfully been added to cart',
           'New Product Added to Cart'
+        ),
       };
       this.productService.setCart(cart);
     }
