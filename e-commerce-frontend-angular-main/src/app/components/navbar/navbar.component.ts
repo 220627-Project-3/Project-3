@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
     if(this.Searching.length<1){
       console.log("this.Searching.length");
       this.productService.z=2;
-      this.searchByValue=="Bob"
+      
       this.ChangeChange();
       return;
     }
