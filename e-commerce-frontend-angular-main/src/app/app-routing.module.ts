@@ -11,6 +11,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,9 +22,10 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'update-products/:id', component: UpdateProductsComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  {path: 'wish-list', component: WishListComponent},
-  { path: 'create-product', component: CreateProductComponent},
-  { path: 'product-details/:id', component: ProductDetailsComponent},
+  { path: 'wish-list', component: WishListComponent },
+  { path: 'create-product', component: CreateProductComponent },
+  { path: 'product-details/:id', component: ProductDetailsComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
   //Wild Card Route for 404 request
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
