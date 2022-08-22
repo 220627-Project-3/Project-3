@@ -33,6 +33,17 @@ export class NavbarComponent implements OnInit {
     }})
   }
   ngOnInit(): void {
+    
+    
+    if(localStorage.getItem("theme") === "dark"){
+      document.body.classList.add('dark-theme')
+      
+    } else {
+      document.body.classList.remove('dark-theme')
+    }
+
+
+
     this.subscription = this.productService
       .getCart()
       .subscribe((cart) => (this.cartCount = cart.cartCount));
