@@ -31,11 +31,12 @@ public class CartItemService {
     }
 
  
-    public boolean addProduct(Product product, User user){
+    public boolean addProduct(CartItem newItem){
         try {
-            CartItem newItem = new CartItem();
-            newItem.setProduct(product);
-            newItem.setUser(user);
+            
+            newItem.setProduct(newItem.getProduct());
+            newItem.setUser(newItem.getUser());
+            newItem.setQuantity(newItem.getQuantity());
             cartRepository.save(newItem);
             return true;
 

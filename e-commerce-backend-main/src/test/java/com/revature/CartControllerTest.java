@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.revature.controllers.CartController;
 import com.revature.models.CartItem;
+import com.revature.repositories.CartRepository;
 import com.revature.services.CartItemService;
 import com.revature.services.ProductService;
 import com.revature.services.UserService;
@@ -25,6 +26,7 @@ private CartItemService cit;
 private ProductService ps;
 private UserService us;
 private CartController cc;
+private CartRepository cr;
 
 
 
@@ -34,6 +36,7 @@ public CartControllerTest(CartItemService cit, ProductService ps, UserService us
 	this.ps = ps;
 	this.us = us;
 	this.cc = cc;
+	this.cr = cr;
 }
 
 
@@ -41,7 +44,7 @@ public CartControllerTest(CartItemService cit, ProductService ps, UserService us
 
 @SuppressWarnings("unlikely-arg-type")
 public void testGetCartItems() {
-	CartController mockController = Mockito.spy(new CartController(cit, ps, us));
+	CartController mockController = Mockito.spy(new CartController(cit, ps, us, cr));
 	
 	Mockito.verify(mockController).getCartItems(anyInt());
 	

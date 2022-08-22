@@ -20,7 +20,7 @@ import com.revature.dtos.CartItemDto;
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
-
+import com.revature.repositories.CartRepository;
 import com.revature.services.CartItemService;
 import com.revature.services.ProductService;
 import com.revature.services.UserService;
@@ -36,13 +36,15 @@ public class CartController {
     private final CartItemService cartItemService;
     private final ProductService productService;
     private final UserService userService;
+    private final CartRepository cartRepository;
 
     @Autowired
     public CartController(CartItemService cartItemService, ProductService productService,
-            UserService userService) {
+            UserService userService, CartRepository cartRepository) {
         this.cartItemService = cartItemService;
         this.productService = productService;
         this.userService = userService;
+        this.cartRepository = cartRepository;
     }
 
     @Authorized
@@ -63,14 +65,31 @@ public class CartController {
     public ResponseEntity<Product> addCartItem(@RequestBody CartItemDto cartItemDTO, @PathVariable("userId") int userId){
         Optional<Product> optionalProduct = productService.findById(cartItemDTO.getProductId());
         Optional<User> optionalUser = userService.findById(userId);
+        CartItem ca = cartRepository.findByProduct_IdAndUser_Id(cartItemDTO.getProductId(), userId);
+        int tempQuantity = 1;
+        
+        if (ca != null) {
+        	if(optionalProduct.isPresent() && optionalUser.isPresent()){
+                Product product = optionalProduct.get();
+                User user = optionalUser.get();
+                ca.setQuantity(ca.getQuantity()+1);
+                
 
+                cartItemService.addProduct(ca);
+                return ResponseEntity.accepted().body(product);
+        }}else if(ca == null) {
         if(optionalProduct.isPresent() && optionalUser.isPresent()){
+        	ca = new CartItem();
             Product product = optionalProduct.get();
             User user = optionalUser.get();
+            ca.setProduct(product);
+            ca.setQuantity(tempQuantity);
+            ca.setUser(user);
+           
 
-            cartItemService.addProduct(product,user);
+            cartItemService.addProduct(ca);
             return ResponseEntity.accepted().body(product);
-        }
+        }}
         return ResponseEntity.badRequest().build();
     }
     
