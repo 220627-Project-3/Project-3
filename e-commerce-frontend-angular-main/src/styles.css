@@ -71,6 +71,7 @@ body.dark-theme{
 .dark-theme .card {
   background-color: rgb(46,46,46);
   color: rgb(189, 189, 189);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
 }
 
 .table{
@@ -125,7 +126,6 @@ body.dark-theme{
 .dark-theme .navbar{
   
   background-color: rgb(46,46,46);
-  box-shadow: 0 2px 4px 0 #ece2e2d6;
 }
 
 .navbar-brand{
