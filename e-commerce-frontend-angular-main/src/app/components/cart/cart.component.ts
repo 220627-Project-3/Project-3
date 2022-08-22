@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   totalPrice!: number;
   cartProducts: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.productService.initializeCart();
@@ -43,11 +43,15 @@ export class CartComponent implements OnInit {
     this.productService.setCart(cart);
     this.router.navigate(['/home']);
 
-    // TODO - delete all from cartItem by user id
+    // this.authService.getUser().subscribe(user => {
+    //   let x = this.productService.emptyCart(user.id);
+    //   console.log(x);
+    // }
+    // );
   }
 
   removeItem(id: number, qty: string){
-    // TODO - Remove value from database
+    
     console.log(qty);
     let index = this.products.findIndex(e => e.product.id === id);
     //if quantity input is empty, remove 1 of the product
@@ -58,6 +62,10 @@ export class CartComponent implements OnInit {
         if(this.products[index].quantity < 1){
           this.products.splice(index,1);
         }
+        this.authService.getUser().subscribe(user=> {
+          let x = this.productService.removeItem(user.id, 1, id);
+          x.subscribe(data => console.log(data));
+        }).unsubscribe();
       }
     } 
     //if it is not empty, convert to number and continue
@@ -71,6 +79,10 @@ export class CartComponent implements OnInit {
           if(this.products[index].quantity < 1){
             this.products.splice(index,1);
           }
+          this.authService.getUser().subscribe(user=> {
+            let x = this.productService.removeItem(user.id, qtyNum, id);
+            x.subscribe(data => console.log(data));
+          }).unsubscribe();
         }
       } 
       //input is negative or greater than what we have

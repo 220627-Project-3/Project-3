@@ -137,6 +137,35 @@ export class ProductService {
     );
   }
 
+  // public emptyCart(userId: number){
+  //   this._cart.subscribe(e => {
+  //     e.products.forEach(product => {
+  //       return this.http.put<any>(environment.baseUrl + this.cartUrl + '/' + userId, 
+  //       {
+  //         quantity: product.quantity,
+  //         productId: product.product.quantity
+  //       },
+  //       {
+  //         headers: environment.headers,
+  //         withCredentials: environment.withCredentials,
+  //       })
+  //     })
+  //   })
+  // }
+
+  public removeItem(userId: number, qty: number, prod: number) : Observable<any>{
+    console.log("removing " + qty +" from id " + prod);
+    return this.http.put<any>(environment.baseUrl + this.cartUrl + '/' + userId, 
+    {
+      quantity: qty,
+      productId: prod
+    },
+    {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials,
+    })
+  }
+
   public updateProduct(product: Product) {
     return this.http.put(environment.baseUrl + this.productUrl, product, {
       withCredentials: environment.withCredentials,
