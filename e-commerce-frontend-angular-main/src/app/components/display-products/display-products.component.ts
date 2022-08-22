@@ -34,7 +34,7 @@ export class DisplayProductsComponent implements OnInit {
           console.log('Products Retrieved');
         },
       });}else if(this.productService.z==2){
-        this.productService.getSingleProduct(Luis).subscribe({
+        this.productService.getProductById(Luis).subscribe({
           next: (data) => {
             this.allProducts = [data];
           },
@@ -49,7 +49,7 @@ export class DisplayProductsComponent implements OnInit {
   }
   SearchButtonStuffName(Luis: String){
     if(this.productService.z==3){
-      this.productService.getSingleProductByName(Luis).subscribe({
+      this.productService.getProductsByName(Luis).subscribe({
         next: (data) => {
           this.allProducts = data;
         },
@@ -61,7 +61,7 @@ export class DisplayProductsComponent implements OnInit {
         },
       });}else if(this.productService.z==4){
         console.log("Yes")
-        this.productService.getSingleProductByDesc(Luis).subscribe({
+        this.productService.getProductsByDesc(Luis).subscribe({
           next: (data) => {
             this.allProducts = data;
           },
@@ -72,7 +72,7 @@ export class DisplayProductsComponent implements OnInit {
             console.log('Products Retrieved');
           },
         });}else if(this.productService.z==5){
-          this.productService.getSingleProductByAny(Luis).subscribe({
+          this.productService.getProductsByAny(Luis).subscribe({
             next: (data) => {
               this.allProducts = data;
             },

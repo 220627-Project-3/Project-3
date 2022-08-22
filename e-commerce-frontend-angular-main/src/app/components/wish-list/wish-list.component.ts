@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
@@ -33,6 +34,8 @@ export class WishListComponent implements OnInit {
   }[] = [];
   totalPrice!: number;
 
+  showError: boolean = false;
+
   /*
   products: {
     product: Product,
@@ -45,7 +48,8 @@ export class WishListComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private as: AuthService,
-    private ws: WishListService
+    private ws: WishListService,
+    private toastr: ToastrService
   ) {}
 
   addToWishList(user: any) {
@@ -67,10 +71,15 @@ export class WishListComponent implements OnInit {
         location.reload();
       },
       error: (err) => {
-        console.log('Something went wrong deleting the wishlist item');
+        this.showError = true;
+        this.toastr.error("Unable to delete item from Wishlist at this time. Please try again later.", "Remove Wishlist Item Failed");
+        console.log(err);
       },
-    });
-  }
+      complete: () => {
+        this.toastr.success("Item successfully removed from Wishlist.", "Item Removed From Wishlist Successful")
+    },
+  });
+}
 
   ngOnInit(): void {
     let LOG = this.as.getSession().subscribe((user: any) => {
@@ -110,6 +119,10 @@ export class WishListComponent implements OnInit {
           cartCount: this.cartCount + 1,
           products: this.products,
           totalPrice: this.totalPrice + product.price,
+          this: this.toastr.success(
+            'Your product has successfully been added to cart',
+            'Product Added to Cart'
+          ),
         };
         this.productService.setCart(cart);
         inCart = true;
@@ -127,6 +140,10 @@ export class WishListComponent implements OnInit {
         cartCount: this.cartCount + 1,
         products: this.products,
         totalPrice: this.totalPrice + product.price,
+        this: this.toastr.success(
+          'Your product has successfully been added to cart',
+          'New Product Added to Cart'
+        ),
       };
       this.productService.setCart(cart);
     }

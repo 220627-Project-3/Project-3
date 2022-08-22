@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +19,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { CookieModule } from 'ngx-cookie';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { CreateProductComponent } from './components/create-product/create-produ
     WishListComponent,
     UserProfileComponent,
     CreateProductComponent,
+    ChangePasswordComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,9 @@ import { CreateProductComponent } from './components/create-product/create-produ
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CookieModule.withOptions(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

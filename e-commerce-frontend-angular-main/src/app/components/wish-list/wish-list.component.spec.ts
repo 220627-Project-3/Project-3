@@ -29,4 +29,9 @@ describe('WishListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display toastr message when wishlist item is removed', () => {
+    component.removeFromWishList(1);
+    expect(component["toastr"].info).toHaveBeenCalled();
+  });
 });

@@ -1,60 +1,63 @@
 <div class="m-auto d-flex flex-column h-100">
-  <div class="login-container m-auto">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="text-center">
-            <img src="/assets/images/rev-logo.png" alt="Revature" class="text-center">
+  <div class="d-flex flex-grow-1">
+    <div class="register-container m-auto">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="text-center">
+              <img src="/assets/images/rev-logo.png" alt="Revature" class="text-center">
+            </div>
+            <form id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit($event)"
+              class="my-3 needs-validation" novalidate>
+              <div class="form-group">
+                <label for="inputFirstName">First Name</label>
+                <input type="text" class="form-control" formControlName="fname" id="inputFirstName"
+                  placeholder="Enter First Name" required>
+                <div class="invalid-feedback">
+                  Cannot be empty
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputLastName">Last Name</label>
+                <input type="text" class="form-control" formControlName="lname" id="inputLastName"
+                  placeholder="Enter Last Name" required>
+                <div class="invalid-feedback">
+                  Cannot be empty
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" formControlName="email" id="inputEmail"
+                  aria-describedby="emailHelp" placeholder="Enter Email" required>
+                <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
+                <div class="invalid-feedback">
+                  Cannot be empty
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" formControlName="password" id="inputPassword"
+                  placeholder="Enter Password" required>
+                <div class="invalid-feedback">
+                  Cannot be empty
+                </div>
+              </div>
+              <div class="register-btns text-center">
+                <button class="btn btn-primary" type="submit">Register</button>
+                <button class="btn btn-primary" type="button" [routerLink]="['/']">Go Back</button>
+              </div>
+            </form>
           </div>
-          <form id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit($event)"
-            class="my-3 needs-validation" novalidate>
-            <div class="form-group">
-              <label for="inputFirstName">First Name</label>
-              <input type="text" class="form-control" formControlName="fname" id="inputFirstName"
-                placeholder="Enter First Name" required>
-              <div class="invalid-feedback">
-                Cannot be empty
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputLastName">Last Name</label>
-              <input type="text" class="form-control" formControlName="lname" id="inputLastName"
-                placeholder="Enter Last Name" required>
-              <div class="invalid-feedback">
-                Cannot be empty
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputEmail">Email address</label>
-              <input type="email" class="form-control" formControlName="email" id="inputEmail"
-                aria-describedby="emailHelp" placeholder="Enter Email" required>
-              <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
-              <div class="invalid-feedback">
-                Cannot be empty
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">Password</label>
-              <input type="password" class="form-control" formControlName="password" id="inputPassword"
-                placeholder="Enter Password" required>
-              <div class="invalid-feedback">
-                Cannot be empty
-              </div>
-            </div>
-            <div class="register-btns text-center">
-              <button class="btn btn-primary" type="submit">Register</button>
-              <button class="btn btn-primary" type="button" [routerLink]="['/']">Go Back</button>
-            </div>
-          </form>
         </div>
-      </div>
-      <div class="row" *ngIf="showError">
-        <div class="col">
-          <div class="alert alert-danger text-center" role="alert">
-            Registration failed. Make sure all fields are filled out or choose another e-mail address.
+        <div class="row" *ngIf="showError">
+          <div class="col">
+            <div class="alert alert-danger text-center" role="alert">
+              Registration failed. Make sure all fields are filled out or choose another e-mail address.
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </div>

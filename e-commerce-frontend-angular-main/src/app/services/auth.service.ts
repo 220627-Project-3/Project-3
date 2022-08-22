@@ -46,6 +46,7 @@ export class AuthService {
   // Get information of current user
   getSession(): any {
     return this.http.get(this._getSessionPath, {
+      headers: environment.headers,
       withCredentials: environment.withCredentials,
     });
   }
