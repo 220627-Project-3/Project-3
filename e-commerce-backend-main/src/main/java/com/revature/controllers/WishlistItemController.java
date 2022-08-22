@@ -40,6 +40,7 @@ public class WishlistItemController {
         this.userService = userService;
     }
 
+
     @Authorized
     @GetMapping("/{userId}")
     public ResponseEntity<List<WishlistItem>> getWishlistItems(@PathVariable("userId") int userId){
