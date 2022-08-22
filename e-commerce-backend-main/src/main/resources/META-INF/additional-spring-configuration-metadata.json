@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "server.http.port",
+  "type": "java.lang.String",
+  "description": "Custom configuration to allow HTTP when HTTPS is enabled"
+}]}
