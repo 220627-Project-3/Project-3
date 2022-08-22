@@ -19,8 +19,8 @@ describe('ProductCardComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  //this test had an error so commented out untill someone wanna figure it out :)
-  /*it('should create', () => {
+  
+  it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });
