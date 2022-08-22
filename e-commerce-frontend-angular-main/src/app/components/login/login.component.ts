@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -16,9 +18,15 @@ export class LoginComponent implements OnInit {
 
   showError: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+
 
   ngOnInit(): void {}
+
+  showToastr (){
+    
+ 
+  }
 
   onSubmit(): void {
     this.authService
@@ -34,9 +42,11 @@ export class LoginComponent implements OnInit {
           error: (err) => {
             this.showError = true;
             console.log(err);
+            this.toastr.error("Make sure your login credentials have not been changed in the Database", "Login Failed :(")
           },
           complete: () => {
             this.router.navigate(['home']);
+            this.toastr.success("Welcome to the Swag Shop!", "Login Successful")
           }
         }
       );
@@ -45,4 +55,6 @@ export class LoginComponent implements OnInit {
   register(): void {
     this.router.navigate(['register']);
   }
+
+ 
 }
