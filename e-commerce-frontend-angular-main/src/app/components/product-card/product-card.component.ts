@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service'
 import { User } from 'src/app/models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-card',
@@ -26,7 +27,8 @@ export class ProductCardComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +59,8 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    // TODO - post to databse
+    
+    
     let inCart = false;
 
     this.products.forEach((element) => {
@@ -87,6 +90,8 @@ export class ProductCardComponent implements OnInit {
       };
       this.productService.setCart(cart);
     }
+    let x = this.productService.addToCart(product);
+    x.subscribe(data => console.log(data))
   }
 
   ngOnDestroy() {

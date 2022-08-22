@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
     }})
   }
   ngOnInit(): void {
+    this.productService.initializeCart();
     this.subscription = this.productService
       .getCart()
       .subscribe((cart) => (this.cartCount = cart.cartCount));

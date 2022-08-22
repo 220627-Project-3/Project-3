@@ -21,6 +21,7 @@ export class CartComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+    this.productService.initializeCart();
     this.productService.getCart().subscribe(
       (cart) => {
         this.products = cart.products;
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
         this.totalPrice = +Number(cart.totalPrice).toFixed(2);
       }
     );
+    this.productService.getCart().subscribe(data => this.totalPrice = data.totalPrice);
   }
 
   emptyCart(): void {
