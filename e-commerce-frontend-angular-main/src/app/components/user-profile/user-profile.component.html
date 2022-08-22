@@ -7,7 +7,7 @@
     </ol>
   </nav>
   <div class="profile-container d-flex justify-content-center">
-    <div class="card" style="min-width: 540px" >
+    <div class="card" style="min-width: 540px">
       <h5 class="card-header text-center">My Profile</h5>
       <div class="card-body">
         <div class="container" *ngIf="edit">
@@ -85,7 +85,8 @@
           </div>
           <div class="row mt-3 text-center">
             <div class="col">
-              <button class="btn btn-info" (click)="edit = !edit">Edit User Information</button>
+              <button class="btn btn-info mx-2" (click)="edit = !edit">Edit User Information</button>
+              <button class="btn btn-info mx-2" routerLink="/change-password">Change Password</button>
             </div>
           </div>
         </div>

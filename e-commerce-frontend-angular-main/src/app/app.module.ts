@@ -19,6 +19,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CookieModule } from 'ngx-cookie';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CookieModule } from 'ngx-cookie';
     ProductDetailsComponent,
     WishListComponent,
     UserProfileComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

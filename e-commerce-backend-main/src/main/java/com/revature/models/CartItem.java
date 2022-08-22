@@ -29,12 +29,12 @@ public class CartItem {
 	
 	
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, unique = false)
+    @ManyToOne(targetEntity = Product.class)
+    @JoinColumn(name = "product_id", nullable = false, unique = false, referencedColumnName = "id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false, unique = false)
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false, unique = false, referencedColumnName = "id")
     private User user;
 
 
