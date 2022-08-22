@@ -113,7 +113,7 @@ public class ProductController {
     	return ResponseEntity.ok(productService.save(product));
     }
     
->>>>>>> 2b26939 (Create Product Method)
+>>>>>>> 4295633cae8e5302e5a26a3d5dd79afca71b62ff
     @Authorized
     @PutMapping
     public ResponseEntity<Product> upsert(@RequestBody Product product) {
