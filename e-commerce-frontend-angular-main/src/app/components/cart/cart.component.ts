@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-cart',
@@ -39,11 +40,12 @@ export class CartComponent implements OnInit {
     };
     this.productService.setCart(cart);
     this.router.navigate(['/home']);
+
+    // TODO - delete all from cartItem by user id
   }
 
   removeItem(id: number, qty: string){
-    // const qtyInput = document.getElementById('quantity') as HTMLInputElement;
-    // let qty = qtyInput?.value;
+    // TODO - Remove value from database
     console.log(qty);
     let index = this.products.findIndex(e => e.product.id === id);
     //if quantity input is empty, remove 1 of the product

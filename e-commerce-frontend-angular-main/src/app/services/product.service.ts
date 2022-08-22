@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 interface Cart {
   cartCount: number;
@@ -13,10 +15,25 @@ interface Cart {
   totalPrice: number;
 }
 
+interface Products {
+
+}
+
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  user: User = {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    admin: false,
+  };
+
   private productUrl: string = '/api/product';
 
   private _cart = new BehaviorSubject<Cart>({
@@ -27,6 +44,25 @@ export class ProductService {
 
   private _cart$ = this._cart.asObservable();
 
+
+  ngOnInit(){
+
+
+    // todo - Initialize _cart
+
+    // let LOG = this.as.getSession().subscribe((user: any) => {
+    //   console.log(user.id);
+    //   let cart = this.http.get<Products>("http://localhost:8080/api/cart/" + user.id, environment);
+      
+
+    // });
+
+    
+    
+
+  }
+
+
   getCart(): Observable<Cart> {
     return this._cart$;
   }
@@ -35,7 +71,10 @@ export class ProductService {
     return this._cart.next(latestValue);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private as: AuthService
+  ) {}
 
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.baseUrl + this.productUrl, {

@@ -57,6 +57,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
+    // TODO - post to databse
     let inCart = false;
 
     this.products.forEach((element) => {
