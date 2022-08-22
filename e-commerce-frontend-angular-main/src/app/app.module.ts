@@ -20,6 +20,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CookieModule } from 'ngx-cookie';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     WishListComponent,
     UserProfileComponent,
     CreateProductComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
