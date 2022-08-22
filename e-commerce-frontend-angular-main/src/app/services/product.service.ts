@@ -16,7 +16,10 @@ interface Cart {
 }
 
 interface Products {
-
+  id: number;
+  product: Product;
+  user: User;
+  quantity: number;
 }
 
 
@@ -34,6 +37,7 @@ export class ProductService {
     admin: false,
   };
 
+  private cartUrl: string = '/api/cart';
   private productUrl: string = '/api/product';
 
   private _cart = new BehaviorSubject<Cart>({
@@ -45,21 +49,55 @@ export class ProductService {
   private _cart$ = this._cart.asObservable();
 
 
-  ngOnInit(){
-
-
-    // todo - Initialize _cart
-
-    // let LOG = this.as.getSession().subscribe((user: any) => {
-    //   console.log(user.id);
-    //   let cart = this.http.get<Products>("http://localhost:8080/api/cart/" + user.id, environment);
+  async initializeCart(){
+    console.log("Getting Set up");
+    let LOG = this.as.getSession().subscribe((user: any) => {
+      let productsObservable  = this.http.get<Products[]>("http://localhost:8080/api/cart/" + user.id, environment);
       
+      let products: {
+        product: Product,
+        quantity: number
+      }[] = [];
 
-    // });
+      productsObservable.subscribe((data: Products[]) => 
+        data.forEach(e => {products.push(
+          {
+            product: e.product,
+            quantity: e.quantity
+          }
+        );
+        let count = 0;
+        let totalPrice = 0;
+        for(let i = 0; i < products.length;i = i+1){
+          count = count + products[i].quantity;
+          totalPrice = totalPrice + products[i].quantity * products[i].product.price;
+        }
+        totalPrice = + Number(totalPrice).toFixed(2);
+      let cart = {
+        cartCount: count,
+        products: products,
+        totalPrice: totalPrice
+      };
+      this.setCart(cart);
+      }
+      ));
+      
+    });
+  }
 
-    
-    
 
+  addToCart(product: Product) : Observable<any>{
+  //   console.log("hey there");
+  //   this.as.getSession().subscribe((user: User) => {
+  //     console.log(user.id);
+  //     console.log(product.id);
+      
+      
+  // });
+  return this.http.post<any>(environment.baseUrl + this.cartUrl + '/' + 1, {productId: product.id}, {
+    headers: environment.headers,
+    withCredentials: environment.withCredentials,
+  });
   }
 
 
