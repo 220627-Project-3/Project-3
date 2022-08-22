@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.dtos.CartItemQuantityDTO;
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
@@ -46,9 +47,9 @@ public class CartItemService {
         return false;
     }
 
-    public boolean deleteCartItem(int CartItemId){
+    public boolean deleteByProduct_IdAndUserId(int productId, int userId){
         try {
-            cartRepository.deleteById(CartItemId);
+            cartRepository.deleteByProduct_IdAndUserId(productId, userId);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

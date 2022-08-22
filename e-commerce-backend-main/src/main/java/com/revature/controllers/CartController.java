@@ -5,18 +5,20 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
 import com.revature.dtos.CartItemDto;
-
+import com.revature.dtos.CartItemQuantityDTO;
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
@@ -94,15 +96,25 @@ public class CartController {
     }
     
     @Authorized
-    @DeleteMapping("/{cartItemId}")
-    public ResponseEntity<Boolean> deleteCartItem(@PathVariable("cartItemId") int cartItemId){
-
-        if(cartItemService.deleteCartItem(cartItemId)){
+    @PutMapping("/{userId}")
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity<Boolean> deleteCartItem(@RequestBody CartItemQuantityDTO c, @PathVariable("userId") int userId){
+    	int quantity = c.getQuantity();
+    	CartItem ca = cartRepository.findByProduct_IdAndUser_Id(c.getProductId(), userId);
+    	if(ca.getQuantity() <= quantity) {
+    	
+    	if(cartItemService.deleteByProduct_IdAndUserId(c.getProductId(), userId)){
             return ResponseEntity.accepted().body(true);
         }
-
+    	}else {
+    		ca.setQuantity(ca.getQuantity()-quantity);
+    		cartRepository.save(ca);
+    		return ResponseEntity.accepted().body(true);
+    	}
         return ResponseEntity.badRequest().build();
     }
+    
 
 }
 
