@@ -7,7 +7,7 @@
   </div>
   <div class="card-body p-2">
     <h5 class="card-title futura-medium text-center" ><a [routerLink]="['/product-details/'+ productInfo.id]">{{productInfo.name}}</a></h5>
-    <p class="card-text text-center">{{productInfo.description}}</p>
+    <!--<p class="card-text text-center">{{productInfo.description}}</p>-->
     <div class="input-group input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
@@ -15,13 +15,13 @@
       <input type="number" class="form-control" aria-label="Sizing example input"
         [value]="productInfo.price | number : '1.2-2'" aria-describedby="inputGroup-sizing-sm" disabled>
     </div>
-    <div class="input-group input-group mb-3">
+    <!--<div class="input-group input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-sm">Stock</span>
       </div>
       <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity"
         aria-describedby="inputGroup-sizing-sm" disabled>
-    </div>
+    </div>-->
     <div class="card-buttons text-center d-flex">
       <button class="btn btn-outline-success w-100" (click)="addToCart(productInfo)"><i class="fa fa-cart-plus"
           aria-hidden="true"></i> Add</button>
