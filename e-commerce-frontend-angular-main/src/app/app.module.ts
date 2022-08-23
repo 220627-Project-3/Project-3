@@ -40,7 +40,7 @@ import { FooterComponent } from './components/footer/footer.component';
     UserProfileComponent,
     CreateProductComponent,
     ChangePasswordComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +50,10 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     CookieModule.withOptions(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

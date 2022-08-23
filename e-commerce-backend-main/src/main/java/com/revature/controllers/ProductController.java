@@ -27,9 +27,9 @@ import com.revature.services.ProductService;
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
 public class ProductController {
 
+	@Autowired
     private final ProductService productService;
-
-    @Autowired
+	
     public ProductController(ProductService productService) {
         this.productService = productService;
     }

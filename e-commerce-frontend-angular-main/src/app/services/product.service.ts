@@ -120,11 +120,15 @@ export class ProductService {
       environment.baseUrl + '/api/product/image/' + product_id,
       formData,
       {
-        headers: environment.headers,
+        headers: {
+          'Access-Control-Allow-Origin':
+            environment.headers['Access-Control-Allow-Origin'],
+        },
         withCredentials: environment.withCredentials,
       }
     );
   }
+  /*
   public uploadProductImageByName(Name: String, formData: FormData) {
     return this.http.put<any>(
       environment.baseUrl + '/api/product/image/' + Name,
@@ -135,6 +139,7 @@ export class ProductService {
       }
     );
   }
+  */
   public purchase(
     products: { id: number; quantity: number }[]
   ): Observable<any> {
