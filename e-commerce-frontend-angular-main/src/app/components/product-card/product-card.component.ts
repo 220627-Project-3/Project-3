@@ -6,8 +6,12 @@ import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
+<<<<<<< HEAD
 import { WishListService } from 'src/app/services/wish-list.service';
 import { WishListItem } from 'src/app/models/wish-list-item';
+=======
+import { HttpClient } from '@angular/common/http';
+>>>>>>> feature-remove-items
 
 @Component({
   selector: 'app-product-card',
@@ -30,8 +34,12 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private _authService: AuthService,
+<<<<<<< HEAD
     private ws: WishListService,
     private toastr: ToastrService
+=======
+    private http: HttpClient
+>>>>>>> feature-remove-items
   ) {}
 
   ngOnInit(): void {
@@ -66,6 +74,8 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
+    
+    
     let inCart = false;
 
     this.products.forEach((element) => {
@@ -103,6 +113,8 @@ export class ProductCardComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
+    let x = this.productService.addToCart(product);
+    x.subscribe(data => console.log(data))
   }
 
   addToWishList(product: Product) {

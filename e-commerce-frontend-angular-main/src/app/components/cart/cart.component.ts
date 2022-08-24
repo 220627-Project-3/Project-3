@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,13 +19,22 @@ export class CartComponent implements OnInit {
   totalPrice!: number;
   cartProducts: Product[] = [];
 
+<<<<<<< HEAD
   constructor(private productService: ProductService, private router: Router, private toastr: ToastrService) { }
+=======
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService) { }
+>>>>>>> feature-remove-items
 
   headingToCheckout (){
     this.toastr.success("", "Heading to Checkout")
   }
   ngOnInit(): void {
+<<<<<<< HEAD
     this.productService.getDetails().subscribe(
+=======
+    this.productService.initializeCart();
+    this.productService.getCart().subscribe(
+>>>>>>> feature-remove-items
       (cart) => {
         this.products = cart.products;
         this.products.forEach(
@@ -33,6 +43,7 @@ export class CartComponent implements OnInit {
         this.totalPrice = +Number(cart.totalPrice).toFixed(2);
       }
     );
+    this.productService.getCart().subscribe(data => this.totalPrice = data.totalPrice);
   }
 
   emptyCart(): void {
@@ -44,11 +55,16 @@ export class CartComponent implements OnInit {
     this.productService.setDetails(cart);
     this.toastr.info("", "Your Cart Is Now Empty")
     this.router.navigate(['/home']);
+
+    // this.authService.getUser().subscribe(user => {
+    //   let x = this.productService.emptyCart(user.id);
+    //   console.log(x);
+    // }
+    // );
   }
 
   removeItem(id: number, qty: string){
-    // const qtyInput = document.getElementById('quantity') as HTMLInputElement;
-    // let qty = qtyInput?.value;
+    
     console.log(qty);
     let index = this.products.findIndex(e => e.product.id === id);
     //if quantity input is empty, remove 1 of the product
@@ -59,6 +75,10 @@ export class CartComponent implements OnInit {
         if(this.products[index].quantity < 1){
           this.products.splice(index,1);
         }
+        this.authService.getUser().subscribe(user=> {
+          let x = this.productService.removeItem(user.id, 1, id);
+          x.subscribe(data => console.log(data));
+        }).unsubscribe();
       }
     } 
     //if it is not empty, convert to number and continue
@@ -72,6 +92,10 @@ export class CartComponent implements OnInit {
           if(this.products[index].quantity < 1){
             this.products.splice(index,1);
           }
+          this.authService.getUser().subscribe(user=> {
+            let x = this.productService.removeItem(user.id, qtyNum, id);
+            x.subscribe(data => console.log(data));
+          }).unsubscribe();
         }
       } 
       //input is negative or greater than what we have
