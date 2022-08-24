@@ -12,10 +12,7 @@ import { WishListComponent } from './wish-list.component';
 describe('WishListComponent', () => {
   let component: WishListComponent;
   let fixture: ComponentFixture<WishListComponent>;
-  let mockToastrService = jasmine.createSpyObj('ToastrService', [
-    'error',
-    'success',
-  ]);
+  let mockToastrService = jasmine.createSpyObj('ToastrService', ['success']);
   let mockWishListService = jasmine.createSpyObj('WishListService', [
     'deleteItemFromWishlist',
     'getWishlist',
