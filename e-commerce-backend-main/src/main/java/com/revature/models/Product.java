@@ -21,7 +21,7 @@ public class Product {
     private int id;
     @Column(nullable = false)
     private int quantity;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "numeric")
     private double price;
     @Column(nullable = false)
     private String description;

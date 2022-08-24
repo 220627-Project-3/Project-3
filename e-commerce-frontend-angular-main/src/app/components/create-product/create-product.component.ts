@@ -64,23 +64,31 @@ export class CreateProductComponent implements OnInit {
             'productimage',
             this.formProductImage.get('productimage')?.value
           );
-          console.log(formData);
-          this._productService
-            .uploadProductImage(createdProduct.id, formData)
-            .subscribe({
-              next: (response) => {
-                console.log(response);
-                this.showSuccess = true;
-                this.showConfirmUpload = false;
-              },
-              error: (error) => {
-                console.log(error);
-                this.showError = true;
-              },
-              complete: () => {
-                this.showLoading = false;
-              },
-            });
+          if (this.formProductImage.get('productimage')?.value != null) {
+            // console.log(formData);
+            this._productService
+              .uploadProductImage(createdProduct.id, formData)
+              .subscribe({
+                next: (response) => {
+                  console.log(response);
+                  this.showSuccess = true;
+                  this.showConfirmUpload = false;
+                },
+                error: (error) => {
+                  console.log(error);
+                  this.showLoading = false;
+                  this.showError = true;
+                },
+                complete: () => {
+                  this.showLoading = false;
+                },
+              });
+          } else {
+            console.log("No image uploaded");
+            this.showSuccess = true;
+            this.showConfirmUpload = false;
+            this.showLoading = false;
+          }
         },
         error: (err) => {
           console.log(err);
