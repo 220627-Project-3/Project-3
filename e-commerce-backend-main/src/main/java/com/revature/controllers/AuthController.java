@@ -25,7 +25,7 @@ import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:3000" }, allowCredentials = "true")
+@CrossOrigin
 public class AuthController {
 
 	Logger logger = LoggerFactory.getLogger(AuthController.class);

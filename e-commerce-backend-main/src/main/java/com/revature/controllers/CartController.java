@@ -28,7 +28,7 @@ import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin
 public class CartController {
 
     private final CartItemService cartItemService;
