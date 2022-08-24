@@ -87,7 +87,7 @@ export class WishListComponent implements OnInit {
       this.addToWishList(user.id);
     });
 
-    this.subscription = this.productService.getCart().subscribe({
+    this.subscription = this.productService.getDetails().subscribe({
       next: (cart) => {
         this.cartCount = cart.cartCount;
         this.products = cart.products;
@@ -124,7 +124,7 @@ export class WishListComponent implements OnInit {
             'Product Added to Cart'
           ),
         };
-        this.productService.setCart(cart);
+        this.productService.setDetails(cart);
         inCart = true;
         return;
       }
@@ -145,7 +145,7 @@ export class WishListComponent implements OnInit {
           'New Product Added to Cart'
         ),
       };
-      this.productService.setCart(cart);
+      this.productService.setDetails(cart);
     }
   }
 }

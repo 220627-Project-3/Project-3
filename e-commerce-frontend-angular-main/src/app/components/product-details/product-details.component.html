@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div id="details" style="padding:20px;float:left">
         <p>product name here</p>
         <p>product description here</p>
@@ -10,4 +10,81 @@
         <button class="btn btn-outline-success w-100">Add to Cart</button>
         <button class="btn btn-outline-danger w-100 mt-3">Add to Wishlist</button>
     </div>
+</div> -->
+<div class="container d-md-none">
+  <div class="text-center justify-content-center align-items-center pt-4 m">
+    <div class="">
+      <p class="display-6 fw-bold mb-5 text-primary text-center lead">
+        {{ theProduct?.name }}
+      </p>
+      <img
+        [src]="
+          environment.baseUrl + '/api/product/image/byProductId/' + productId
+        "
+        alt="{{ theProduct?.name }}"
+        class="img-fluid w-50 mb-3"
+      />
+      <p class="mb-3">
+        {{ theProduct?.description }}
+      </p>
+      <p class="mb-3">Product price: {{ theProduct?.price }} $</p>
+      <p class="mb-3">Quantity in stock: {{ theProduct?.quantity }}</p>
+    </div>
+    <div>
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-outline-success"
+          (click)="addToCart(theProduct!)"
+        >
+          Add to Cart
+        </button>
+        <button
+          class="btn btn-outline-danger"
+          (click)="addToWishList(theProduct!)"
+        >
+          Add to Wishlist
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container d-none d-md-block">
+  <p class="display-6 pt-5 pb-3 text-primary text-center lead">
+    {{ theProduct?.name }}
+  </p>
+  <div
+    class="m-auto pb-3 d-flex justify-content-between align-items-center border-top border-muted w-75"
+  >
+    <div class="ms-5">
+      <p class="mb-5">
+        {{ theProduct?.name }}
+      </p>
+      <p class="mb-5">
+        {{ theProduct?.description }}
+      </p>
+      <p class="mb-5">Product price: {{ theProduct?.price }} $/p>
+      <p class="mb-5">Quantity in stock: {{ theProduct?.quantity }}</p>
+    </div>
+    <div class="border border-start border-muted">
+      <img
+        [src]="
+          environment.baseUrl + '/api/product/image/byProductId/' + productId
+        "
+        alt="{{ theProduct?.name }}"
+        class="img-fluid d-inline-block"
+        width="500"
+        height="500"
+      />
+    </div>
+  </div>
+  <div class="d-flex justify-content-center pb-5">
+    <button class="btn btn-outline-success" (click)="addToCart(theProduct!)">
+      Add to Cart
+    </button>
+    <div class="p-2 m-2"></div>
+    <button class="btn btn-outline-danger" (click)="addToWishList(theProduct!)">
+      Add to Wishlist
+    </button>
+  </div>
 </div>
