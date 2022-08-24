@@ -103,9 +103,7 @@ public class ProductController {
     	return ResponseEntity.ok(productOptional.get());
     	
     }
-    
-
-
+  
     @Authorized
     @PutMapping
     public ResponseEntity<Product> upsert(@RequestBody Product product) {
