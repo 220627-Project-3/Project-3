@@ -5,7 +5,7 @@ import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
-interface Cart {
+interface Details {
   cartCount: number;
   products: {
     product: Product;
@@ -20,20 +20,20 @@ interface Cart {
 export class ProductService {
   private productUrl: string = '/api/product';
 
-  private _cart = new BehaviorSubject<Cart>({
+  private _details = new BehaviorSubject<Details>({
     cartCount: 0,
     products: [],
     totalPrice: 0.0,
   });
 
-  private _cart$ = this._cart.asObservable();
+  private _cart$ = this._details.asObservable();
 
-  getCart(): Observable<Cart> {
+  getDetails(): Observable<Details> {
     return this._cart$;
   }
 
-  setCart(latestValue: Cart) {
-    return this._cart.next(latestValue);
+  setDetails(latestValue: Details) {
+    return this._details.next(latestValue);
   }
 
   constructor(private http: HttpClient) {}

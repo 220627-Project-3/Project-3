@@ -35,7 +35,7 @@ export class ProductCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.productService.getCart().subscribe({
+    this.subscription = this.productService.getDetails().subscribe({
       next: (cart) => {
         this.cartCount = cart.cartCount;
         this.products = cart.products;
@@ -80,7 +80,7 @@ export class ProductCardComponent implements OnInit {
             'Product Added to Cart'
           ),
         };
-        this.productService.setCart(cart);
+        this.productService.setDetails(cart);
         inCart = true;
         return;
       }
@@ -101,7 +101,7 @@ export class ProductCardComponent implements OnInit {
           'New Product Added to Cart'
         ),
       };
-      this.productService.setCart(cart);
+      this.productService.setDetails(cart);
     }
   }
 
