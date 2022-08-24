@@ -25,7 +25,7 @@ import com.revature.services.WishlistItemService;
 
 @RestController
 @RequestMapping("/api/wishlist")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin
 public class WishlistItemController {
 
     private final WishlistItemService wishlistItemService;
