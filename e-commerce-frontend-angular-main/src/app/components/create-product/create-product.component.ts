@@ -75,6 +75,7 @@ export class CreateProductComponent implements OnInit {
               },
               error: (error) => {
                 console.log(error);
+                this.showLoading = false;
                 this.showError = true;
               },
               complete: () => {
