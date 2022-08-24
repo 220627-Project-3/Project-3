@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
     this.toastr.success("", "Heading to Checkout")
   }
   ngOnInit(): void {
-    this.productService.getCart().subscribe(
+    this.productService.getDetails().subscribe(
       (cart) => {
         this.products = cart.products;
         this.products.forEach(
@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
       products: [],
       totalPrice: 0.00
     };
-    this.productService.setCart(cart);
+    this.productService.setDetails(cart);
     this.toastr.info("", "Your Cart Is Now Empty")
     this.router.navigate(['/home']);
   }
@@ -88,7 +88,7 @@ export class CartComponent implements OnInit {
       products: this.products,
       totalPrice: this.totalPrice
     };
-    this.productService.setCart(cart);
+    this.productService.setDetails(cart);
   }
 
 }
