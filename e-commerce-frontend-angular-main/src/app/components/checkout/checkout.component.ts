@@ -35,7 +35,7 @@ export class CheckoutComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    this.productService.getCart().subscribe(
+    this.productService.getDetails().subscribe(
       (cart) => {
         this.products = cart.products;
         this.products.forEach(
@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
             products: [],
             totalPrice: 0.00
           };
-          this.productService.setCart(cart);
+          this.productService.setDetails(cart);
           this.router.navigate(['/home']);
         } 
       );

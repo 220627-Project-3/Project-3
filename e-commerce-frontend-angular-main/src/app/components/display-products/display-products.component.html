@@ -1,11 +1,13 @@
-<app-navbar (passCurrentUserInfo)="getCurrentUserInfo($event)"></app-navbar>
-<div class="container-fluid my-3">
-  
-  <div class="row align-items-start">
-    <div class="col d-flex justify-content-left flex-wrap">
-      <div class="m-2" *ngFor="let product of allProducts">
-        <app-product-card class="cardListItem" [productInfo]="product"></app-product-card>
+<div class="m-auto d-flex flex-column h-100">
+  <app-navbar (passCurrentUserInfo)="getCurrentUserInfo($event)"></app-navbar>
+  <div class="container-fluid py-3 flex-grow-1">
+    <div class="row align-items-start">
+      <div class="col d-flex justify-content-center flex-wrap" style="gap: 16px">
+        <div *ngFor="let product of allProducts">
+          <app-product-card class="cardListItem" [productInfo]="product"></app-product-card>
+        </div>
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </div>

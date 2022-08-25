@@ -1,7 +1,12 @@
 package com.revature.exceptions;
 
 public class CartItemDoesNotExistException extends IllegalArgumentException {
-    public CartItemDoesNotExistException(String msg) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public CartItemDoesNotExistException(String msg) {
         super(msg);
     }
 }

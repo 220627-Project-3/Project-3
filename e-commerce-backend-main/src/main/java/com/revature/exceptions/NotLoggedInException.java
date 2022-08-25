@@ -4,7 +4,12 @@ package com.revature.exceptions;
 // Will be handled by a Spring Exception Handler to return a 401
 public class NotLoggedInException extends RuntimeException {
 
-    public NotLoggedInException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public NotLoggedInException() {
     }
 
     public NotLoggedInException(String message) {

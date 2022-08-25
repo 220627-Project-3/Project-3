@@ -1,18 +1,13 @@
 package com.revature.models;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,12 +29,14 @@ public class CartItem {
 	
 	
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, unique = false)
+    @ManyToOne(targetEntity = Product.class)
+    @JoinColumn(name = "product_id", nullable = false, unique = false, referencedColumnName = "id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false, unique = false)
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false, unique = false, referencedColumnName = "id")
+
     private User user;
 
 

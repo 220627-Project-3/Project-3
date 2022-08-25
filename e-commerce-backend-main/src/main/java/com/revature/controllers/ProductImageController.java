@@ -37,7 +37,7 @@ import com.revature.services.ProductService;
 
 @RestController
 @RequestMapping("/api/product/image")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:3000" }, allowCredentials = "true")
+@CrossOrigin
 public class ProductImageController {
 
 	private final ProductImageService productImageService;
@@ -176,7 +176,7 @@ public class ProductImageController {
 				ex.printStackTrace();
 			}
 		}
-		return ResponseEntity.status(404).body(new Product());
+		return ResponseEntity.status(400).body(new Product());
 	}
 
 }
