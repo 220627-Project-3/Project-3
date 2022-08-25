@@ -3,12 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
-<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
-=======
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
->>>>>>> feature-remove-items
 
 interface Details {
   cartCount: number;
@@ -52,64 +49,64 @@ export class ProductService {
 
   private _cart$ = this._details.asObservable();
 
-<<<<<<< HEAD
   getDetails(): Observable<Details> {
-=======
+    return this._cart$;
+  }
 
-  async initializeCart(){
+  async initializeCart() {
     console.log("Getting Set up");
     let LOG = this.as.getSession().subscribe((user: any) => {
-      let productsObservable  = this.http.get<Products[]>("http://localhost:8080/api/cart/" + user.id, environment);
-      
+      let productsObservable = this.http.get<Products[]>("http://localhost:8080/api/cart/" + user.id, environment);
+
       let products: {
         product: Product,
         quantity: number
       }[] = [];
 
-      productsObservable.subscribe((data: Products[]) => 
-        data.forEach(e => {products.push(
-          {
-            product: e.product,
-            quantity: e.quantity
+      productsObservable.subscribe((data: Products[]) =>
+        data.forEach(e => {
+          products.push(
+            {
+              product: e.product,
+              quantity: e.quantity
+            }
+          );
+          let count = 0;
+          let totalPrice = 0;
+          for (let i = 0; i < products.length; i = i + 1) {
+            count = count + products[i].quantity;
+            totalPrice = totalPrice + products[i].quantity * products[i].product.price;
           }
-        );
-        let count = 0;
-        let totalPrice = 0;
-        for(let i = 0; i < products.length;i = i+1){
-          count = count + products[i].quantity;
-          totalPrice = totalPrice + products[i].quantity * products[i].product.price;
+          totalPrice = + Number(totalPrice).toFixed(2);
+          let cart = {
+            cartCount: count,
+            products: products,
+            totalPrice: totalPrice
+          };
+          this.setCart(cart);
         }
-        totalPrice = + Number(totalPrice).toFixed(2);
-      let cart = {
-        cartCount: count,
-        products: products,
-        totalPrice: totalPrice
-      };
-      this.setCart(cart);
-      }
-      ));
-      
+        ));
+
     });
   }
 
 
-  addToCart(product: Product) : Observable<any>{
-  //   console.log("hey there");
-  //   this.as.getSession().subscribe((user: User) => {
-  //     console.log(user.id);
-  //     console.log(product.id);
-      
-      
-  // });
-  return this.http.post<any>(environment.baseUrl + this.cartUrl + '/' + 1, {productId: product.id}, {
-    headers: environment.headers,
-    withCredentials: environment.withCredentials,
-  });
+  addToCart(product: Product): Observable<any> {
+    //   console.log("hey there");
+    //   this.as.getSession().subscribe((user: User) => {
+    //     console.log(user.id);
+    //     console.log(product.id);
+
+
+    // });
+    return this.http.post<any>(environment.baseUrl + this.cartUrl + '/' + 1, { productId: product.id }, {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials,
+    });
   }
 
 
   getCart(): Observable<Cart> {
->>>>>>> feature-remove-items
     return this._cart$;
   }
 
@@ -120,7 +117,7 @@ export class ProductService {
   constructor(
     private http: HttpClient,
     private as: AuthService
-  ) {}
+  ) { }
 
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.baseUrl + this.productUrl, {
@@ -185,8 +182,6 @@ export class ProductService {
       }
     );
   }
-<<<<<<< HEAD
-=======
 
   // public emptyCart(userId: number){
   //   this._cart.subscribe(e => {
@@ -204,20 +199,19 @@ export class ProductService {
   //   })
   // }
 
-  public removeItem(userId: number, qty: number, prod: number) : Observable<any>{
-    console.log("removing " + qty +" from id " + prod);
-    return this.http.put<any>(environment.baseUrl + this.cartUrl + '/' + userId, 
-    {
-      quantity: qty,
-      productId: prod
-    },
-    {
-      headers: environment.headers,
-      withCredentials: environment.withCredentials,
-    })
+  public removeItem(userId: number, qty: number, prod: number): Observable<any> {
+    console.log("removing " + qty + " from id " + prod);
+    return this.http.put<any>(environment.baseUrl + this.cartUrl + '/' + userId,
+      {
+        quantity: qty,
+        productId: prod
+      },
+      {
+        headers: environment.headers,
+        withCredentials: environment.withCredentials,
+      })
   }
 
->>>>>>> feature-remove-items
   public updateProduct(product: Product) {
     return this.http.put(environment.baseUrl + this.productUrl, product, {
       headers: environment.headers,
