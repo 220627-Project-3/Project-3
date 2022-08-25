@@ -83,7 +83,7 @@ export class ProductService {
             products: products,
             totalPrice: totalPrice
           };
-          this.setCart(cart);
+          this.setDetails(cart);
         }
         ));
 
@@ -106,7 +106,7 @@ export class ProductService {
   }
 
 
-  getCart(): Observable<Cart> {
+  getCart(): Observable<Details> {
     return this._cart$;
   }
 

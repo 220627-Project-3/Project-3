@@ -6,12 +6,9 @@ import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
-<<<<<<< HEAD
 import { WishListService } from 'src/app/services/wish-list.service';
 import { WishListItem } from 'src/app/models/wish-list-item';
-=======
 import { HttpClient } from '@angular/common/http';
->>>>>>> feature-remove-items
 
 @Component({
   selector: 'app-product-card',
@@ -34,12 +31,9 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private _authService: AuthService,
-<<<<<<< HEAD
     private ws: WishListService,
-    private toastr: ToastrService
-=======
+    private toastr: ToastrService,
     private http: HttpClient
->>>>>>> feature-remove-items
   ) {}
 
   ngOnInit(): void {
@@ -60,11 +54,11 @@ export class ProductCardComponent implements OnInit {
         console.log('Received data from parent component');
       },
     });
-    this._authService.getUser().subscribe({
-      next: (data) => {
+    this._authService.getSession().subscribe({
+      next: (data:any) => {
         this.user = data;
       },
-      error: (err) => {
+      error: (err:any) => {
         console.log(err);
       },
       complete: () => {
