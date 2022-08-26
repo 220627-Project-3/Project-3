@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "bootstrap": "^5.2.0",
+    "karma-firefox-launcher": "^2.1.2",
     "ngx-bootstrap": "^9.0.0",
     "ngx-toastr": "^15.0.0",
     "rxjs": "~7.5.0",

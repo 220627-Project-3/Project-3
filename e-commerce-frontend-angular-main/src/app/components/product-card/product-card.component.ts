@@ -30,7 +30,7 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private _authService: AuthService,
-    private ws: WishListService
+    private ws: WishListService,
     private toastr: ToastrService
   ) {}
 

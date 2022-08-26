@@ -12,12 +12,6 @@ export class UserProfileService {
 
     httpUrl: string = `${environment.baseUrl}/users/`
 
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Access-Control-Allow-Origin': '*'
-        })
-    };
-
     public currentUser = {};
 
     constructor(private http: HttpClient) { }
@@ -27,6 +21,9 @@ export class UserProfileService {
     }
 
     public updateUser(user: User): Observable<User> {
-        return this.http.put<User>(this.httpUrl + user.id, user, this.httpOptions);
+        return this.http.put<User>(this.httpUrl + user.id, user, {
+          headers: environment.headers,
+          withCredentials: environment.withCredentials,
+        });
     }
 }
