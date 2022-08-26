@@ -52,7 +52,6 @@ export class ProductCardComponent implements OnInit {
       },
       complete: () => {
         console.log('Received data from parent component');
-
       },
     });
     this._authService.getSession().subscribe({
@@ -116,7 +115,6 @@ export class ProductCardComponent implements OnInit {
     console.log(this.products);
     console.log(this.user?.id);
     console.log(product);
-
     this.ws.addWishListItem(product.id, this.user?.id).subscribe((wish) => {
       // const wishString = wish.body?.toString;
       // console.log(wishString);
