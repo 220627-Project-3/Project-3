@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productService.initializeCart();
     this.subscription = this.productService
       .getDetails()
       .subscribe((cart) => (this.cartCount = cart.cartCount));
@@ -58,10 +59,10 @@ export class NavbarComponent implements OnInit {
   BigSearch() {
     console.log(this.searchByValue);
     console.log(this.Searching.length);
-    if (this.Searching.length < 1) {
-      console.log('this.Searching.length');
-      this.productService.z = 2;
-      this.searchByValue == 'Bob';
+    if(this.Searching.length<1){
+      console.log("this.Searching.length");
+      this.productService.z=2;
+      
       this.ChangeChange();
       return;
     }

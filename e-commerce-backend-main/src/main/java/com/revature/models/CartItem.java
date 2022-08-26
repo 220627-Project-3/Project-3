@@ -33,8 +33,10 @@ public class CartItem {
     @JoinColumn(name = "product_id", nullable = false, unique = false, referencedColumnName = "id")
     private Product product;
 
+
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false, unique = false, referencedColumnName = "id")
+
     private User user;
 
 

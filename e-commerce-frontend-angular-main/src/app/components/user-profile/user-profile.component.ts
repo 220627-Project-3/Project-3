@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserProfileService } from 'src/app/services/user-profile-service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css'],
 })
-
 export class UserProfileComponent implements OnInit {
-
   edit: boolean = false;
 
   user: User = {
@@ -19,10 +18,14 @@ export class UserProfileComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false
+    admin: false,
   };
 
-  constructor(private us: UserProfileService, private as: AuthService) { }
+  constructor(
+    private us: UserProfileService,
+    private as: AuthService,
+    private ts: ToastrService
+  ) {}
 
   getUser() {
     this.as.getSession().subscribe({
@@ -33,9 +36,9 @@ export class UserProfileComponent implements OnInit {
         this.us.getUser(this.user.id).subscribe({
           next: (data: any) => {
             this.user = data.body;
-          }
+          },
         });
-      }
+      },
     });
   }
 
@@ -43,13 +46,13 @@ export class UserProfileComponent implements OnInit {
     this.us.updateUser(this.user).subscribe({
       next: (data: any) => {
         this.user = data;
+        this.ts.success('User information updated successfully');
         // NEED A WAY TO FIX THE NAVBAR AFTER UPDATING USER INFO.
-      }
+      },
     });
   }
 
   ngOnInit(): void {
     this.getUser();
   }
-
 }

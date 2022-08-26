@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { WishListService } from 'src/app/services/wish-list.service';
 import { WishListItem } from 'src/app/models/wish-list-item';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-card',
@@ -31,7 +32,8 @@ export class ProductCardComponent implements OnInit {
     private productService: ProductService,
     private _authService: AuthService,
     private ws: WishListService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -52,11 +54,11 @@ export class ProductCardComponent implements OnInit {
         console.log('Received data from parent component');
       },
     });
-    this._authService.getUser().subscribe({
-      next: (data) => {
+    this._authService.getSession().subscribe({
+      next: (data:any) => {
         this.user = data;
       },
-      error: (err) => {
+      error: (err:any) => {
         console.log(err);
       },
       complete: () => {
@@ -66,6 +68,8 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
+    
+    
     let inCart = false;
 
     this.products.forEach((element) => {
@@ -103,6 +107,8 @@ export class ProductCardComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
+    let x = this.productService.addToCart(product);
+    x.subscribe(data => console.log(data))
   }
 
   addToWishList(product: Product) {
