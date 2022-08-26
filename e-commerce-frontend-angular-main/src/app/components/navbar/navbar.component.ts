@@ -4,6 +4,7 @@ import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { CookieService } from 'ngx-cookie';
+import { DarkModeService } from 'src/app/services/dark-mode.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,9 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
+  localDarkTheme(): void{
+    this.darkModeService.toggleDarkTheme()
+  }
   public Searching: String = '';
   public value: number = 0;
   public searchByValue: String = 'Any';
@@ -24,7 +28,8 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private productService: ProductService,
-    private _cookieService: CookieService
+    private _cookieService: CookieService,
+    private darkModeService: DarkModeService
   ) {}
 
   SearchProductByID(id: number) {
@@ -32,6 +37,13 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem("theme") === "dark"){
+      document.body.classList.add('dark-theme')
+      
+    } else {
+      document.body.classList.remove('dark-theme')
+    }
+
     this.productService.initializeCart();
     this.subscription = this.productService
       .getDetails()
