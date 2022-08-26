@@ -49,3 +49,139 @@ app-root>div>*:not(router-outlet) {
 a {
   cursor: pointer;
 }
+
+
+
+
+/* Dark-Mode Body */
+
+body{
+  background-color: white;
+}
+
+body.dark-theme{
+  color:rgba(215, 220, 214, 0.906);
+  background-color: #191919;
+}
+
+/* Dark-Mode Cards->Tables->Form->Input->etc */
+
+.card {
+  background-color: white;
+}
+
+.dark-theme .card {
+  background-color: rgb(46,46,46);
+  color: rgb(189, 189, 189);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.table{
+  background-color: white;
+}
+
+.dark-theme .table{
+  background: rgb(46,46,46);
+  color: rgb(190, 190, 190);
+}
+
+.input-group{
+  background-color: white;
+}
+
+.dark-theme .input-group{
+  background-color: rgb(129, 129, 127);
+}
+
+.input-group-text{
+  color: black;
+}
+
+.dark-theme .input-group-text{
+  color: aliceblue;
+  background-color: rgb(52, 52, 52);
+}
+
+.form-control{
+  color: black;
+}
+
+.dark-theme .form-control{
+  color: aliceblue;
+}
+
+.tbody {
+  background-color: white;
+}
+
+.dark-theme .tbody{
+  background-color: #252222;
+  color: rgb(190, 190, 190);
+}
+
+/* Dark-Mode Navbar */
+
+.navbar{
+  background-color: white;
+}
+
+.dark-theme .navbar{
+  
+  background-color: rgb(46,46,46);
+}
+
+.navbar-brand{
+  color: black
+}
+
+.dark-theme .navbar-brand{
+  color: rgb(179,177,177);
+}
+
+.navbar-toggler{
+  color: black
+}
+
+.dark-theme .navbar-toggler{
+  color: rgb(179,177,177);
+}
+
+.navbar-collapse{
+  color: black
+}
+
+.dark-theme .navbar-collapse{
+  color: rgb(179,177,177);
+}
+
+/* Dark-Mode Navbar Buttons/Leftover Buttons */
+
+.welcome-user{
+  background-color: white;
+}
+
+.dark-theme .welcome-user{
+  background-color: #191919;
+}
+
+.welcome-text {
+  color: black;
+}
+
+.dark-theme .welcome-text {
+  color: rgb(179,177,177)
+}
+
+.welcome-name {
+  color: black;
+}
+
+.dark-theme .welcome-name {
+  color:rgb(179,177,177)
+}
+
+#btn-dark{
+  padding: 10px;
+  border: none;
+  border-radius:2px;
+}
