@@ -24,7 +24,14 @@ export class ProductCardComponent implements OnInit {
   subscription!: Subscription;
   totalPrice: number = 0;
   environment = environment;
-  user?: User;
+  @Input() user: User = {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    admin: false,
+  };
 
   @Input() productInfo: Product = {
     id: 0,
@@ -32,7 +39,7 @@ export class ProductCardComponent implements OnInit {
     quantity: 0,
     price: 0,
     description: '',
-    image: ''
+    image: '',
   };
 
   constructor(
@@ -61,61 +68,73 @@ export class ProductCardComponent implements OnInit {
         console.log('Received data from parent component');
       },
     });
-    this._authService.getSession().subscribe({
-      next: (data:any) => {
-        this.user = data;
-      },
-      error: (err:any) => {
-        console.log(err);
-      },
-      complete: () => {
-        console.log('Retrieved user info from card component');
-      },
-    });
+    // Why are we sending HTTP requests to get user info for each product card?
+    // this._authService.getSession().subscribe({
+    //   next: (data: any) => {
+    //     this.user = data;
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err);
+    //   },
+    //   complete: () => {
+    //     console.log('Retrieved user info from card component');
+    //   },
+    // });
+    // this.productInfo
   }
 
   addToCart(product: Product): void {
+    // let inCart = false;
 
+    // this.products.forEach((element) => {
+    //   if (element.product == product) {
+    //     ++element.quantity;
+    //     let cart = {
+    //       cartCount: this.cartCount + 1,
+    //       products: this.products,
+    //       totalPrice: this.totalPrice + product.price,
+    //       // Why is this code here?
+    //       // this: this.toastr.success(
+    //       //   'Your product has successfully been added to cart',
+    //       //   'Product Added to Cart'
+    //       // ),
+    //     };
+    //     this.productService.setDetails(cart);
+    //     inCart = true;
+    //     return;
+    //   }
+    // });
 
-    let inCart = false;
+    // if (inCart == false) {
+    // let newProduct = {
+    //   product: product,
+    //   quantity: 1,
+    // };
+    // this.products.push(newProduct);
+    // let cart = {
+    //   cartCount: this.cartCount + 1,
+    //   products: this.products,
+    //   totalPrice: this.totalPrice + product.price,
+    // };
+    // this.productService.setDetails(cart);
 
-    this.products.forEach((element) => {
-      if (element.product == product) {
-        ++element.quantity;
+    let x = this.productService.addToCart(product, this.user);
+    x.subscribe({
+      next: (data) => {
+        // console.log(data);
         let cart = {
           cartCount: this.cartCount + 1,
           products: this.products,
           totalPrice: this.totalPrice + product.price,
-          this: this.toastr.success(
-            'Your product has successfully been added to cart',
-            'Product Added to Cart'
-          ),
         };
         this.productService.setDetails(cart);
-        inCart = true;
-        return;
-      }
-    });
-
-    if (inCart == false) {
-      let newProduct = {
-        product: product,
-        quantity: 1,
-      };
-      this.products.push(newProduct);
-      let cart = {
-        cartCount: this.cartCount + 1,
-        products: this.products,
-        totalPrice: this.totalPrice + product.price,
-        this: this.toastr.success(
+        this.toastr.success(
           'Your product has successfully been added to cart',
           'New Product Added to Cart'
-        ),
-      };
-      this.productService.setDetails(cart);
-    }
-    let x = this.productService.addToCart(product);
-    x.subscribe(data => console.log(data))
+        );
+      },
+    });
+    // }
   }
 
   addToWishList(product: Product) {
