@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
     if (this.productService.z != 1) {
       this.productService.Changer(1);
       this.router
-        .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+        .navigateByUrl('/', { skipLocationChange: true })
         .then(() => {
           this.router.navigate(['home']);
         });
@@ -87,7 +87,7 @@ export class NavbarComponent implements OnInit {
     if(this.Searching.length<1){
       console.log("this.Searching.length");
       this.productService.z=2;
-      
+
       this.ChangeChange();
       return;
     }

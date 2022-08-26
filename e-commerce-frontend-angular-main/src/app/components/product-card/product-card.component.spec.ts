@@ -3,15 +3,23 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
 
+import { ToastrModule } from 'ngx-toastr';
+
 describe('ProductCardComponent', () => {
   let component: ProductCardComponent;
   let fixture: ComponentFixture<ProductCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductCardComponent ],imports: [ HttpClientTestingModule ]
-    })
-    .compileComponents();
+      declarations: [ProductCardComponent],
+      imports: [
+        HttpClientTestingModule,
+        ToastrModule.forRoot({
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +27,7 @@ describe('ProductCardComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

@@ -72,14 +72,20 @@ export class WishListComponent implements OnInit {
       },
       error: (err) => {
         this.showError = true;
-        this.toastr.error("Unable to delete item from Wishlist at this time. Please try again later.", "Remove Wishlist Item Failed");
+        this.toastr.error(
+          'Unable to delete item from Wishlist at this time. Please try again later.',
+          'Remove Wishlist Item Failed'
+        );
         console.log(err);
       },
       complete: () => {
-        this.toastr.success("Item successfully removed from Wishlist.", "Item Removed From Wishlist Successful")
-    },
-  });
-}
+        this.toastr.success(
+          'Item successfully removed from Wishlist.',
+          'Item Removed From Wishlist Successful'
+        );
+      },
+    });
+  }
 
   ngOnInit(): void {
     let LOG = this.as.getSession().subscribe((user: any) => {
@@ -147,7 +153,12 @@ export class WishListComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
-    let x = this.productService.addToCart(product);
-    x.subscribe(data => console.log(data))
+    let x = this.productService.addToCart(product, this.user);
+    x.subscribe((data) => console.log(data));
   }
+
+  getCurrentUserInfo(value: any) {
+    this.user = value;
+  }
+
 }

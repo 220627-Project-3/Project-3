@@ -4,15 +4,24 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
 
+import { ToastrModule } from 'ngx-toastr';
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],imports: [ HttpClientTestingModule , RouterTestingModule ]
-    })
-    .compileComponents();
+      declarations: [LoginComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ToastrModule.forRoot({
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

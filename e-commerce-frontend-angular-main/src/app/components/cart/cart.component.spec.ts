@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ToastrModule } from 'ngx-toastr';
+
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
@@ -21,6 +23,10 @@ describe('CartComponent', () => {
         BrowserModule,
         ReactiveFormsModule,
         FormsModule,
+        ToastrModule.forRoot({
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+        }),
       ],
       providers: [{ provide: ToastrService, useValue: mockToastrService }],
     }).compileComponents();

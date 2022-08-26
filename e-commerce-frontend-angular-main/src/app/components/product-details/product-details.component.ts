@@ -26,7 +26,14 @@ export class ProductDetailsComponent implements OnInit {
   }[] = [];
   subscription!: Subscription;
   totalPrice: number = 0;
-  user?: User;
+  user: User = {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    admin: false
+  };
 
   constructor(
     private router: Router,
@@ -114,12 +121,12 @@ export class ProductDetailsComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
-    let x = this.productService.addToCart(product);
+    let x = this.productService.addToCart(product, this.user);
     x.subscribe(data => console.log(data))
   }
 
   addToWishList(product: Product) {
-    console.log(this.products);
+    // console.log(this.products);
     console.log(this.user?.id);
     console.log(product);
     console.log(this.user);
