@@ -1,0 +1,148 @@
+div.a {
+  font-size: 15px;
+}
+
+.container {
+
+  height: 100vh;
+  opacity: 0.0;
+
+}
+
+
+.card {
+  border: none;
+}
+
+.form-control {
+  border-bottom: 2px solid #eee !important;
+  border: none;
+  font-weight: 600
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #8bbafe;
+  outline: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  border-bottom: 2px solid blue !important;
+}
+
+
+
+.inputbox {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%
+}
+
+.inputbox span {
+  position: absolute;
+  top: 7px;
+  left: 11px;
+  transition: 0.5s
+}
+
+.inputbox i {
+  position: absolute;
+  top: 13px;
+  right: 8px;
+  transition: 0.5s;
+  color: #3F51B5
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0
+}
+
+.inputbox input:focus~span {
+  transform: translateX(-0px) translateY(-15px);
+  font-size: 12px
+}
+
+.inputbox input:valid~span {
+  transform: translateX(-0px) translateY(-15px);
+  font-size: 12px
+}
+
+.card-blue {
+
+  background-color: #F26925;
+}
+
+.hightlight {
+
+  background-color: #F26925;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.yellow {
+
+  color: #fdcc49;
+}
+
+.decoration {
+
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/*
+.btn-success {
+  color: #fff;
+  background-color: #F26925;
+  border-color: #F26925;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}
+*/
+
+.decoration:hover {
+
+  text-decoration: none;
+  color: #fdcc49;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  min-width: 100%;
+}
+
+figure {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: small;
+
+}
+/* Let's not add a background image
+#background {
+  background-color: rgba(208, 118, 118, 0.01);
+  background-image: url("../../../assets/images/climbingFlower.png");
+  background-repeat: no-repeat;
+  background-blend-mode: luminosity;
+  background-position: right top;
+}
+*/
+
+/*
+.btn {
+  border: 1px solid #ced4da;
+  background-color: solid #ced4ec;
+}
+
+
+.btn:hover {
+  background-color: #acd4dc;
+}
+*/

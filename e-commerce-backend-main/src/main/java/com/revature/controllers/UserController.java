@@ -16,7 +16,7 @@ import com.revature.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:3000" }, allowCredentials = "true")
+@CrossOrigin
 public class UserController {
 	
     private final UserRepository userRepository;

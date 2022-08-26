@@ -1,0 +1,70 @@
+<div class="m-auto d-flex flex-column h-100">
+  <app-navbar></app-navbar>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+      <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/home']">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+    </ol>
+  </nav>
+  <div class="container-fluid my-3 flex-grow-1">
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped text-center" id="cart-table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 1%">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col" class="text-nowrap">Stock</th>
+              <th scope="col" class="text-nowrap">Add to Cart</th>
+              <th scope="col" class="text-nowrap">Remove from Wishlist</th>
+            </tr>
+          </thead>
+          <tbody id="wishlist-table-body">
+            <tr *ngFor="let product of wishProducts">
+              <td class="align-middle">{{ product.product.id }}</td>
+              <td class="align-middle">{{ product.product.name }}</td>
+              <td class="align-middle">{{ product.product.description }}</td>
+              <td class="align-middle">{{ product.product.quantity }}</td>
+              <td class="align-middle text-nowrap">
+                <button class="btn btn-outline-success" (click)="addToCart(product.product)">
+                  <i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                </button>
+              </td>
+              <td class="align-middle text-nowrap">
+                <button class="btn btn-outline-danger" (click)="removeFromWishList(product.id)">
+                  <i class="fa fa-times" aria-hidden="true"></i> Remove
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-danger mr-2" [routerLink]="['/home']">
+          Back
+        </button>
+        <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
+        <!-- <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button> -->
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+  <!--
+<footer class="footer">
+  <div class="container text-black">
+    <figure class="figure">
+      <blockquote class="blockquote-figure">
+        <p>
+          <b><i>I generally buy things for people, that I'd love to receive
+              myself - so I have plenty of time to curate my own wish list
+              while I shop.</i></b>
+        </p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Zoe Ball.
+        <cite title="Brainyquote">www.brainyquote.com</cite>
+      </figcaption>
+    </figure>
+  </div>
+</footer>
+-->
+</div>

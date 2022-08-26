@@ -1,10 +1,17 @@
 server:
-  port: 8080
+  port: 8443
   servlet:
     session:
       cookie:
         path: /
         http-only: false
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: ./certs/certificate.p12
+    key-store-password: revature2022
+  http:
+    port: 8080
 spring:
   devtools:
     livereload:
@@ -23,8 +30,8 @@ spring:
     password: revature2022
   h2:
     console.enabled: false
-  jackson:
-    default-property-inclusion: NON_NULL
+  # jackson:
+  #   default-property-inclusion: NON_NULL
   servlet:
     multipart:
       max-file-size: -1

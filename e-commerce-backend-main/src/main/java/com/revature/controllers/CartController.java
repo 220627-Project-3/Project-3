@@ -18,11 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.annotations.Authorized;
 import com.revature.dtos.CartItemDto;
+
+import com.revature.models.CartItem;
+import com.revature.models.Product;
+import com.revature.models.User;
+
 import com.revature.dtos.CartItemQuantityDTO;
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
 import com.revature.repositories.CartRepository;
+
 import com.revature.services.CartItemService;
 import com.revature.services.ProductService;
 import com.revature.services.UserService;
@@ -32,7 +38,7 @@ import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin
 public class CartController {
 
     private final CartItemService cartItemService;

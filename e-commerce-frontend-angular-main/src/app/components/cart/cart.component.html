@@ -1,32 +1,53 @@
-<app-navbar></app-navbar>
-<div class="container-fluid my-3">
-  <div class="row">
-    <div class="col">
-      <table class="table table-striped" id="cart-table">
-        <thead>
-          <tr>
-            <th scope="col" style="width: 10%">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col" style="width: 10%">Quantity</th>
-            <th scope="col">Description</th>
-          </tr>
-        </thead>
-        <tbody id="cart-table-body">
-          <tr *ngFor="let product of products;">
-            <td>{{product.product.id}}</td>
-            <td>{{product.product.name}}</td>
-            <td>{{product.quantity}}</td>
-            <td>{{product.product.description}}</td>
-            <td><span>Qty:</span>
-              <input type="number" size="3" style="width:10%" #qty>
-              <button class="btn btn-warning mr-2"  (click)="removeItem(product.product.id, qty.value)">Remove Item</button></td>
-          </tr>
-          
-        </tbody>
-      </table>
-      <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
-      <button class="btn btn-warning mr-2" (click)="emptyCart()">Empty Cart</button>
-      <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout res(${{totalPrice}})</button>
+<div class="m-auto d-flex flex-column h-100">
+  <app-navbar></app-navbar>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+      <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/home']">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Cart</li>
+    </ol>
+  </nav>
+  <div class="container-fluid my-3 flex-grow-1">
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped text-center" id="cart-table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Description</th>
+              <th scope="col" class="text-nowrap">Adjust Quantity</th>
+            </tr>
+          </thead>
+          <tbody id="cart-table-body">
+            <tr *ngFor="let product of products;">
+              <td class="align-middle">{{product.product.id}}</td>
+              <td class="align-middle">{{product.product.name}}</td>
+              <td class="align-middle">{{product.quantity}}</td>
+              <td class="align-middle">{{product.product.description}}</td>
+              <td class="align-middle text-nowrap">
+                <div class="input-group flex-nowrap justify-content-center align-items-center w-100">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Qty</span>
+                  </div>
+                  <input class="form-control text-right" placeholder="0" value="1" type="number" size="3"
+                    style="min-width: 64px; max-width: 64px" #qty>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-warning mr-2" (click)="removeItem(product.product.id, qty.value)">
+                      Remove Item
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
+        <button class="btn btn-warning mr-2" (click)="emptyCart()">Empty Cart</button>
+        <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout ( ${{totalPrice | number :
+          '1.2-2'}} )</button>
+      </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </div>
