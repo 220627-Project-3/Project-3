@@ -50,7 +50,7 @@ export class ProductService {
 
 
   async initializeCart(){
-    console.log("Getting Set up");
+    // console.log("Getting Set up");
     let LOG = this.as.getSession().subscribe((user: any) => {
       let productsObservable  = this.http.get<Products[]>("http://localhost:8080/api/cart/" + user.id, environment);
       
@@ -137,24 +137,9 @@ export class ProductService {
     );
   }
 
-  // public emptyCart(userId: number){
-  //   this._cart.subscribe(e => {
-  //     e.products.forEach(product => {
-  //       return this.http.put<any>(environment.baseUrl + this.cartUrl + '/' + userId, 
-  //       {
-  //         quantity: product.quantity,
-  //         productId: product.product.quantity
-  //       },
-  //       {
-  //         headers: environment.headers,
-  //         withCredentials: environment.withCredentials,
-  //       })
-  //     })
-  //   })
-  // }
 
   public removeItem(userId: number, qty: number, prod: number) : Observable<any>{
-    console.log("removing " + qty +" from id " + prod);
+    // console.log("removing " + qty +" from id " + prod);
     return this.http.put<any>(environment.baseUrl + this.cartUrl + '/' + userId, 
     {
       quantity: qty,
