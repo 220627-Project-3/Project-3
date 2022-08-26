@@ -93,13 +93,10 @@ export class ProductService {
 
   addToCart(product: Product): Observable<any> {
     //   console.log("hey there");
-    //   this.as.getSession().subscribe((user: User) => {
-    //     console.log(user.id);
-    //     console.log(product.id);
-
-
-    // });
-    return this.http.post<any>(environment.baseUrl + this.cartUrl + '/' + 1, { productId: product.id }, {
+       this.as.getSession().subscribe((user: User) => {
+         this.user.id = user.id;
+     });
+    return this.http.post<any>(environment.baseUrl + this.cartUrl + '/' + this.user.id, { productId: product.id }, {
       headers: environment.headers,
       withCredentials: environment.withCredentials,
     });
