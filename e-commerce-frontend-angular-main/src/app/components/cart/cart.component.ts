@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -17,8 +18,11 @@ export class CartComponent implements OnInit {
   totalPrice!: number;
   cartProducts: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private toastr: ToastrService) { }
 
+  headingToCheckout (){
+    this.toastr.success("", "Heading to Checkout")
+  }
   ngOnInit(): void {
     this.productService.getCart().subscribe(
       (cart) => {
@@ -38,6 +42,7 @@ export class CartComponent implements OnInit {
       totalPrice: 0.00
     };
     this.productService.setCart(cart);
+    this.toastr.info("", "Your Cart Is Now Empty")
     this.router.navigate(['/home']);
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   showError: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -41,10 +42,14 @@ export class RegisterComponent implements OnInit {
           },
           error: (err) => {
             this.showError = true;
+            this.toastr.error("Try a different email", "Registration Failed")
             console.log(err);
+            
           },
           complete: () => {
+            this.toastr.success("Registration Successful, Log In to the Swag Shop", "Registration Successful")
             this.router.navigate(['login']);
+            
           },
         });
     }
