@@ -56,6 +56,7 @@ export class CartComponent implements OnInit {
                 product.product.id
               );
               x.subscribe((data) => console.log(data));
+              this.router.navigate(['/home']);
             })
             .unsubscribe();
         });
@@ -68,7 +69,6 @@ export class CartComponent implements OnInit {
     };
     this.productService.setDetails(cart);
     this.toastr.info('', 'Your Cart Is Now Empty');
-    this.router.navigate(['/home']);
   }
 
   removeItem(id: number, qty: string) {

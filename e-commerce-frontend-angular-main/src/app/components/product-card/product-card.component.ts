@@ -26,7 +26,14 @@ export class ProductCardComponent implements OnInit {
   environment = environment;
   user?: User;
 
-  @Input() productInfo!: Product;
+  @Input() productInfo: Product = {
+    id: 0,
+    name: '',
+    quantity: 0,
+    price: 0,
+    description: '',
+    image: ''
+  };
 
   constructor(
     private productService: ProductService,
@@ -68,8 +75,8 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    
-    
+
+
     let inCart = false;
 
     this.products.forEach((element) => {
