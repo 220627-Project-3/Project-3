@@ -40,6 +40,16 @@ export class CartComponent implements OnInit {
   }
 
   emptyCart(): void {
+    this.authService.getUser().subscribe(user => {
+      this.products.forEach(product => {
+        this.authService.getUser().subscribe(user=> {
+          let x = this.productService.removeItem(user.id, product.quantity, product.product.id);
+          x.subscribe(data => console.log(data));
+        }).unsubscribe();
+      })
+      
+    }
+    ).unsubscribe();
     let cart = {
       cartCount: 0,
       products: [],
@@ -48,17 +58,15 @@ export class CartComponent implements OnInit {
     this.productService.setDetails(cart);
     this.toastr.info("", "Your Cart Is Now Empty")
     this.router.navigate(['/home']);
+    
 
-    // this.authService.getUser().subscribe(user => {
-    //   let x = this.productService.emptyCart(user.id);
-    //   console.log(x);
-    // }
-    // );
   }
 
-  removeItem(id: number, qty: string) {
 
-    console.log(qty);
+  removeItem(id: number, qty: string){
+    
+    // console.log(qty);
+
     let index = this.products.findIndex(e => e.product.id === id);
     //if quantity input is empty, remove 1 of the product
     if (qty == '') {
@@ -68,11 +76,11 @@ export class CartComponent implements OnInit {
         if (this.products[index].quantity < 1) {
           this.products.splice(index, 1);
         }
-        this.authService.getSession().subscribe({
-          next: (data: any) => {
-            let x = this.productService.removeItem(data.id, 1, id);
-            x.subscribe(data => console.log(data));
-          }
+
+        this.authService.getUser().subscribe(user=> {
+          let x = this.productService.removeItem(user.id, 1, id);
+          // x.subscribe(data => console.log(data));
+
         }).unsubscribe();
       }
     }
@@ -87,11 +95,11 @@ export class CartComponent implements OnInit {
           if (this.products[index].quantity < 1) {
             this.products.splice(index, 1);
           }
-          this.authService.getSession().subscribe({
-            next: (user: any) => {
-              let x = this.productService.removeItem(user.id, qtyNum, id);
-              x.subscribe(data => console.log(data));
-            }
+
+          this.authService.getUser().subscribe(user=> {
+            let x = this.productService.removeItem(user.id, qtyNum, id);
+            // x.subscribe(data => console.log(data));
+
           }).unsubscribe();
         }
       }
