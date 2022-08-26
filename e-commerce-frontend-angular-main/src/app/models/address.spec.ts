@@ -6,6 +6,4 @@ describe('Address', () => {
       new Address('Bob', 'Bob', 'Bob', 'Bob', 'Bob', 'Bob', 'Bob', 'Bob')
     ).toBeTruthy();
   });
-
 });
-

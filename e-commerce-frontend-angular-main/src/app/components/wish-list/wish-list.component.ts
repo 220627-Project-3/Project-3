@@ -68,7 +68,7 @@ export class WishListComponent implements OnInit {
       next: (data) => {
         console.log(data);
         console.log('Delete successful');
-        this.ngOnInit();
+        location.reload();
       },
       error: (err) => {
         this.showError = true;
