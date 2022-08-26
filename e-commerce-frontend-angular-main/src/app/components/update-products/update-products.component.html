@@ -13,9 +13,15 @@
           <div class="update-product-image-container text-center">
             <form id="update-product-image-form" [formGroup]="formProductImage">
               <div class="proceedUpload d-flex justify-content-center align-items-center" *ngIf="showConfirmUpload">
-                <div>
+                <div *ngIf="!showLoadingImage">
                   <button class="btn btn-outline-danger m-1 futura-heavy" (click)="cancelUploadImage()">Cancel</button>
                   <button class="btn btn-outline-success m-1 futura-heavy" (click)="submitProductImage()">Upload</button>
+                </div>
+                <div *ngIf="showLoadingImage">
+                  <span class="spinner-border spinner-border-sm" role="status">
+                    <i class="sr-only">Loading...</i>
+                  </span>
+                  <span> Updating...</span>
                 </div>
               </div>
               <div class="product-image">
@@ -75,7 +81,13 @@
                       </div>
                     </div>
                     <div class="btn-containers text-center">
-                      <button type="submit" class="btn btn-primary">Update</button>
+                      <button type="submit" class="btn btn-primary" [disabled]="showLoading">
+                        <span *ngIf="!showLoading">Update</span>
+                        <span *ngIf="showLoading" class="spinner-border spinner-border-sm" role="status">
+                          <i class="sr-only">Loading...</i>
+                        </span>
+                        <span *ngIf="showLoading"> Updating...</span>
+                      </button>
                     </div>
                     <div class="alert alert-success text-center mt-3" role="alert" *ngIf="showSuccess">
                       Update success
@@ -92,4 +104,6 @@
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </div>
+

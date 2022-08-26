@@ -4,6 +4,7 @@ import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { DarkModeService } from 'src/app/services/dark-mode.service';
 import { ProductService } from 'src/app/services/product.service';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-navbar',
@@ -16,23 +17,33 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
+<<<<<<< HEAD
   localDarkTheme(): void{
     this.darkModeService.toggleDarkTheme()
   }
+=======
+  public Searching: String = '';
+  public value: number = 0;
+  public searchByValue: String = 'Any';
+>>>>>>> 8086553613f86662384199f2e834314e98dcac5d
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private productService: ProductService,
+<<<<<<< HEAD
     private darkModeService: DarkModeService
+=======
+    private _cookieService: CookieService
+>>>>>>> 8086553613f86662384199f2e834314e98dcac5d
   ) {}
 
-  SearchProductByID(id: number){
-    this.productService.getSingleProduct(id).subscribe({next:(data)=>{
-    
-    }})
+  SearchProductByID(id: number) {
+    this.productService.getProductById(id).subscribe({ next: (data) => {} });
   }
+
   ngOnInit(): void {
+<<<<<<< HEAD
     
     
     if(localStorage.getItem("theme") === "dark"){
@@ -44,69 +55,88 @@ export class NavbarComponent implements OnInit {
 
 
 
+=======
+    this.productService.initializeCart();
+>>>>>>> 8086553613f86662384199f2e834314e98dcac5d
     this.subscription = this.productService
-      .getCart()
+      .getDetails()
       .subscribe((cart) => (this.cartCount = cart.cartCount));
     this.getCurrentUserInformation();
   }
-   public Searching: String='';
-   public value: number=0; 
-   public searchByValue: String='Any';
-   onChange(event: number){
-    this.value=event;
+
+  onChange(event: number) {
+    this.value = event;
     console.log(this.value);
-   }
-  ChangeChange(){
-    console.log("Changed")
-    if (this.productService.z!=1){
-    this.productService.Changer(1)
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['home']);
-  });}
   }
-  BigSearch(){
+
+  ChangeChange() {
+    console.log('Changed');
+    if (this.productService.z != 1) {
+      this.productService.Changer(1);
+      this.router
+        .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+        .then(() => {
+          this.router.navigate(['home']);
+        });
+    }
+  }
+
+  BigSearch() {
     console.log(this.searchByValue);
-    if(this.searchByValue=="Id"){
+    console.log(this.Searching.length);
+    if(this.Searching.length<1){
+      console.log("this.Searching.length");
+      this.productService.z=2;
+      
+      this.ChangeChange();
+      return;
+    }
+    if (this.searchByValue == 'Id') {
       this.SearchButt();
-    }else if(this.searchByValue=="Name"){
+    } else if (this.searchByValue == 'Name') {
       this.SearchButtwithName();
-      
-    }else if(this.searchByValue=="Desc"){
+    } else if (this.searchByValue == 'Desc') {
       this.SearchButtwithDesc();
-      
-  }else if(this.searchByValue=="Any"){
-    this.SearchButtwithAny();
-    
-}
-}
-  SearchButt(){
-    this.productService.Changer(2)
+    } else if (this.searchByValue == 'Any') {
+      this.SearchButtwithAny();
+    }
+  }
+
+  SearchButt() {
+    this.productService.Changer(2);
     var numeric = Number(this.Searching);
     this.productService.SearchMan(numeric);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-});}
-  SearchButtwithName(){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
+
+  SearchButtwithName() {
     this.productService.Changer(3);
     this.productService.SearchManName(this.Searching);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-  });}
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
 
-  SearchButtwithDesc(){
+  SearchButtwithDesc() {
     this.productService.Changer(4);
     console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-  });}
-  SearchButtwithAny(){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
+
+  SearchButtwithAny() {
     this.productService.Changer(5);
     console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
-    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['home']);
-  });}
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -117,18 +147,43 @@ export class NavbarComponent implements OnInit {
   }
 
   getCurrentUserInformation() {
-    this.authService.getSession().subscribe({
-      next: (data: any) => {
-        this.currentUserInfo = data;
-        console.log(this.currentUserInfo);
-        this.authService.setUser(data);
-        this.passCurrentUserInfo.emit(data);
-      },
-      error: (err: any) => {
-        console.log('User is not logged on');
-        console.log(err);
-      },
-      complete: () => {},
-    });
+    if (this._cookieService.get('JSESSIONID') != undefined) {
+      console.log('%c[User is logged in]', 'color: blue');
+      this.authService.getSession().subscribe({
+        next: (data: any) => {
+          this.currentUserInfo = data;
+          // console.log(this.currentUserInfo);
+          this.authService.setUser(data);
+          this.passCurrentUserInfo.emit(data);
+        },
+        error: (err: any) => {
+          console.log('%c[User is not logged on]', 'color: orange');
+          this._cookieService.removeAll();
+          this.router.navigate(['login']);
+          //console.log(err);
+        },
+        complete: () => {},
+      });
+    } else {
+      console.log('%c[User is not logged on]', 'color: orange');
+      this.router.navigate(['login']);
+    }
+  }
+
+  resizeSelect(event: Event) {
+    let mySelect = event.currentTarget as HTMLSelectElement;
+    switch (mySelect.value.toLowerCase()) {
+      case 'any':
+        mySelect.style.width = '43px';
+        break;
+      case 'name':
+        mySelect.style.width = '97px';
+        break;
+      case 'desc':
+        mySelect.style.width = '123px';
+        break;
+      default:
+        break;
+    }
   }
 }

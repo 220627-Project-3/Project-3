@@ -9,7 +9,6 @@
 select#searchBy {
   border: 0;
   background: none;
-  max-width: 48px;
   font-size: 12px;
 }
 
@@ -47,3 +46,8 @@ select#searchBy {
 .navbar-reg-btn {
   border: 1px solid #ced4da;
 }
+
+.searchContainer input {
+  min-width: 140px
+}
+
