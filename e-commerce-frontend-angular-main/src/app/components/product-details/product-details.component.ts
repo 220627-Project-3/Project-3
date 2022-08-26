@@ -114,6 +114,8 @@ export class ProductDetailsComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
+    let x = this.productService.addToCart(product);
+    x.subscribe(data => console.log(data))
   }
 
   addToWishList(product: Product) {
