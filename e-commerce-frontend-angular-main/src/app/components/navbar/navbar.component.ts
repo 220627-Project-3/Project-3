@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { DarkModeService } from 'src/app/services/dark-mode.service';
 import { ProductService } from 'src/app/services/product.service';
 import { CookieService } from 'ngx-cookie';
 
@@ -16,15 +17,25 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
+<<<<<<< HEAD
+  localDarkTheme(): void{
+    this.darkModeService.toggleDarkTheme()
+  }
+=======
   public Searching: String = '';
   public value: number = 0;
   public searchByValue: String = 'Any';
+>>>>>>> 8086553613f86662384199f2e834314e98dcac5d
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private productService: ProductService,
+<<<<<<< HEAD
+    private darkModeService: DarkModeService
+=======
     private _cookieService: CookieService
+>>>>>>> 8086553613f86662384199f2e834314e98dcac5d
   ) {}
 
   SearchProductByID(id: number) {
@@ -32,7 +43,21 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
+    
+    
+    if(localStorage.getItem("theme") === "dark"){
+      document.body.classList.add('dark-theme')
+      
+    } else {
+      document.body.classList.remove('dark-theme')
+    }
+
+
+
+=======
     this.productService.initializeCart();
+>>>>>>> 8086553613f86662384199f2e834314e98dcac5d
     this.subscription = this.productService
       .getDetails()
       .subscribe((cart) => (this.cartCount = cart.cartCount));

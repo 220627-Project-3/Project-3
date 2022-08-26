@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DisplayProductsComponent implements OnInit {
   allProducts: Product[] = [];
+
   currentUserInfo: User = {
     id: 0,
     email: '',
