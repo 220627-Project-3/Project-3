@@ -41,9 +41,14 @@ select#searchBy {
   }
 }
 
-.navbar-container li.nav-item {
+.navbar li.nav-item {
   margin-left: 8px;
   min-height: 48px;
+
+}
+
+.navbar .collapse.show  li.nav-item  {
+  margin-left: 0;
 }
 
 .navbar-reg-btn {

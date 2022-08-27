@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
+<nav class="navbar navbar-expand-xl navbar-light bg-light border-bottom shadow-sm">
   <a [routerLink]="['/home']" class="navbar-brand" (click)="ChangeChange()">
     <img class="align-middle mr-2" src="/assets/images/favicon.png" width="36" height="36" alt="Revature">
     <span class="h4 align-middle">Revature Swag Shop</span>
@@ -9,7 +9,7 @@
   </button>
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.admin">
+      <li class="nav-item d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.admin">
         <div>
           <button class="btn btn-light" routerLink="/create-product">
             Create Product

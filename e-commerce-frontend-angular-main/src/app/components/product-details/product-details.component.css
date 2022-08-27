@@ -1,0 +1,10 @@
+.priceQuantity .input-group-text {
+  width: 64px;
+  text-align: center;
+  display: block;
+}
+
+.priceQuantity .form-control {
+  background: none;
+  text-align: right;
+}
