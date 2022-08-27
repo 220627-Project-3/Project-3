@@ -14,6 +14,7 @@ select#searchBy {
 
 .welcome-user {
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .searchDropdown .input-group {
@@ -21,19 +22,21 @@ select#searchBy {
 }
 
 .welcome-text,
-  .welcome-name,
-  .welcome-admin {
-    display: inline-block;
-    font-size: 16px;
-  }
+.welcome-name,
+.welcome-admin {
+  display: inline-block;
+  font-size: 16px;
+}
 
 @media (min-width: 992px) {
-  .welcome-text,
-  .welcome-name {
+
+  .welcome-text {
     display: block;
     font-size: 12px;
   }
-  .welcome-admin {
+
+  .welcome-admin,
+  .welcome-name {
     font-size: 12px;
   }
 }
@@ -51,3 +54,6 @@ select#searchBy {
   min-width: 140px
 }
 
+#searchTermLabel.input-group-text {
+  background: transparent;
+}
