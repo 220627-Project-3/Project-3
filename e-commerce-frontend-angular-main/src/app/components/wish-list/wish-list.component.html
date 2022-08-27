@@ -16,8 +16,9 @@
               <th scope="col">Name</th>
               <th scope="col">Description</th>
               <th scope="col" class="text-nowrap">Stock</th>
-              <th scope="col" class="text-nowrap">Add to Cart</th>
-              <th scope="col" class="text-nowrap">Remove from Wishlist</th>
+              <!-- <th scope="col" class="text-nowrap">Add to Cart</th>
+              <th scope="col" class="text-nowrap">Remove from Wishlist</th> -->
+              <th scope="col" class="text-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody id="wishlist-table-body">
@@ -26,15 +27,29 @@
               <td class="align-middle">{{ product.product.name }}</td>
               <td class="align-middle">{{ product.product.description }}</td>
               <td class="align-middle">{{ product.product.quantity }}</td>
-              <td class="align-middle text-nowrap">
-                <button class="btn btn-outline-success" (click)="addToCart(product.product)">
+              <!-- <td class="align-middle text-nowrap">
+                <button class="btn btn-sm btn-success" (click)="addToCart(product.product)">
                   <i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart
                 </button>
               </td>
               <td class="align-middle text-nowrap">
-                <button class="btn btn-outline-danger" (click)="removeFromWishList(product.id)">
+                <button class="btn btn-sm btn-danger" (click)="removeFromWishList(product.id)">
                   <i class="fa fa-times" aria-hidden="true"></i> Remove
                 </button>
+              </td> -->
+              <td class="actions align-middle text-nowrap">
+                <div class="input-group input-group-sm flex-nowrap justify-content-center align-items-center w-100">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-sm btn-success" (click)="addToCart(product.product)">
+                      <i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                    </button>
+                  </div>
+                  <div class="input-group-append">
+                    <button class="btn btn-sm btn-danger" (click)="removeFromWishList(product.id)">
+                      <i class="fa fa-times" aria-hidden="true"></i> Remove
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>

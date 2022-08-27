@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-cart',
@@ -17,6 +18,14 @@ export class CartComponent implements OnInit {
   }[] = [];
   totalPrice!: number;
   cartProducts: Product[] = [];
+  currentUserInfo: User = {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    admin: false,
+  };
 
   constructor(
     private productService: ProductService,
@@ -43,32 +52,40 @@ export class CartComponent implements OnInit {
   }
 
   emptyCart(): void {
-    this.authService
-      .getUser()
-      .subscribe((user) => {
-        this.products.forEach((product) => {
-          this.authService
-            .getUser()
-            .subscribe((user) => {
-              let x = this.productService.removeItem(
-                user.id,
-                product.quantity,
-                product.product.id
-              );
-              x.subscribe((data) => console.log(data));
-              this.router.navigate(['/home']);
-            })
-            .unsubscribe();
-        });
-      })
-      .unsubscribe();
-    let cart = {
-      cartCount: 0,
-      products: [],
-      totalPrice: 0.0,
-    };
-    this.productService.setDetails(cart);
-    this.toastr.info('', 'Your Cart Is Now Empty');
+    // this.authService
+    //   .getUser()
+    //   .subscribe((user) => {
+    //     this.products.forEach((product) => {
+    //       this.authService
+    //         .getUser()
+    //         .subscribe((user) => {
+    //           let x = this.productService.removeItem(
+    //             user.id,
+    //             product.quantity,
+    //             product.product.id
+    //           );
+    //           x.subscribe((data) => console.log(data));
+    //           this.router.navigate(['/home']);
+    //         })
+    //         .unsubscribe();
+    //     });
+    //   })
+    //   .unsubscribe();
+    this.productService.emptyCart(this.currentUserInfo.id).subscribe({
+      next: (data) => {
+        console.log('%c[' + data + ']', 'color: blue');
+        let cart = {
+          cartCount: 0,
+          products: [],
+          totalPrice: 0.0,
+        };
+        this.productService.setDetails(cart);
+        this.toastr.info('', 'Your Cart Is Now Empty');
+      },
+      error: (data) => {
+        console.log('%c[' + data + ']', 'color: red');
+      },
+    });
   }
 
   removeItem(id: number, qty: string) {
@@ -131,5 +148,38 @@ export class CartComponent implements OnInit {
       totalPrice: this.totalPrice,
     };
     this.productService.setDetails(cart);
+  }
+
+  updateItem(productid: number, amount: string) {
+    this.productService
+      .updateCartItem(this.currentUserInfo.id, parseInt(amount), productid)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          let totalPrice = 0;
+          for (let elem of data) {
+            totalPrice += (elem.quantity * elem.product.price);
+          }
+          let cart = {
+            cartCount: data.length,
+            products: data,
+            totalPrice: totalPrice,
+          };
+          this.productService.setDetails(cart);
+          if(parseInt(amount) > 0) {
+            this.toastr.success('Successfully update quantity', 'Success');
+          } else {
+            this.toastr.success('Successfully removed item from cart', 'Success');
+          }
+
+        },
+        error: (data) => {
+          console.log(data);
+        },
+      });
+  }
+
+  getCurrentUserInfo(value: any) {
+    this.currentUserInfo = value;
   }
 }

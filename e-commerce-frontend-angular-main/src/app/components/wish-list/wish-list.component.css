@@ -125,6 +125,7 @@ figure {
   font-size: small;
 
 }
+
 /* Let's not add a background image
 #background {
   background-color: rgba(208, 118, 118, 0.01);
@@ -146,3 +147,7 @@ figure {
   background-color: #acd4dc;
 }
 */
+
+.actions .btn {
+  width: 120px;
+}
