@@ -83,8 +83,17 @@ body.dark-theme {
 }
 
 .dark-theme .table {
-  background: rgb(46, 46, 46);
+  /* background: rgb(46, 46, 46); */
+  background: transparent;
   color: rgb(190, 190, 190);
+}
+
+.dark-theme .table th, .dark-theme .table td {
+  border-color: transparent;
+}
+
+.dark-theme .table thead {
+  background-color: rgb(46, 46, 46);
 }
 
 /* .input-group {
@@ -98,12 +107,6 @@ body.dark-theme {
 /* .input-group-text {
   color: black;
 } */
-
-.dark-theme .input-group-text, .dark-theme .input-group-append .btn-light {
-  /* color: aliceblue; */
-  color: #B9B9BA;
-  background-color: rgb(52, 52, 52);
-}
 
 .form-control {
   color: black;
@@ -138,6 +141,10 @@ body.dark-theme {
 
 .dark-theme .navbar-brand {
   color: #B9B9BA
+}
+
+.dark-theme a.navbar-brand:focus {
+  color: #fff
 }
 
 /* .navbar-toggler {
@@ -195,7 +202,7 @@ body.dark-theme {
 }
 
 .dark-theme .navbar.border-bottom {
-  border: none !important;
+  border-color: transparent !important;
 }
 
 .dark-theme .footer {
@@ -207,13 +214,37 @@ body.dark-theme {
 }
 
 .dark-theme .input-group-prepend select {
-  color: #B9B9BA
-}
-
-.dark-theme .input-group-prepend select option {
   color: #000
 }
 
-.dark-theme .navbar-light a:hover, .dark-theme .btn-light:hover, .dark-theme .btn-light:hover .welcome-text {
+.dark-theme .navbar-light a:hover,
+.dark-theme .btn-light:hover,
+.dark-theme .btn-light:hover .welcome-text,
+.dark-theme .btn-light:hover .welcome-name {
   color: #fff;
+}
+
+.dark-theme .form-control,
+.dark-theme textarea.form-control {
+  border-color: rgba(0, 0, 0, 0);
+  background: #404143 !important
+}
+
+.dark-theme .input-group-text,
+.dark-theme .input-group-append .btn-light {
+  border-color: rgba(0, 0, 0, 0);
+  background: #B9B9BA !important;
+  color: #000
+}
+
+.dark-theme .navbar-toggler {
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.dark-theme .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.dark-theme .card-header {
+  border-color: transparent;
 }

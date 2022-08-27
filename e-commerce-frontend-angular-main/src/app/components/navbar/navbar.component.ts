@@ -36,10 +36,12 @@ export class NavbarComponent implements OnInit {
     this.productService.getProductById(id).subscribe({ next: (data) => {} });
   }
 
+  isDarkMode: boolean = false;
+
   ngOnInit(): void {
     if(localStorage.getItem("theme") === "dark"){
       document.body.classList.add('dark-theme')
-      
+      this.isDarkMode = true;
     } else {
       document.body.classList.remove('dark-theme')
     }

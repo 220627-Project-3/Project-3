@@ -1,7 +1,7 @@
 <div class="m-auto d-flex flex-column h-100">
   <app-navbar></app-navbar>
   <nav aria-label="breadcrumb">
-    <ol class="breadcrumb bg-transparent">
+    <ol class="breadcrumb bg-transparent m-0">
       <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/home']">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Cart</li>
     </ol>
@@ -33,7 +33,7 @@
                   <input class="form-control text-right" placeholder="0" value="1" type="number" size="3"
                     style="min-width: 64px; max-width: 64px" #qty>
                   <div class="input-group-append">
-                    <button class="btn btn-outline-warning mr-2" (click)="removeItem(product.product.id, qty.value)">
+                    <button class="btn btn-outline-danger mr-2" (click)="removeItem(product.product.id, qty.value)">
                       Remove Item
                     </button>
                   </div>

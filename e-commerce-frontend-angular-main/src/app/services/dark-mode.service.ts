@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DarkModeService {
- 
+
   // toggleDarkTheme(): void{
   //   document.body.classList.toggle('dark-theme');
   // }
-  
+
   toggleDarkTheme(): void {
-    
+
    if (document.body.classList.contains('dark-theme')) {
      document.body.classList.remove('dark-theme')
      localStorage.setItem("theme", "light");
@@ -19,8 +19,8 @@ export class DarkModeService {
         localStorage.setItem("theme", "dark");
       }
   }
-      
-    
+
+
 
   constructor() { }
 }
