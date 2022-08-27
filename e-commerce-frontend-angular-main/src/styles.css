@@ -125,8 +125,7 @@ body.dark-theme{
   background-color: white;
 }
 
-.dark-theme .navbar{
-  
+.dark-theme .navbar{ 
   background-color: rgb(46,46,46);
 }
 
@@ -161,7 +160,8 @@ body.dark-theme{
 }
 
 .dark-theme .welcome-user{
-  background-color: #191919;
+  color: rgb(179,177,177);
+  background-color: rgb(46,46,46);
 }
 
 .welcome-text {
