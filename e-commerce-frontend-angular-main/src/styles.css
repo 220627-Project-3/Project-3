@@ -46,8 +46,10 @@ app-root>div>*:not(router-outlet) {
   font-family: Futura-Std-Heavy;
 }
 
-a {
+a,
+a:hover {
   cursor: pointer;
+  text-decoration: none;
 }
 
 
@@ -55,12 +57,12 @@ a {
 
 /* Dark-Mode Body */
 
-body{
+body {
   background-color: white;
 }
 
-body.dark-theme{
-  color:rgba(215, 220, 214, 0.906);
+body.dark-theme {
+  color: rgba(215, 220, 214, 0.906);
   background-color: #191919;
 }
 
@@ -71,42 +73,43 @@ body.dark-theme{
 }
 
 .dark-theme .card {
-  background-color: rgb(46,46,46);
+  background-color: rgb(46, 46, 46);
   color: rgb(189, 189, 189);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
 }
 
-.table{
+.table {
   background-color: white;
 }
 
-.dark-theme .table{
-  background: rgb(46,46,46);
+.dark-theme .table {
+  background: rgb(46, 46, 46);
   color: rgb(190, 190, 190);
 }
 
-.input-group{
+/* .input-group {
   background-color: white;
-}
+} */
 
-.dark-theme .input-group{
+/* .dark-theme .input-group {
   background-color: rgb(129, 129, 127);
-}
+} */
 
-.input-group-text{
+/* .input-group-text {
   color: black;
-}
+} */
 
-.dark-theme .input-group-text{
-  color: aliceblue;
+.dark-theme .input-group-text, .dark-theme .input-group-append .btn-light {
+  /* color: aliceblue; */
+  color: #B9B9BA;
   background-color: rgb(52, 52, 52);
 }
 
-.form-control{
+.form-control {
   color: black;
 }
 
-.dark-theme .form-control{
+.dark-theme .form-control {
   color: aliceblue;
 }
 
@@ -114,74 +117,103 @@ body.dark-theme{
   background-color: white;
 }
 
-.dark-theme .tbody{
+.dark-theme .tbody {
   background-color: #252222;
   color: rgb(190, 190, 190);
 }
 
 /* Dark-Mode Navbar */
 
-.navbar{
+.navbar {
   background-color: white;
 }
 
-.dark-theme .navbar{
-  
-  background-color: rgb(46,46,46);
+.dark-theme .navbar {
+  background-color: rgb(46, 46, 46) !important;
 }
 
-.navbar-brand{
+/* .navbar-brand {
   color: black
+} */
+
+.dark-theme .navbar-brand {
+  color: #B9B9BA
 }
 
-.dark-theme .navbar-brand{
-  color: rgb(179,177,177);
-}
-
-.navbar-toggler{
+/* .navbar-toggler {
   color: black
+} */
+
+.dark-theme .navbar-toggler {
+  color: #B9B9BA
 }
 
-.dark-theme .navbar-toggler{
-  color: rgb(179,177,177);
-}
-
-.navbar-collapse{
+/* .navbar-collapse {
   color: black
-}
+} */
 
-.dark-theme .navbar-collapse{
-  color: rgb(179,177,177);
+.dark-theme .navbar-collapse {
+  color: #B9B9BA
 }
 
 /* Dark-Mode Navbar Buttons/Leftover Buttons */
 
-.welcome-user{
+/* .welcome-user{
   background-color: white;
-}
+} */
 
-.dark-theme .welcome-user{
+/* .dark-theme .welcome-user {
   background-color: #191919;
-}
+} */
 
-.welcome-text {
+/* .welcome-text {
   color: black;
-}
+} */
 
 .dark-theme .welcome-text {
-  color: rgb(179,177,177)
+  color: #B9B9BA
 }
 
-.welcome-name {
+/* .welcome-name {
   color: black;
-}
+} */
 
 .dark-theme .welcome-name {
-  color:rgb(179,177,177)
+  color: #B9B9BA
 }
 
-#btn-dark{
+#btn-dark {
   padding: 10px;
   border: none;
-  border-radius:2px;
+  border-radius: 2px;
+}
+
+.dark-theme .btn-light {
+  background: transparent;
+  color: #B9B9BA;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.dark-theme .navbar.border-bottom {
+  border: none !important;
+}
+
+.dark-theme .footer {
+  background-color: rgb(46, 46, 46) !important;
+}
+
+.dark-theme .footer * {
+  color: #B9B9BA
+}
+
+.dark-theme .input-group-prepend select {
+  color: #B9B9BA
+}
+
+.dark-theme .input-group-prepend select option {
+  color: #000
+}
+
+.dark-theme .navbar-light a:hover, .dark-theme .btn-light:hover, .dark-theme .btn-light:hover .welcome-text {
+  color: #fff;
 }
