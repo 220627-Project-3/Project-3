@@ -1,5 +1,5 @@
 <div class="m-auto d-flex flex-column h-100">
-  <app-navbar></app-navbar>
+  <app-navbar (passCurrentUserInfo)="getCurrentUserInfo($event)"></app-navbar>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent m-0">
       <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/home']">Home</a></li>
@@ -16,7 +16,9 @@
               <th scope="col">Name</th>
               <th scope="col">Quantity</th>
               <th scope="col">Description</th>
+              <th scope="col">Unit Price</th>
               <th scope="col" class="text-nowrap">Adjust Quantity</th>
+
             </tr>
           </thead>
           <tbody id="cart-table-body">
@@ -25,16 +27,20 @@
               <td class="align-middle">{{product.product.name}}</td>
               <td class="align-middle">{{product.quantity}}</td>
               <td class="align-middle">{{product.product.description}}</td>
+              <td class="text-right">${{product.product.price  | number : '1.2-2'}}</td>
               <td class="align-middle text-nowrap">
-                <div class="input-group flex-nowrap justify-content-center align-items-center w-100">
+                <div class="input-group input-group-sm flex-nowrap justify-content-center align-items-center w-100">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Qty</span>
                   </div>
-                  <input class="form-control text-right" placeholder="0" value="1" type="number" size="3"
-                    style="min-width: 64px; max-width: 64px" #qty>
+                  <input class="form-control" placeholder="0" min="1" max="999" [value]="product.quantity" step="1" type="number"
+                    size="3" style="min-width: 64px; max-width: 64px" #qty>
                   <div class="input-group-append">
-                    <button class="btn btn-outline-danger mr-2" (click)="removeItem(product.product.id, qty.value)">
-                      Remove Item
+                    <button class="btn btn-success" (click)="updateItem(product.product.id, qty.value)">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Change
+                    </button>
+                    <button class="btn btn-danger" (click)="updateItem(product.product.id, '0')">
+                      <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove
                     </button>
                   </div>
                 </div>

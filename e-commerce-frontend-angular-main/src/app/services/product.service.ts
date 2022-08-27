@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 
@@ -193,6 +192,31 @@ export class ProductService {
       },
       {
         headers: environment.headers,
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
+
+  public emptyCart(id: number) {
+    let params: any = {
+      userid: id,
+    };
+    return this.http.delete<any>(
+      environment.baseUrl + this.cartUrl + '?' + new URLSearchParams(params),
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
+  }
+
+  public updateCartItem(uid: number, qty: number, pid: number) {
+    return this.http.put<any>(
+      environment.baseUrl + this.cartUrl + '/update/' + uid,
+      {
+        quantity: qty,
+        productId: pid,
+      },
+      {
         withCredentials: environment.withCredentials,
       }
     );
