@@ -8,34 +8,21 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.admin">
-        <div>
-          <button class="btn btn-light" routerLink="/create-product">
-            Create Product
-          </button>
-        </div>
-      </li>
-    </ul>
-
-    <div class="navbar-container">
-      <ul class="navbar-nav main-nav mr-auto d-flex align-items-center">
-        <li class="nav-item d-flex justify-content-center align-items-center">
+    <div class="flex-grow-1">
+      <ul class="navbar-nav mr-auto d-flex align-items-center">
+        <li class="nav-item d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.admin">
           <div>
-            <button class="welcome-user btn btn-light py-0" routerLink="/user-profile">
-              <div class="welcome-text">Welcome,&nbsp;</div>
-              <div class="welcome-name futura-heavy text-nowrap">{{currentUserInfo != null ? currentUserInfo.firstName :
-                ''
-                | titlecase}}
-                {{currentUserInfo != null ? currentUserInfo.lastName : '' |
-                titlecase}}&nbsp;
-              </div>
-              <div class="welcome-admin" *ngIf="currentUserInfo.admin"><i class="admin-indicator fa fa-star"
-                  aria-hidden="true"></i>
-              </div>
+            <button class="btn btn-light" routerLink="/create-product">
+              Create Product
             </button>
           </div>
         </li>
+      </ul>
+    </div>
+
+    <div class="navbar-container">
+      <ul class="navbar-nav main-nav mr-auto d-flex align-items-center">
+
 
 
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
@@ -84,6 +71,30 @@
               <div class="custom-control custom-switch" style="margin-right: -8px;">
                 <input type="checkbox" class="custom-control-input" id="customSwitch1" [checked]="isDarkMode">
                 <label class="custom-control-label" for="customSwitch1" (click)="localDarkTheme()"></label>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <div class="input-group flex-nowrap">
+            <div class="input-group-prepend text-right">
+              <div class="input-group-text"><i class="fa fa-user-o" aria-hidden="true"></i></div>
+            </div>
+            <div class="form-control">
+              <div>
+                <a class="welcome-user py-0" routerLink="/user-profile">
+                  <!-- <div class="welcome-text">Welcome,&nbsp;</div> -->
+                  <div class="welcome-name text-nowrap">{{currentUserInfo != null ?
+                    currentUserInfo.firstName :
+                    ''
+                    | titlecase}}
+                    {{currentUserInfo != null ? currentUserInfo.lastName : '' |
+                    titlecase}}&nbsp;
+                  </div>
+                  <div class="welcome-admin" *ngIf="currentUserInfo.admin"><i class="admin-indicator fa fa-star"
+                      aria-hidden="true"></i>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
