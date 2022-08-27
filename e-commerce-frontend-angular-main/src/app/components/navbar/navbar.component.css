@@ -13,7 +13,7 @@ select#searchBy {
 }
 
 .welcome-user {
-  font-size: 12px;
+  font-size: 14px;
   white-space: nowrap;
 }
 
@@ -21,29 +21,46 @@ select#searchBy {
   max-width: 320px;
 }
 
-.welcome-text,
-.welcome-name,
-.welcome-admin {
+@media screen and (max-width: 1200px) {
+
+  /* .welcome-text,
+  .welcome-name,
+  .welcome-admin {
+    display: inline-block !important;
+    font-size: 16px !important;
+  } */
+
+  .navbar li.nav-item {
+    margin-left: 0 !important;
+    width: 100%;
+    max-width: 380px;
+  }
+
+}
+
+#navbarSupportedContent .input-group {
+  width: initial;
+}
+
+/* .welcome-text {
+  display: block;
+  font-size: 12px;
+} */
+
+.welcome-name {
+  color: #212529
+}
+
+.welcome-admin,
+.welcome-name {
   display: inline-block;
-  font-size: 16px;
+  /* font-size: 12px; */
 }
 
-@media (min-width: 992px) {
-
-  .welcome-text {
-    display: block;
-    font-size: 12px;
-  }
-
-  .welcome-admin,
-  .welcome-name {
-    font-size: 12px;
-  }
-}
-
-.navbar-container li.nav-item {
+.navbar li.nav-item {
   margin-left: 8px;
   min-height: 48px;
+
 }
 
 .navbar-reg-btn {

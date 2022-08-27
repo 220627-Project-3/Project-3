@@ -88,7 +88,8 @@ body.dark-theme {
   color: rgb(190, 190, 190);
 }
 
-.dark-theme .table th, .dark-theme .table td {
+.dark-theme .table th,
+.dark-theme .table td {
   border-color: transparent;
 }
 
@@ -186,7 +187,7 @@ body.dark-theme {
 } */
 
 .dark-theme .welcome-name {
-  color: #B9B9BA
+  color: #B9B9BA !important
 }
 
 #btn-dark {
@@ -246,5 +247,10 @@ body.dark-theme {
 }
 
 .dark-theme .card-header {
-  border-color: transparent;
+  border-color: transparent !important;
+}
+
+.dark-theme .form-control:focus {
+  border-color: #B9B9BA;
+  box-shadow: 0 0 0 0.2rem rgba(72, 76, 86, 0.25);
 }
