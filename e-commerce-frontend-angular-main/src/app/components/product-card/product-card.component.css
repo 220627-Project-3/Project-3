@@ -79,3 +79,11 @@ p.card-text {
 .card-buttons button.btn {
   font-size: 14px;
 }
+
+.card-title a {
+  color: #F26925;
+}
+
+.card-img, .card-img-top {
+  border-radius: calc(.25rem - 1px);
+}

@@ -22,7 +22,7 @@
       <ul class="navbar-nav main-nav mr-auto d-flex align-items-center">
         <li class="nav-item d-flex justify-content-center align-items-center">
           <div>
-            <div class="welcome-user btn btn-light py-0" routerLink="/user-profile">
+            <button class="welcome-user btn btn-light py-0" routerLink="/user-profile">
               <div class="welcome-text">Welcome,&nbsp;</div>
               <div class="welcome-name futura-heavy text-nowrap">{{currentUserInfo != null ? currentUserInfo.firstName :
                 ''
@@ -32,21 +32,21 @@
                     class="admin-indicator fa fa-star" aria-hidden="true"></i>
                 </div>
               </div>
-            </div>
+            </button>
           </div>
         </li>
 
 
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
           <div>
-            <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/wish-list']">
+            <button class="btn btn-light navbar-reg-btn" [routerLink]="['/wish-list']">
               Wishlist <i class="fa fa-heart text-danger" aria-hidden="true"></i>
             </button>
           </div>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
           <div>
-            <button class="btn btn-outline-secondary navbar-reg-btn" [routerLink]="['/cart']">
+            <button class="btn btn-light navbar-reg-btn" [routerLink]="['/cart']">
               Cart
               <span class="badge badge-info">{{cartCount}}</span>
             </button>
@@ -56,7 +56,8 @@
           <div class="input-group flex-nowrap">
             <div class="input-group-prepend text-right">
               <div class="input-group-text p-1" id="searchTermLabel">
-                <select placeholder="Search by" name="searchBy" id="searchBy" (change)="resizeSelect($event)" [(ngModel)]="searchByValue" style="width:43px">
+                <select placeholder="Search by" name="searchBy" id="searchBy" (change)="resizeSelect($event)"
+                  [(ngModel)]="searchByValue" style="width:43px">
                   <!-- <option value="Id">Id</option> -->
                   <option value="Any">Any</option>
                   <option value="Name">Product Name</option>
@@ -67,7 +68,7 @@
             <input class="form-control" type="text" placeholder="Search Products..." [(ngModel)]="Searching"
               name="Searching" (keyup.enter)="BigSearch()">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary navbar-reg-btn" (click)="BigSearch()"><i class="fa fa-search"
+              <button class="btn btn-light navbar-reg-btn" (click)="BigSearch()"><i class="fa fa-search"
                   aria-hidden="true"></i>
               </button>
             </div>

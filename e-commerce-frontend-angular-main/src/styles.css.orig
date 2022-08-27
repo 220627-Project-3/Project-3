@@ -128,8 +128,13 @@ body.dark-theme {
   background-color: white;
 }
 
+<<<<<<< HEAD
 .dark-theme .navbar {
   background-color: rgb(46, 46, 46) !important;
+=======
+.dark-theme .navbar{ 
+  background-color: rgb(46,46,46);
+>>>>>>> origin/development
 }
 
 /* .navbar-brand {
@@ -162,9 +167,16 @@ body.dark-theme {
   background-color: white;
 } */
 
+<<<<<<< HEAD
 /* .dark-theme .welcome-user {
-  color: rgb(179,177,177);
+  background-color: #191919;
 } */
+=======
+.dark-theme .welcome-user{
+  color: rgb(179,177,177);
+  background-color: rgb(46,46,46);
+}
+>>>>>>> origin/development
 
 /* .welcome-text {
   color: black;
