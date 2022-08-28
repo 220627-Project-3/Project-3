@@ -2,7 +2,7 @@ timestamps {
     node() {
         stage('Checkout') {
             checkout([$class: 'GitSCM', branches: [
-                [name: '*/development']
+                [name: '*/main']
             ], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [
                 [credentialsId: 'cruzgsworks', url: 'https://github.com/220627-Project-3/Project-3.git']
             ]])
