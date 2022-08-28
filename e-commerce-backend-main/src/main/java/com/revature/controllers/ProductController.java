@@ -141,7 +141,12 @@ public class ProductController {
 		}
 
 		productService.saveAll(productList, metadata);
-		cartRepository.deleteCartItems(sessionData.getId());
+		try {
+			cartRepository.deleteCartItems(sessionData.getId());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
 
 		return ResponseEntity.ok(productList);
 	}
