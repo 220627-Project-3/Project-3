@@ -53,21 +53,21 @@ export class WishListComponent implements OnInit {
   ) {}
 
   addToWishList(user: any) {
-    console.log('HOWDYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
+    //console.log('HOWDYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
 
     this.ws.getWishlist(user).subscribe((wish) => {
-      console.log(wish);
+      //console.log(wish);
       this.wishProducts = wish;
     });
   }
 
   removeFromWishList(id: number) {
-    console.log(id);
+    //console.log(id);
 
     this.ws.deleteItemFromWishlist(id).subscribe({
       next: (data) => {
-        console.log(data);
-        console.log('Delete successful');
+        //console.log(data);
+       // console.log('Delete successful');
         this.ngOnInit();
       },
       error: (err) => {
@@ -89,7 +89,7 @@ export class WishListComponent implements OnInit {
 
   ngOnInit(): void {
     let LOG = this.as.getSession().subscribe((user: any) => {
-      console.log(user.id);
+      //console.log(user.id);
       this.addToWishList(user.id);
     });
 
@@ -103,7 +103,7 @@ export class WishListComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
-        console.log('Received data from parent component');
+        console.log('Received data from papa component');
       },
     });
 
@@ -113,13 +113,13 @@ export class WishListComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    console.log(product);
+    //console.log(product);
     let inCart = false;
 
     this.products.forEach((element) => {
       if (element.product == product) {
-        console.log(element.product);
-        console.log(product);
+        //console.log(element.product);
+        //console.log(product);
         ++element.quantity;
         let cart = {
           cartCount: this.cartCount + 1,
