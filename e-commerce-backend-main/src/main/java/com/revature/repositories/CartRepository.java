@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.dtos.CartItemQuantityDTO;
 import com.revature.models.CartItem;
 import com.revature.models.User;
 

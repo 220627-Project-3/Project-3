@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
-  localDarkTheme(): void{
-    this.darkModeService.toggleDarkTheme()
+  localDarkTheme(): void {
+    this.darkModeService.toggleDarkTheme();
   }
   public Searching: String = '';
   public value: number = 0;
@@ -39,11 +39,11 @@ export class NavbarComponent implements OnInit {
   isDarkMode: boolean = false;
 
   ngOnInit(): void {
-    if(localStorage.getItem("theme") === "dark"){
-      document.body.classList.add('dark-theme')
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-theme');
       this.isDarkMode = true;
     } else {
-      document.body.classList.remove('dark-theme')
+      document.body.classList.remove('dark-theme');
     }
 
     this.productService.initializeCart();
@@ -62,20 +62,21 @@ export class NavbarComponent implements OnInit {
     console.log('Changed');
     if (this.productService.z != 1) {
       this.productService.Changer(1);
-      this.router
-        .navigateByUrl('/', { skipLocationChange: true })
-        .then(() => {
-          this.router.navigate(['home']);
-        });
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['home']);
+
+      });
+    } else {
+      window.location.href="/home"
     }
   }
 
   BigSearch() {
     console.log(this.searchByValue);
     console.log(this.Searching.length);
-    if(this.Searching.length<1){
-      console.log("this.Searching.length");
-      this.productService.z=2;
+    if (this.Searching.length < 1) {
+      console.log('this.Searching.length');
+      this.productService.z = 2;
 
       this.ChangeChange();
       return;
@@ -131,8 +132,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['login']);
+    this.authService.logout().subscribe({
+      next: () => {
+        // this.router.navigate(['login']);
+        window.location.href = "/";
+      },
+      error: (data: any) => {
+        console.log(data);
+      },
+    });
   }
 
   getCurrentUserInformation() {
