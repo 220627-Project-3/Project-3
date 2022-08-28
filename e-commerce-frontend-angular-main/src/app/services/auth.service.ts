@@ -57,7 +57,7 @@ export class AuthService {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   });
 
   private _user$ = this._user.asObservable();

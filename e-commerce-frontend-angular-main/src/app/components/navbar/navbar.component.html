@@ -10,7 +10,7 @@
   <div class="navbar-collapse collapse" id="navbarSupportedContent">
     <div class="flex-grow-1">
       <ul class="navbar-nav mr-auto d-flex align-items-center">
-        <li class="nav-item d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.admin">
+        <li class="nav-item d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.isAdmin">
           <div>
             <button class="btn btn-light" routerLink="/create-product">
               Create Product
@@ -91,7 +91,7 @@
                     {{currentUserInfo != null ? currentUserInfo.lastName : '' |
                     titlecase}}&nbsp;
                   </div>
-                  <div class="welcome-admin" *ngIf="currentUserInfo.admin"><i class="admin-indicator fa fa-star"
+                  <div class="welcome-admin" *ngIf="currentUserInfo.isAdmin"><i class="admin-indicator fa fa-star"
                       aria-hidden="true"></i>
                   </div>
                 </a>

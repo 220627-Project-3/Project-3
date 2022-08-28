@@ -70,6 +70,7 @@ public class CartControllerTest {
 		
 		User user1 = new User();
 		user1.setFirstName("Bob");
+		user1.setEmail("Bob@email.com");
 		user1.setLastName("Bobby");
 		user1.setPassword("password");
 		user1.setId(0);
