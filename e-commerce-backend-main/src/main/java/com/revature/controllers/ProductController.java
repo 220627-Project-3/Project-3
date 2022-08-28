@@ -142,7 +142,9 @@ public class ProductController {
 
 		productService.saveAll(productList, metadata);
 		try {
-			cartRepository.deleteCartItems(sessionData.getId());
+			if(sessionData != null) {
+				cartRepository.deleteCartItems(sessionData.getId());
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
