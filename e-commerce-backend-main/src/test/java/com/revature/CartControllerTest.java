@@ -22,39 +22,33 @@ import com.revature.services.UserService;
 @SpringBootTest
 public class CartControllerTest {
 
-private CartItemService cit;
-private ProductService ps;
-private UserService us;
-private CartController cc;
-private CartRepository cr;
+	private CartItemService cit;
+	private ProductService ps;
+	private UserService us;
+	private CartRepository cr;
 
+	public CartControllerTest(CartItemService cit, ProductService ps, UserService us, CartRepository cr) {
+		super();
+		this.cit = cit;
+		this.ps = ps;
+		this.us = us;
+		this.cr = cr;
+	}
 
+	@SuppressWarnings("unlikely-arg-type")
+	public void testGetCartItems() {
+		CartController mockController = Mockito.spy(new CartController(cit, ps, us, cr));
 
-public CartControllerTest(CartItemService cit, ProductService ps, UserService us, CartController cc) {
-	super();
-	this.cit = cit;
-	this.ps = ps;
-	this.us = us;
-	this.cc = cc;
-	this.cr = cr;
-}
+		Mockito.verify(mockController).getCartItems(anyInt());
 
+		OngoingStubbing<ResponseEntity<List<CartItem>>> ci = Mockito
+				.when(Mockito.verify(mockController).getCartItems(anyInt()))
+				.thenReturn(new ResponseEntity<List<CartItem>>(HttpStatus.ACCEPTED));
 
+		assertNotNull(ci);
 
+		assertTrue(ci.equals(HttpStatus.ACCEPTED));
 
-@SuppressWarnings("unlikely-arg-type")
-public void testGetCartItems() {
-	CartController mockController = Mockito.spy(new CartController(cit, ps, us, cr));
-	
-	Mockito.verify(mockController).getCartItems(anyInt());
-	
-	OngoingStubbing<ResponseEntity<List<CartItem>>> ci = Mockito.when(Mockito.verify(mockController).getCartItems(anyInt())).thenReturn( new ResponseEntity <List<CartItem>> (HttpStatus.ACCEPTED));
-	
-	assertNotNull(ci);
-	
-	assertTrue(ci.equals(HttpStatus.ACCEPTED));
-	
-	
-}
-	
+	}
+
 }

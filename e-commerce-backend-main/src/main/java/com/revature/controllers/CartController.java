@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,7 +42,6 @@ public class CartController {
 
 	private final Logger logger = LoggerFactory.getLogger(CartController.class);
 
-	@Autowired
 	public CartController(CartItemService cartItemService, ProductService productService, UserService userService,
 			CartRepository cartRepository) {
 		this.cartItemService = cartItemService;
@@ -77,7 +75,7 @@ public class CartController {
 		if (ca != null) {
 			if (optionalProduct.isPresent() && optionalUser.isPresent()) {
 				Product product = optionalProduct.get();
-				User user = optionalUser.get();
+				//User user = optionalUser.get();
 				ca.setQuantity(ca.getQuantity() + 1);
 
 				cartItemService.addProduct(ca);

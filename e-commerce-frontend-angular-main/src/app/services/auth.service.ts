@@ -22,8 +22,8 @@ export class AuthService {
     });
   }
 
-  logout(): void {
-    this.http.post(`${this.authUrl}/logout`, null);
+  logout() {
+    return this.http.post(`${this.authUrl}/logout`, null);
   }
 
   register(
