@@ -37,8 +37,8 @@ public class WishListItemControllerTest{
      
       ResponseEntity<Boolean> re = ResponseEntity.ok().body(true);
 
-  when(WishlistItemController.deleteWishlistitem(1)).thenReturn(re);
-  assertTrue(re.getStatusCode().is2xxSuccessful());
+	  when(WishlistItemController.deleteWishlistitem(1)).thenReturn(re);
+	  assertTrue(re.getStatusCode().is2xxSuccessful());
        
     }
 }

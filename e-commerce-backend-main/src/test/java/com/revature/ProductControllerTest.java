@@ -31,6 +31,44 @@ public class ProductControllerTest {
 	static private ProductImageController productImageController;
 
 	@Test
+	public void testGetInventory() {
+		Product mockProduct = Mockito.spy(Product.class);
+
+		List<Product> mockProductList = new ArrayList<Product>();
+		mockProductList.add(mockProduct);
+		mockProductList.add(mockProduct);
+		mockProductList.add(mockProduct);
+
+		ResponseEntity<List<Product>> re = ResponseEntity.ok(mockProductList);
+		
+		when(productController.getInventory()).thenReturn(re);
+		
+		assertEquals(mockProductList, productController.getInventory().getBody());
+	}
+	
+	@Test
+	public void testCreateProduct() {
+		Product sampleProduct = Mockito.mock(Product.class);
+
+		ResponseEntity<Product> re = ResponseEntity.ok(sampleProduct);
+
+		when(productController.createProduct(sampleProduct)).thenReturn(re);
+
+		assertTrue(re.getStatusCode().is2xxSuccessful());
+	}
+	
+	@Test
+	public void testGetProductById() {
+		Product mockProduct = Mockito.mock(Product.class);
+		int mockId = 1;
+		ResponseEntity<Product> re = ResponseEntity.ok(mockProduct);
+		
+		when(productController.getProductById(mockId)).thenReturn(re);
+		assertEquals(mockProduct, productController.getProductById(mockId).getBody());
+	}
+	
+	
+	@Test
 	public void testGetProductByDescription() {
 
 		Product mockProduct = Mockito.spy(Product.class);
@@ -71,4 +109,6 @@ public class ProductControllerTest {
 
 		assertTrue(re.getStatusCode().is2xxSuccessful());
 	}
+	
+
 }
