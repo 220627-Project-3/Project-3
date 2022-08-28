@@ -21,13 +21,11 @@ timestamps {
             dir('e-commerce-backend-main') {
                 sh './gradlew build -x test'
                 sh 'docker build -t revatureswagshop_backend:v1 .'
-                try {
-                    sh 'docker stop revatureswagshop_backend-container'
-                    sh 'docker rm revatureswagshop_backend-container'
-                } finally {
-                    sh 'docker image prune --force'
-                    sh 'docker run --name revatureswagshop_backend-container -d -p 8080:8080 -p 8443:8443 revatureswagshop_backend:v1'
-                }
+
+                sh 'docker rm -f revatureswagshop_backend-container && echo "container myjob removed" || echo "container myjob does not exist"'
+
+                sh 'docker image prune --force'
+                sh 'docker run --name revatureswagshop_backend-container -d -p 8080:8080 -p 8443:8443 revatureswagshop_backend:v1'
             }
         }
         stage('Angular Build & Deploy') {
@@ -35,13 +33,11 @@ timestamps {
                 sh 'npm install'
                 sh 'ng build --configuration production'
                 sh 'docker build -t revatureswagshop_frontend:v1 .'
-                try {
-                    sh 'docker stop revatureswagshop_frontend-container'
-                    sh 'docker rm revatureswagshop_frontend-container'
-                } finally {
-                    sh 'docker image prune --force'
-                    sh 'docker run --name revatureswagshop_frontend-container -d -p 80:80 -p 443:443 revatureswagshop_frontend:v1'
-                }
+
+                sh 'docker rm -f revatureswagshop_frontend-container && echo "container myjob removed" || echo "container myjob does not exist"'
+
+                sh 'docker image prune --force'
+                sh 'docker run --name revatureswagshop_frontend-container -d -p 80:80 -p 443:443 revatureswagshop_frontend:v1'
             }
         }
     }
