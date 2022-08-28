@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.google.gson.Gson;
 import com.revature.dtos.ProductInfo;
 import com.revature.models.Product;
+import com.revature.repositories.CartRepository;
 import com.revature.services.ProductService;
 
 
@@ -37,6 +38,9 @@ class ProductControllerTest {
 
     @MockBean
     private ProductService mockProductService;
+    
+    @MockBean
+    private CartRepository mockCartRepository;
 
     @Test
     void testGetInventory() throws Exception {
