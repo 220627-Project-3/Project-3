@@ -32,7 +32,7 @@ export class ProductService {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   };
 
   private cartUrl: string = '/api/cart';

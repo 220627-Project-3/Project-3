@@ -4,7 +4,7 @@ export class User {
   firstName: string;
   lastName: string;
   password: string;
-  admin: boolean;
+  isAdmin: boolean;
 
   constructor(
     id: number,
@@ -12,13 +12,13 @@ export class User {
     firstName: string,
     lastName: string,
     password: string,
-    admin: boolean
+    isAdmin: boolean
   ) {
     this.id = id;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
     this.password = password;
-    this.admin = admin;
+    this.isAdmin = isAdmin;
   }
 }

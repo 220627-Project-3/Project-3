@@ -17,7 +17,7 @@ export class DisplayProductsComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false
+    isAdmin: false
   };
   constructor(private productService: ProductService) {}
 

@@ -30,7 +30,7 @@ export class ProductCardComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   };
 
   @Input() productInfo: Product = {

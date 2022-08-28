@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   };
 
   constructor(

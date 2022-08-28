@@ -32,7 +32,7 @@ export class ProductDetailsComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false
+    isAdmin: false
   };
 
   constructor(
