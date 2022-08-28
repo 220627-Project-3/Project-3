@@ -156,14 +156,16 @@ export class NavbarComponent implements OnInit {
         error: (err: any) => {
           console.log('%c[User is not logged on]', 'color: orange');
           this._cookieService.removeAll();
-          this.router.navigate(['login']);
+          //this.router.navigate(['login']);
           //console.log(err);
+          window.location.href = "/";
         },
         complete: () => {},
       });
     } else {
       console.log('%c[User is not logged on]', 'color: orange');
-      this.router.navigate(['login']);
+      //this.router.navigate(['login']);
+      window.location.href = "/";
     }
   }
 

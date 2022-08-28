@@ -229,6 +229,12 @@ export class ProductService {
     });
   }
 
+  public deleteProduct(product: Product) {
+    return this.http.delete(environment.baseUrl + this.productUrl + "/" + product.id, {
+      withCredentials: environment.withCredentials,
+    });
+  }
+
   public createProduct(product: Product) {
     return this.http.post(environment.baseUrl + this.productUrl, product, {
       headers: environment.headers,
