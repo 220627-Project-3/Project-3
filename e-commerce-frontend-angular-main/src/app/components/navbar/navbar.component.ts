@@ -55,11 +55,11 @@ export class NavbarComponent implements OnInit {
 
   onChange(event: number) {
     this.value = event;
-    console.log(this.value);
+    //console.log(this.value);
   }
 
   ChangeChange() {
-    console.log('Changed');
+    //console.log('Changed');
     if (this.productService.z != 1) {
       this.productService.Changer(1);
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -72,10 +72,10 @@ export class NavbarComponent implements OnInit {
   }
 
   BigSearch() {
-    console.log(this.searchByValue);
-    console.log(this.Searching.length);
+    //console.log(this.searchByValue);
+    //console.log(this.Searching.length);
     if (this.Searching.length < 1) {
-      console.log('this.Searching.length');
+      //console.log('this.Searching.length');
       this.productService.z = 2;
 
       this.ChangeChange();
@@ -111,7 +111,7 @@ export class NavbarComponent implements OnInit {
 
   SearchButtwithDesc() {
     this.productService.Changer(4);
-    console.log(this.productService.z);
+    //console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['home']);
@@ -120,7 +120,7 @@ export class NavbarComponent implements OnInit {
 
   SearchButtwithAny() {
     this.productService.Changer(5);
-    console.log(this.productService.z);
+    //console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['home']);
@@ -138,7 +138,7 @@ export class NavbarComponent implements OnInit {
         window.location.href = "/";
       },
       error: (data: any) => {
-        console.log(data);
+        //console.log(data);
       },
     });
   }

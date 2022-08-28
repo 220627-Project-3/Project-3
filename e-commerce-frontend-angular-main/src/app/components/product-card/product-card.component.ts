@@ -65,7 +65,7 @@ export class ProductCardComponent implements OnInit {
         );
       },
       complete: () => {
-        console.log('Received data from parent component');
+        console.log('Received data from papa component');
       },
     });
     // Why are we sending HTTP requests to get user info for each product card?
