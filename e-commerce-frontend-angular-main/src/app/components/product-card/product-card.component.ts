@@ -141,20 +141,28 @@ export class ProductCardComponent implements OnInit {
     console.log(this.products);
     console.log(this.user?.id);
     console.log(product);
-    this.ws.addWishListItem(product.id, this.user?.id).subscribe((wish) => {
-      // const wishString = wish.body?.toString;
-      // console.log(wishString);
-      console.log(this.products);
-      console.log(this.user);
-      // the wish list service works in a way that it collects the user_id
-      // to then transport the user to their specific wishlist page
-      //
+    this.ws.addWishListItem(product.id, this.user?.id).subscribe(
+      (wish) => {
+        // const wishString = wish.body?.toString;
+        // console.log(wishString);
+        console.log(this.products);
+        console.log(this.user);
+        this.toastr.success('Product has successfully been added to wishlist');
 
-      // this.products = wish.
-      // this.products.forEach(
-      //   (element) => this.wishProducts.push(element.product)
-      // );
-    });
+        // the wish list service works in a way that it collects the user_id
+        // to then transport the user to their specific wishlist page
+        //
+
+        // this.products = wish.
+        // this.products.forEach(
+        //   (element) => this.wishProducts.push(element.product)
+        // );
+      },
+      (err) =>
+        this.toastr.error(
+          'Failed to add product to wishlist, please refresh and try again'
+        )
+    );
   }
 
   ngOnDestroy() {
