@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
 import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-products',
@@ -33,7 +34,9 @@ export class UpdateProductsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _productService: ProductService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private toastr: ToastrService,
+    private router: Router,
   ) {
     this.formProductImage = this._fb.group({
       productimage: [null],
@@ -139,6 +142,26 @@ export class UpdateProductsComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+      },
+    });
+  }
+
+  deleteProduct() {
+    this._productService.deleteProduct(this.product).subscribe({
+      next: (data) => {
+        this.toastr.success(
+          'Deleted product. Redirecting in 2s',
+          'Success'
+        );
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 2000);
+      },
+      error: (data) => {
+        this.toastr.error(
+          'Could not delete product. Check with administrator',
+          'Failure',
+        );
       },
     });
   }
