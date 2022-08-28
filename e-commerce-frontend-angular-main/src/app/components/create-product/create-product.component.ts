@@ -57,7 +57,7 @@ export class CreateProductComponent implements OnInit {
     } else {
       this._productService.createProduct(this.product).subscribe({
         next: (data) => {
-          console.log(data);
+          //console.log(data);
           let createdProduct = data as Product;
           let formData: any = new FormData();
           formData.append(
@@ -70,7 +70,7 @@ export class CreateProductComponent implements OnInit {
               .uploadProductImage(createdProduct.id, formData)
               .subscribe({
                 next: (response) => {
-                  console.log(response);
+                  //console.log(response);
                   this.showSuccess = true;
                   this.showConfirmUpload = false;
                 },
@@ -113,8 +113,8 @@ export class CreateProductComponent implements OnInit {
       this.formProductImage.patchValue({
         productimage: inputFile.files[0],
       });
-      console.log(inputFile.files[0]);
-      console.log(this.formProductImage);
+      //console.log(inputFile.files[0]);
+      //console.log(this.formProductImage);
 
       this.formProductImage.get('productimage')?.updateValueAndValidity();
 

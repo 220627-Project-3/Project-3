@@ -64,7 +64,7 @@ export class UpdateProductsComponent implements OnInit {
     } else {
       this._productService.updateProduct(this.product).subscribe({
         next: (data) => {
-          console.log(data);
+          //console.log(data);
           this.showSuccess = true;
         },
         error: (err) => {
@@ -88,12 +88,12 @@ export class UpdateProductsComponent implements OnInit {
       'productimage',
       this.formProductImage.get('productimage')?.value
     );
-    console.log(formData);
+    //console.log(formData);
     this._productService
       .uploadProductImage(this.product.id, formData)
       .subscribe({
         next: (response) => {
-          console.log(response);
+          //console.log(response);
           this.showConfirmUpload = false;
         },
         error: (error) => console.log(error),
@@ -114,8 +114,8 @@ export class UpdateProductsComponent implements OnInit {
       this.formProductImage.patchValue({
         productimage: inputFile.files[0],
       });
-      console.log(inputFile.files[0]);
-      console.log(this.formProductImage);
+      //console.log(inputFile.files[0]);
+      //console.log(this.formProductImage);
 
       this.formProductImage.get('productimage')?.updateValueAndValidity();
 
