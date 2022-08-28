@@ -3,6 +3,8 @@ package com.revature;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +20,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.controllers.WishlistItemController;
+import com.revature.models.Product;
 import com.revature.models.User;
 import com.revature.models.WishlistItem;
 import com.revature.repositories.WishlistItemRepository;
+import com.revature.services.ProductService;
 import com.revature.services.UserService;
 import com.revature.services.WishlistItemService;
 
@@ -32,7 +38,7 @@ import com.revature.services.WishlistItemService;
 public class WishListItemControllerTest{
     @Autowired
     @MockBean
-    static private WishlistItemController WishlistItemController;
+     WishlistItemController WishlistItemController;
 
     @Autowired
     private MockMvc mockMvc;
@@ -48,6 +54,10 @@ public class WishListItemControllerTest{
     @Autowired
     @MockBean
     UserService uService;
+    
+    @Autowired
+    @MockBean
+    ProductService pService;
 
     @Test
     public void testDeleteWishListByID(){
@@ -89,4 +99,48 @@ public class WishListItemControllerTest{
 
 
     }
+    
+    @Test
+    public void testAddWishlistItem() throws Exception {
+    	
+    	User user1 = new User();
+        user1.setFirstName("Bob");
+        user1.setLastName("Bobby");
+        user1.setPassword("password");
+        user1.setId(0);
+    	
+        Product prod = new Product();
+        prod.setId(0);
+        prod.setDescription("desc");
+        prod.setName("thing");
+        prod.setPrice(11.11);
+        prod.setQuantity(1);
+        
+        WishlistItem wItem = new WishlistItem();
+        wItem.setId(0);
+        wItem.setProduct(prod);
+        wItem.setUser(user1);
+        
+        Optional<User> uOp = Optional.of(user1);
+        Optional<Product> pOp = Optional.of(prod);
+        
+        when(uService.findById(0)).thenReturn(uOp);
+        when(pService.findById(0)).thenReturn(pOp);
+        when(wService.addProduct(prod, user1)).thenReturn(true);
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        String productAsJSON = objectMapper.writeValueAsString(prod);
+        
+        final MockHttpServletResponse result = mockMvc.perform(
+        		post("/api/wishlist/{userId}", 0)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(productAsJSON)
+                .characterEncoding("utf-8"))
+        		.andExpect(status().isOk())
+                .andReturn()
+                .getResponse();
+                
+              assertTrue(result.getStatus() == 200); 
+    }
+    
 }
