@@ -62,7 +62,7 @@ distZip {
 }
 
 copy {
-	from '.'
-	include 'certs/*'
-	into 'build/libs/'
+    from '.'
+    include 'certs/*'
+    into 'build/libs/'
 }
