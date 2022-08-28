@@ -55,8 +55,10 @@ export class ProductService {
 
     let LOG = this.as.getSession().subscribe((user: any) => {
       let productsObservable = this.http.get<Products[]>(
-        'http://localhost:8080/api/cart/' + user.id,
-        environment
+        environment.baseUrl + user.id,
+        {
+          withCredentials: environment.withCredentials,
+        }
       );
 
       let products: {
@@ -230,9 +232,12 @@ export class ProductService {
   }
 
   public deleteProduct(product: Product) {
-    return this.http.delete(environment.baseUrl + this.productUrl + "/" + product.id, {
-      withCredentials: environment.withCredentials,
-    });
+    return this.http.delete(
+      environment.baseUrl + this.productUrl + '/' + product.id,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
   }
 
   public createProduct(product: Product) {
