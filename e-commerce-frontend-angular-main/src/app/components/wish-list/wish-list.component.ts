@@ -68,7 +68,7 @@ export class WishListComponent implements OnInit {
       next: (data) => {
         console.log(data);
         console.log('Delete successful');
-        location.reload();
+        this.ngOnInit();
       },
       error: (err) => {
         this.showError = true;
@@ -160,5 +160,4 @@ export class WishListComponent implements OnInit {
   getCurrentUserInfo(value: any) {
     this.user = value;
   }
-
 }

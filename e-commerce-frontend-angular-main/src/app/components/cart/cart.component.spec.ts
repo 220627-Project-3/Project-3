@@ -12,7 +12,11 @@ import { ToastrModule } from 'ngx-toastr';
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
-  let mockToastrService = jasmine.createSpyObj('ToastrService', ['info']);
+  let mockToastrService = jasmine.createSpyObj('ToastrService', [
+    'info',
+    'success',
+    'error',
+  ]);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -42,8 +46,12 @@ describe('CartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display toastr message when cart is empty', () => {
-    component.emptyCart();
-    expect(component['toastr'].info).toHaveBeenCalled();
+  // it('should display toastr message when cart is empty', () => {
+  //   component.emptyCart();
+  //   expect(component['toastr'].info).toHaveBeenCalled();
+  // });
+  it('should display toastr message when heading to checkout', () => {
+    component.headingToCheckout();
+    expect(component['toastr'].success).toHaveBeenCalled();
   });
 });
