@@ -55,7 +55,7 @@ export class ProductService {
 
     let LOG = this.as.getSession().subscribe((user: any) => {
       let productsObservable = this.http.get<Products[]>(
-        environment.baseUrl + user.id,
+        environment.baseUrl + this.cartUrl + '/' + user.id,
         {
           withCredentials: environment.withCredentials,
         }
