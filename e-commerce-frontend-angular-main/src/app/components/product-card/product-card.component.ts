@@ -133,6 +133,9 @@ export class ProductCardComponent implements OnInit {
           'New Product Added to Cart'
         );
       },
+      error: (err) => {
+        this.toastr.error('Failed to add product to cart, try again later');
+      },
     });
     // }
   }
