@@ -49,8 +49,6 @@ public class CartController {
 		this.userService = userService;
 		this.cartRepository = cartRepository;
 	}
-	
-	
 
 	@Authorized
 	@GetMapping("/{userId}")
@@ -77,11 +75,23 @@ public class CartController {
 		if (ca != null) {
 			if (optionalProduct.isPresent() && optionalUser.isPresent()) {
 				Product product = optionalProduct.get();
-				//User user = optionalUser.get();
-				ca.setQuantity(ca.getQuantity() + 1);
+				// User user = optionalUser.get();
 
-				cartItemService.addProduct(ca);
-				return ResponseEntity.accepted().body(product);
+				int newQty = ca.getQuantity() + 1;
+				// Quantity should not go over stock
+				if (newQty > product.getQuantity()) {
+					newQty = product.getQuantity();
+					ca.setQuantity(newQty);
+					cartItemService.addProduct(ca);
+					return ResponseEntity.ok().body(product);
+				} else {
+					ca.setQuantity(newQty);
+					cartItemService.addProduct(ca);
+					return ResponseEntity.accepted().body(product);
+				}
+				
+
+				
 			}
 		} else if (ca == null) {
 			if (optionalProduct.isPresent() && optionalUser.isPresent()) {
@@ -153,20 +163,30 @@ public class CartController {
 			@RequestBody CartItemQuantityDTO cartItem) {
 		List<CartItem> items = null;
 		try {
-			if(cartItem.getQuantity() > 0) {
-				System.out.println(cartItem.toString());
-				cartRepository.updateCartItem(cartItem.getQuantity(), userId, cartItem.getProductId());
-			} else{
+			if (cartItem.getQuantity() > 0) {
+
+				Optional<Product> optionalProduct = productService.findById(cartItem.getProductId());
+
+				Product product = optionalProduct.get();
+
+				// Quantity should not go over stock
+				int newQty = cartItem.getQuantity();
+				if (newQty > product.getQuantity()) {
+					newQty = product.getQuantity();
+				}
+
+				cartRepository.updateCartItem(newQty, userId, cartItem.getProductId());
+			} else {
 				cartRepository.deleteSingleCartItem(userId, cartItem.getProductId());
 			}
-			
+
 			items = cartRepository.findByUser_Id(userId);
 			return ResponseEntity.ok().body(items);
-			
+
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 		}
-		
+
 		return ResponseEntity.badRequest().body(items);
 	}
 

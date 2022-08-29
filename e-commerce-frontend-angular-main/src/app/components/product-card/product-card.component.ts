@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { WishListService } from 'src/app/services/wish-list.service';
-import { WishListItem } from 'src/app/models/wish-list-item';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -121,16 +120,18 @@ export class ProductCardComponent implements OnInit {
     let x = this.productService.addToCart(product, this.user);
     x.subscribe({
       next: (data) => {
-        // console.log(data);
-        let cart = {
-          cartCount: this.cartCount + 1,
-          products: this.products,
-          totalPrice: this.totalPrice + product.price,
-        };
-        this.productService.setDetails(cart);
-        this.toastr.success(
-          'Your product has successfully been added to cart'
-        );
+        console.log(data);
+        if(data.status == 200) {
+          this.toastr.info('Cannot add more than stock', 'Information');
+        } else {
+          let cart = {
+            cartCount: this.cartCount + 1,
+            products: this.products,
+            totalPrice: this.totalPrice + product.price,
+          };
+          this.productService.setDetails(cart);
+          this.toastr.success('Your product has successfully been added to cart');
+        }
       },
       error: (err) => {
         this.toastr.error('Failed to add product to cart, try again later');
@@ -144,14 +145,12 @@ export class ProductCardComponent implements OnInit {
     console.log(this.user?.id);
     console.log(product);
     this.ws.addWishListItem(product.id, this.user?.id).subscribe({
-      next: (wish) => {
+      next: (wish: any) => {
         // const wishString = wish.body?.toString;
         // console.log(wishString);
         console.log(this.products);
         console.log(this.user);
-        this.toastr.success(
-          'Product has successfully been added to wishlist'
-        );
+        this.toastr.success('Product has successfully been added to wishlist');
 
         // the wish list service works in a way that it collects the user_id
         // to then transport the user to their specific wishlist page
@@ -162,7 +161,7 @@ export class ProductCardComponent implements OnInit {
         //   (element) => this.wishProducts.push(element.product)
         // );
       },
-      error: (err) =>
+      error: (err: any) =>
         this.toastr.error(
           'Failed to add product to wishlist, please refresh and try again'
         ),

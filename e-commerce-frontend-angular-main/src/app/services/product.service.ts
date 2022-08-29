@@ -102,6 +102,7 @@ export class ProductService {
       {
         headers: environment.headers,
         withCredentials: environment.withCredentials,
+        observe: 'response'
       }
     );
   }

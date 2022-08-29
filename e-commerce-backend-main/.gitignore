@@ -38,3 +38,4 @@ build/
 
 # Compiled class file
 *.class
+/.metadata/

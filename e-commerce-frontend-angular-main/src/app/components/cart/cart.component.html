@@ -33,8 +33,8 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Qty</span>
                   </div>
-                  <input class="form-control" placeholder="0" min="1" max="999" [value]="product.quantity" step="1" type="number"
-                    size="3" style="min-width: 64px; max-width: 64px" #qty>
+                  <input class="form-control" placeholder="0" min="1" [value]="product.quantity" step="1" type="number"
+                    size="3" style="min-width: 84px; max-width: 84px" #qty>
                   <div class="input-group-append">
                     <button class="btn btn-success" (click)="updateItem(product.product.id, qty.value)">
                       <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Change
