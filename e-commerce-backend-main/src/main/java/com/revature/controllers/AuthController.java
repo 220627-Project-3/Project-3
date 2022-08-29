@@ -57,12 +57,14 @@ public class AuthController {
 
 		User sessionData = (User) session.getAttribute("user");
 
-		Optional<User> curUser = userService.findById(sessionData.getId());
+		if (sessionData != null) {
 
-		if (curUser.isPresent()) {
-			return ResponseEntity.ok().body(curUser.get());
+			Optional<User> curUser = userService.findById(sessionData.getId());
+
+			if (curUser.isPresent()) {
+				return ResponseEntity.ok().body(curUser.get());
+			}
 		}
-
 		// Destroy JSESSIONID if session is invalid
 		Cookie cookie = new Cookie("JSESSIONID", null);
 		cookie.setPath("/");
