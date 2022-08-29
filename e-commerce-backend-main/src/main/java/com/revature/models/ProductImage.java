@@ -31,9 +31,7 @@ public class ProductImage {
 	@Column
 	private byte[] productImage;
 
-	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "product_id", nullable = false, unique = true)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Product product;
 
 }

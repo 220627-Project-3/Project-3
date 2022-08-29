@@ -5,6 +5,7 @@ server:
       cookie:
         path: /
         http-only: false
+        same-site: none
   ssl:
     enabled: true
     key-store-type: PKCS12
