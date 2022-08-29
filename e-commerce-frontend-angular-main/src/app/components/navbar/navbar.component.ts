@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   currentUserInfo: any = {};
   @Output() passCurrentUserInfo = new EventEmitter<any>();
 
-  localDarkTheme(): void{
-    this.darkModeService.toggleDarkTheme()
+  localDarkTheme(): void {
+    this.darkModeService.toggleDarkTheme();
   }
   public Searching: String = '';
   public value: number = 0;
@@ -39,11 +39,11 @@ export class NavbarComponent implements OnInit {
   isDarkMode: boolean = false;
 
   ngOnInit(): void {
-    if(localStorage.getItem("theme") === "dark"){
-      document.body.classList.add('dark-theme')
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-theme');
       this.isDarkMode = true;
     } else {
-      document.body.classList.remove('dark-theme')
+      document.body.classList.remove('dark-theme');
     }
 
     this.productService.initializeCart();
@@ -55,27 +55,28 @@ export class NavbarComponent implements OnInit {
 
   onChange(event: number) {
     this.value = event;
-    console.log(this.value);
+    //console.log(this.value);
   }
 
   ChangeChange() {
-    console.log('Changed');
+    //console.log('Changed');
     if (this.productService.z != 1) {
       this.productService.Changer(1);
-      this.router
-        .navigateByUrl('/', { skipLocationChange: true })
-        .then(() => {
-          this.router.navigate(['home']);
-        });
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['home']);
+
+      });
+    } else {
+      window.location.href="/home"
     }
   }
 
   BigSearch() {
-    console.log(this.searchByValue);
-    console.log(this.Searching.length);
-    if(this.Searching.length<1){
-      console.log("this.Searching.length");
-      this.productService.z=2;
+    //console.log(this.searchByValue);
+    //console.log(this.Searching.length);
+    if (this.Searching.length < 1) {
+      //console.log('this.Searching.length');
+      this.productService.z = 2;
 
       this.ChangeChange();
       return;
@@ -110,7 +111,7 @@ export class NavbarComponent implements OnInit {
 
   SearchButtwithDesc() {
     this.productService.Changer(4);
-    console.log(this.productService.z);
+    //console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['home']);
@@ -119,7 +120,7 @@ export class NavbarComponent implements OnInit {
 
   SearchButtwithAny() {
     this.productService.Changer(5);
-    console.log(this.productService.z);
+    //console.log(this.productService.z);
     this.productService.SearchManName(this.Searching);
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['home']);
@@ -131,8 +132,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['login']);
+    this.authService.logout().subscribe({
+      next: () => {
+        // this.router.navigate(['login']);
+        window.location.href = "/";
+      },
+      error: (data: any) => {
+        //console.log(data);
+      },
+    });
   }
 
   getCurrentUserInformation() {
@@ -148,14 +156,16 @@ export class NavbarComponent implements OnInit {
         error: (err: any) => {
           console.log('%c[User is not logged on]', 'color: orange');
           this._cookieService.removeAll();
-          this.router.navigate(['login']);
+          //this.router.navigate(['login']);
           //console.log(err);
+          window.location.href = "/";
         },
         complete: () => {},
       });
     } else {
       console.log('%c[User is not logged on]', 'color: orange');
-      this.router.navigate(['login']);
+      //this.router.navigate(['login']);
+      window.location.href = "/";
     }
   }
 

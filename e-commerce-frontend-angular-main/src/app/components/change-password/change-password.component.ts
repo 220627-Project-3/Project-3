@@ -17,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   };
 
   oldPassword: string = '';

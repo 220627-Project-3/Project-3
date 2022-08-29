@@ -32,7 +32,7 @@ export class ProductDetailsComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false
+    isAdmin: false
   };
 
   constructor(
@@ -45,14 +45,14 @@ export class ProductDetailsComponent implements OnInit {
   ) {
     this.route.params.subscribe((params) => {
       this.productId = params.id;
-      console.log('productId', this.productId);
+      //console.log('productId', this.productId);
 
       this.productService
         .getSingleProduct(parseInt(this.productId!))
         .subscribe({
           next: (data) => {
             this.theProduct = data;
-            console.log('this.theProduct', this.theProduct);
+            //console.log('this.theProduct', this.theProduct);
           },
           error: (err) => {
             console.log(err);
@@ -127,14 +127,14 @@ export class ProductDetailsComponent implements OnInit {
 
   addToWishList(product: Product) {
     // console.log(this.products);
-    console.log(this.user?.id);
-    console.log(product);
-    console.log(this.user);
+    //console.log(this.user?.id);
+    //console.log(product);
+    //console.log(this.user);
     this.ws.addWishListItem(product.id, this.user?.id).subscribe((wish) => {
       // const wishString = wish.body?.toString;
       // console.log(wishString);
-      console.log(this.products);
-      console.log(this.user);
+      //console.log(this.products);
+      //console.log(this.user);
       // the wish list service works in a way that it collects the user_id
       // to then transport the user to their specific wishlist page
       //

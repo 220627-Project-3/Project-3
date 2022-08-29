@@ -2,7 +2,7 @@
   <div class="card-header p-2">
     <a [routerLink]="['/product-details/'+ productInfo.id]">
       <img class="card-img-top" [src]="environment.baseUrl + '/api/product/image/byProductId/' + productInfo.id"
-        alt="Card image cap" [routerLink]="['/product-details/'+ productInfo.id]">
+        alt="Card image cap">
     </a>
   </div>
   <div class="card-body p-2">
@@ -27,7 +27,7 @@
           aria-hidden="true"></i> Add</button>
       <button class="btn btn-outline-danger w-100" (click)="addToWishList(productInfo)"><i class="fa fa-heart"
           aria-hidden="true"></i> Save</button>
-      <button class="btn btn-outline-info w-100" *ngIf="user?.admin"
+      <button class="btn btn-outline-info w-100" *ngIf="user?.isAdmin"
         [routerLink]="['/update-products/' + productInfo.id]"><i class="fa fa-pencil" aria-hidden="true"></i>
         Update</button>
     </div>

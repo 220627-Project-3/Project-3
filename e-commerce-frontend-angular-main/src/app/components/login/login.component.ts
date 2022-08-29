@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   showToastr (){
-    
- 
+
+
   }
 
   onSubmit(): void {
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         {
           next: () => {
             this.authService.loggedIn = true;
+            this.toastr.success("Welcome to the Swag Shop!", "Login Successful")
           },
           error: (err) => {
             this.showError = true;
@@ -46,7 +47,6 @@ export class LoginComponent implements OnInit {
           },
           complete: () => {
             this.router.navigate(['home']);
-            this.toastr.success("Welcome to the Swag Shop!", "Login Successful")
           }
         }
       );
@@ -56,5 +56,5 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
 
- 
+
 }

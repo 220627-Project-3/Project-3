@@ -32,7 +32,7 @@ export class ProductService {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   };
 
   private cartUrl: string = '/api/cart';
@@ -55,8 +55,10 @@ export class ProductService {
 
     let LOG = this.as.getSession().subscribe((user: any) => {
       let productsObservable = this.http.get<Products[]>(
-        'http://localhost:8080/api/cart/' + user.id,
-        environment
+        environment.baseUrl + this.cartUrl + '/' + user.id,
+        {
+          withCredentials: environment.withCredentials,
+        }
       );
 
       let products: {
@@ -227,6 +229,15 @@ export class ProductService {
       headers: environment.headers,
       withCredentials: environment.withCredentials,
     });
+  }
+
+  public deleteProduct(product: Product) {
+    return this.http.delete(
+      environment.baseUrl + this.productUrl + '/' + product.id,
+      {
+        withCredentials: environment.withCredentials,
+      }
+    );
   }
 
   public createProduct(product: Product) {

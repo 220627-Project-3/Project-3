@@ -22,8 +22,8 @@ export class AuthService {
     });
   }
 
-  logout(): void {
-    this.http.post(`${this.authUrl}/logout`, null);
+  logout() {
+    return this.http.post(`${this.authUrl}/logout`, null);
   }
 
   register(
@@ -57,7 +57,7 @@ export class AuthService {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   });
 
   private _user$ = this._user.asObservable();

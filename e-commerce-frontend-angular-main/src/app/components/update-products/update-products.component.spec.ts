@@ -6,18 +6,27 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { UpdateProductsComponent } from './update-products.component';
 
+import { ToastrModule } from 'ngx-toastr';
+
 describe('UpdateProductsComponent', () => {
   let component: UpdateProductsComponent;
   let fixture: ComponentFixture<UpdateProductsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateProductsComponent ], imports: [ HttpClientTestingModule, RouterTestingModule,
+      declarations: [UpdateProductsComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
         BrowserModule,
         ReactiveFormsModule,
-        FormsModule  ]
-    })
-    .compileComponents();
+        FormsModule,
+        ToastrModule.forRoot({
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

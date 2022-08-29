@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    admin: false,
+    isAdmin: false,
   };
 
   constructor(
