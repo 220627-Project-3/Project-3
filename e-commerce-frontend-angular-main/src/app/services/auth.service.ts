@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(email: any, password: any): Observable<any> {
     const payload = { email: email, password: password };
     return this.http.post<any>(`${this.authUrl}/login`, payload, {
       headers: environment.headers,
@@ -21,15 +22,15 @@ export class AuthService {
     });
   }
 
-  logout(): void {
-    this.http.post(`${this.authUrl}/logout`, null);
+  logout() {
+    return this.http.post(`${this.authUrl}/logout`, null);
   }
 
   register(
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string
+    firstName: any,
+    lastName: any,
+    email: any,
+    password: any
   ): Observable<any> {
     const payload = {
       firstName: firstName,
@@ -45,7 +46,27 @@ export class AuthService {
   // Get information of current user
   getSession(): any {
     return this.http.get(this._getSessionPath, {
+      headers: environment.headers,
       withCredentials: environment.withCredentials,
     });
+  }
+
+  private _user = new BehaviorSubject<User>({
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    isAdmin: false,
+  });
+
+  private _user$ = this._user.asObservable();
+
+  getUser(): Observable<User> {
+    return this._user$;
+  }
+
+  setUser(latestValue: User) {
+    return this._user.next(latestValue);
   }
 }

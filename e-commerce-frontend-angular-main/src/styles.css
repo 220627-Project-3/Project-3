@@ -46,6 +46,211 @@ app-root>div>*:not(router-outlet) {
   font-family: Futura-Std-Heavy;
 }
 
-a {
+a,
+a:hover {
   cursor: pointer;
+  text-decoration: none;
+}
+
+
+
+
+/* Dark-Mode Body */
+
+body {
+  background-color: white;
+}
+
+body.dark-theme {
+  color: rgba(215, 220, 214, 0.906);
+  background-color: #191919;
+}
+
+/* Dark-Mode Cards->Tables->Form->Input->etc */
+
+.card {
+  background-color: white;
+}
+
+.dark-theme .card {
+  background-color: rgb(46, 46, 46);
+  color: rgb(189, 189, 189);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.table {
+  background-color: white;
+}
+
+.dark-theme .table {
+  /* background: rgb(46, 46, 46); */
+  background: transparent;
+  color: rgb(190, 190, 190);
+}
+
+.dark-theme .table th,
+.dark-theme .table td {
+  border-color: transparent;
+}
+
+.dark-theme .table thead {
+  background-color: rgb(46, 46, 46);
+}
+
+/* .input-group {
+  background-color: white;
+} */
+
+/* .dark-theme .input-group {
+  background-color: rgb(129, 129, 127);
+} */
+
+/* .input-group-text {
+  color: black;
+} */
+
+.form-control {
+  color: black;
+}
+
+.dark-theme .form-control {
+  color: aliceblue;
+}
+
+.tbody {
+  background-color: white;
+}
+
+.dark-theme .tbody {
+  background-color: #252222;
+  color: rgb(190, 190, 190);
+}
+
+/* Dark-Mode Navbar */
+
+.navbar {
+  background-color: white;
+}
+
+.dark-theme .navbar {
+  background-color: rgb(46, 46, 46) !important;
+}
+
+/* .navbar-brand {
+  color: black
+} */
+
+.dark-theme .navbar-brand {
+  color: #B9B9BA
+}
+
+.dark-theme a.navbar-brand:focus {
+  color: #fff
+}
+
+/* .navbar-toggler {
+  color: black
+} */
+
+.dark-theme .navbar-toggler {
+  color: #B9B9BA
+}
+
+/* .navbar-collapse {
+  color: black
+} */
+
+.dark-theme .navbar-collapse {
+  color: #B9B9BA
+}
+
+/* Dark-Mode Navbar Buttons/Leftover Buttons */
+
+/* .welcome-user{
+  background-color: white;
+} */
+
+/* .dark-theme .welcome-user {
+  color: rgb(179,177,177);
+} */
+
+/* .welcome-text {
+  color: black;
+} */
+
+.dark-theme .welcome-text {
+  color: #B9B9BA
+}
+
+/* .welcome-name {
+  color: black;
+} */
+
+.dark-theme .welcome-name {
+  color: #B9B9BA !important
+}
+
+#btn-dark {
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+}
+
+.dark-theme .btn-light {
+  background: transparent;
+  color: #B9B9BA;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.dark-theme .navbar.border-bottom {
+  border-color: transparent !important;
+}
+
+.dark-theme .footer {
+  background-color: rgb(46, 46, 46) !important;
+}
+
+.dark-theme .footer * {
+  color: #B9B9BA
+}
+
+.dark-theme .input-group-prepend select {
+  color: #000
+}
+
+.dark-theme .navbar-light a:hover,
+.dark-theme .btn-light:hover,
+.dark-theme .btn-light:hover .welcome-text,
+.dark-theme .btn-light:hover .welcome-name {
+  color: #fff;
+}
+
+.dark-theme .form-control,
+.dark-theme textarea.form-control {
+  border-color: rgba(0, 0, 0, 0);
+  background: #404143 !important
+}
+
+.dark-theme .input-group-text,
+.dark-theme .input-group-append .btn-light {
+  border-color: rgba(0, 0, 0, 0);
+  background: #B9B9BA !important;
+  color: #000
+}
+
+.dark-theme .navbar-toggler {
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.dark-theme .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.dark-theme .card-header {
+  border-color: transparent !important;
+}
+
+.dark-theme .form-control:focus {
+  border-color: #B9B9BA;
+  box-shadow: 0 0 0 0.2rem rgba(72, 76, 86, 0.25);
 }

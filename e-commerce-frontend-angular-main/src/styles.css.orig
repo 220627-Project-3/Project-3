@@ -1,0 +1,231 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Futura-Std-Book;
+  src: url(/assets/css/fonts/Futura-Std-Book.otf);
+}
+
+@font-face {
+  font-family: Futura-Std-Bold;
+  src: url(/assets/css/fonts/Futura-Std-Bold.otf);
+}
+
+@font-face {
+  font-family: Futura-Std-Medium;
+  src: url(/assets/css/fonts/Futura-Std-Medium.otf);
+}
+
+@font-face {
+  font-family: Futura-Std-Heavy;
+  src: url(/assets/css/fonts/Futura-Std-Heavy.otf);
+}
+
+/* Apply regular font to all HTMLElement by default */
+* {
+  font-family: Futura-Std-Book;
+}
+
+html,
+body,
+app-root,
+app-root>div,
+app-root>div>*:not(router-outlet) {
+  height: 100%;
+  display: block;
+}
+
+.futura-medium {
+  font-family: Futura-Std-Medium;
+}
+
+
+.futura-bold {
+  font-family: Futura-Std-Bold;
+}
+
+.futura-heavy {
+  font-family: Futura-Std-Heavy;
+}
+
+a,
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+
+
+/* Dark-Mode Body */
+
+body {
+  background-color: white;
+}
+
+body.dark-theme {
+  color: rgba(215, 220, 214, 0.906);
+  background-color: #191919;
+}
+
+/* Dark-Mode Cards->Tables->Form->Input->etc */
+
+.card {
+  background-color: white;
+}
+
+.dark-theme .card {
+  background-color: rgb(46, 46, 46);
+  color: rgb(189, 189, 189);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.table {
+  background-color: white;
+}
+
+.dark-theme .table {
+  background: rgb(46, 46, 46);
+  color: rgb(190, 190, 190);
+}
+
+/* .input-group {
+  background-color: white;
+} */
+
+/* .dark-theme .input-group {
+  background-color: rgb(129, 129, 127);
+} */
+
+/* .input-group-text {
+  color: black;
+} */
+
+.dark-theme .input-group-text, .dark-theme .input-group-append .btn-light {
+  /* color: aliceblue; */
+  color: #B9B9BA;
+  background-color: rgb(52, 52, 52);
+}
+
+.form-control {
+  color: black;
+}
+
+.dark-theme .form-control {
+  color: aliceblue;
+}
+
+.tbody {
+  background-color: white;
+}
+
+.dark-theme .tbody {
+  background-color: #252222;
+  color: rgb(190, 190, 190);
+}
+
+/* Dark-Mode Navbar */
+
+.navbar {
+  background-color: white;
+}
+
+<<<<<<< HEAD
+.dark-theme .navbar {
+  background-color: rgb(46, 46, 46) !important;
+=======
+.dark-theme .navbar{ 
+  background-color: rgb(46,46,46);
+>>>>>>> origin/development
+}
+
+/* .navbar-brand {
+  color: black
+} */
+
+.dark-theme .navbar-brand {
+  color: #B9B9BA
+}
+
+/* .navbar-toggler {
+  color: black
+} */
+
+.dark-theme .navbar-toggler {
+  color: #B9B9BA
+}
+
+/* .navbar-collapse {
+  color: black
+} */
+
+.dark-theme .navbar-collapse {
+  color: #B9B9BA
+}
+
+/* Dark-Mode Navbar Buttons/Leftover Buttons */
+
+/* .welcome-user{
+  background-color: white;
+} */
+
+<<<<<<< HEAD
+/* .dark-theme .welcome-user {
+  background-color: #191919;
+} */
+=======
+.dark-theme .welcome-user{
+  color: rgb(179,177,177);
+  background-color: rgb(46,46,46);
+}
+>>>>>>> origin/development
+
+/* .welcome-text {
+  color: black;
+} */
+
+.dark-theme .welcome-text {
+  color: #B9B9BA
+}
+
+/* .welcome-name {
+  color: black;
+} */
+
+.dark-theme .welcome-name {
+  color: #B9B9BA
+}
+
+#btn-dark {
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+}
+
+.dark-theme .btn-light {
+  background: transparent;
+  color: #B9B9BA;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.dark-theme .navbar.border-bottom {
+  border: none !important;
+}
+
+.dark-theme .footer {
+  background-color: rgb(46, 46, 46) !important;
+}
+
+.dark-theme .footer * {
+  color: #B9B9BA
+}
+
+.dark-theme .input-group-prepend select {
+  color: #B9B9BA
+}
+
+.dark-theme .input-group-prepend select option {
+  color: #000
+}
+
+.dark-theme .navbar-light a:hover, .dark-theme .btn-light:hover, .dark-theme .btn-light:hover .welcome-text {
+  color: #fff;
+}

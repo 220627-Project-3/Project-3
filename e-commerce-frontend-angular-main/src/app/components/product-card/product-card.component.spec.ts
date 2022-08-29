@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductCardComponent } from './product-card.component';
+
+import { ToastrModule } from 'ngx-toastr';
 
 describe('ProductCardComponent', () => {
   let component: ProductCardComponent;
@@ -8,9 +11,15 @@ describe('ProductCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductCardComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductCardComponent],
+      imports: [
+        HttpClientTestingModule,
+        ToastrModule.forRoot({
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,0 +1,94 @@
+.update-product-image-container #output {
+  background: #F8F9FA;
+}
+
+#update-product-image-form {
+  min-height: 540px;
+  height: 1px;
+}
+
+.product-image {
+  color: transparent;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.product-image input {
+  display: none;
+}
+
+.product-image img {
+  position: absolute;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  /* box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35); */
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 6px;
+}
+
+.product-image .-label {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.product-image:hover .-label {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: #fafafa;
+  transition: background-color 0.2s ease-in-out;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+}
+
+.product-image span {
+  display: inline-flex;
+  padding: 0.2em;
+  height: 2em;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.update-product-main {
+  animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.proceedUpload {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: 'Futura-Std-Heavy';
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 20000;
+  color: #fff;
+  animation: fadeIn 0.3s;
+}
