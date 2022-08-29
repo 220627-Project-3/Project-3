@@ -1,5 +1,4 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +25,6 @@ describe('ChangePasswordComponent', () => {
         ReactiveFormsModule,
         FormsModule,
       ],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
       providers: [{ provide: ToastrService, useValue: mockToastrService }],
     }).compileComponents();
 

@@ -64,9 +64,10 @@ export class NavbarComponent implements OnInit {
       this.productService.Changer(1);
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['home']);
+
       });
     } else {
-      window.location.href = '/home';
+      window.location.href="/home"
     }
   }
 
@@ -134,7 +135,7 @@ export class NavbarComponent implements OnInit {
     this.authService.logout().subscribe({
       next: () => {
         // this.router.navigate(['login']);
-        window.location.href = '/';
+        window.location.href = "/";
       },
       error: (data: any) => {
         //console.log(data);
@@ -157,14 +158,14 @@ export class NavbarComponent implements OnInit {
           this._cookieService.removeAll();
           //this.router.navigate(['login']);
           //console.log(err);
-          window.location.href = '/';
+          window.location.href = "/";
         },
         complete: () => {},
       });
     } else {
       console.log('%c[User is not logged on]', 'color: orange');
       //this.router.navigate(['login']);
-      window.location.href = '/';
+      window.location.href = "/";
     }
   }
 

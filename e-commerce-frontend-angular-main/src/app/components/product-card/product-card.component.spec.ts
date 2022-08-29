@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductCardComponent } from './product-card.component';
 
 import { ToastrModule } from 'ngx-toastr';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ProductCardComponent', () => {
   let component: ProductCardComponent;
@@ -20,7 +19,6 @@ describe('ProductCardComponent', () => {
           preventDuplicates: true,
         }),
       ],
-      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
