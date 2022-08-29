@@ -157,11 +157,13 @@ export class CartComponent implements OnInit {
         next: (data) => {
           console.log(data);
           let totalPrice = 0;
+          let cartCount = 0;
           for (let elem of data) {
             totalPrice += (elem.quantity * elem.product.price);
+            cartCount += elem.quantity;
           }
           let cart = {
-            cartCount: data.length,
+            cartCount: cartCount,
             products: data,
             totalPrice: totalPrice,
           };
