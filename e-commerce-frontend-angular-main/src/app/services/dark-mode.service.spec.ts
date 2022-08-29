@@ -3,7 +3,6 @@ import { DarkModeService } from './dark-mode.service';
 
 describe('DarkModeService', () => {
   let service: DarkModeService;
-  let spy: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -19,18 +18,17 @@ describe('DarkModeService', () => {
     expect(service.toggleDarkTheme).toMatch('toggleDarkTheme()');
   });
 
-  it('should change the theme to "dark-theme" when called', () => {
+  it('should toggle dark mode on', () => {
     //toggle dark theme on
-    service.toggleDarkTheme();
+    service.toggleDarkTheme(); //on
     //check for 'dark-theme' class in body tag
     expect(document.body.classList).toContain('dark-theme');
+    expect(localStorage.getItem('theme')).toMatch('dark');
   });
-  it('should change the theme to "light-theme" when called twice', () => {
-    //toggle dark theme on
-    service.toggleDarkTheme();
-    //toggle it back off
-    service.toggleDarkTheme();
-    //check for 'dark-theme' class in body tag
+
+  it('should toggle dark mode off', () => {
+    service.toggleDarkTheme(); //off
+    expect(localStorage.getItem('theme')).toMatch('light');
     expect(document.body.classList).toMatch('');
   });
 });
