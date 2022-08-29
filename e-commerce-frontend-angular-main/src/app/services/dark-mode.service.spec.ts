@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DarkModeService } from './dark-mode.service';
 
@@ -5,7 +6,7 @@ describe('DarkModeService', () => {
   let service: DarkModeService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ schemas: [NO_ERRORS_SCHEMA] });
     service = TestBed.inject(DarkModeService);
   });
 

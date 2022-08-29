@@ -6,6 +6,7 @@ import {
 import { RegisterComponent } from './register.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule } from 'ngx-toastr';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -22,6 +23,7 @@ describe('RegisterComponent', () => {
           preventDuplicates: true,
         }),
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

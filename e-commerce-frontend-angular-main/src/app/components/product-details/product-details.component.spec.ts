@@ -5,6 +5,7 @@ import { ProductDetailsComponent } from './product-details.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrService } from 'ngx-toastr';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -20,6 +21,7 @@ describe('ProductDetailsComponent', () => {
       declarations: [ProductDetailsComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [{ provide: ToastrService, useValue: mockToastrService }],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
