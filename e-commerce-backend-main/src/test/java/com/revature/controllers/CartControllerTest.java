@@ -1,9 +1,6 @@
 package com.revature.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,9 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +23,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.google.gson.Gson;
-import com.revature.controllers.CartController;
-import com.revature.dtos.Responses;
 import com.revature.models.CartItem;
 import com.revature.models.Product;
 import com.revature.models.User;
@@ -38,7 +31,7 @@ import com.revature.services.CartItemService;
 import com.revature.services.ProductService;
 import com.revature.services.UserService;
 
-@ExtendWith(SpringExtension.class)
+// @ExtendWith(SpringExtension.class)
 @WebMvcTest(CartController.class)
 public class CartControllerTest {
 
@@ -49,7 +42,7 @@ public class CartControllerTest {
     @Autowired
     private MockMvc mockMvc;
     
-    @Autowired
+
     @MockBean
 	private CartRepository cr;
     
