@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -17,7 +17,7 @@ describe('DisplayProductsComponent', () => {
       declarations: [DisplayProductsComponent],
       imports: [HttpClientTestingModule],
       providers: [{ provide: ProductService, useValue: mockProductService }],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

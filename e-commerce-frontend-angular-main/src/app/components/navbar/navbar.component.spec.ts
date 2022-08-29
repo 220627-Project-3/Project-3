@@ -6,7 +6,11 @@ import {
 import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductService } from 'src/app/services/product.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentRef,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { DarkModeService } from 'src/app/services/dark-mode.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,7 +29,7 @@ describe('NavbarComponent', () => {
         RouterTestingModule,
         CookieModule.forRoot(),
       ],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     service = TestBed.inject(ProductService);
   });
