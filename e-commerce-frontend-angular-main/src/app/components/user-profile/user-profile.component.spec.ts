@@ -1,5 +1,4 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastrService } from 'ngx-toastr';
 
@@ -17,7 +16,6 @@ describe('UserProfileComponent', () => {
       declarations: [UserProfileComponent],
       imports: [HttpClientTestingModule],
       providers: [{ provide: ToastrService, useValue: mockToastrService }],
-      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserProfileComponent);
