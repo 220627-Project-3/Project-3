@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { WishListService } from 'src/app/services/wish-list.service';
 import { environment } from 'src/environments/environment';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -32,7 +33,7 @@ export class ProductDetailsComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    isAdmin: false
+    isAdmin: false,
   };
 
   constructor(
@@ -41,7 +42,8 @@ export class ProductDetailsComponent implements OnInit {
     private location: Location,
     private productService: ProductService,
     private _authService: AuthService,
-    private ws: WishListService
+    private ws: WishListService,
+    private toastr: ToastrService
   ) {
     this.route.params.subscribe((params) => {
       this.productId = params.id;
@@ -122,7 +124,14 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.setDetails(cart);
     }
     let x = this.productService.addToCart(product, this.user);
-    x.subscribe(data => console.log(data))
+    x.subscribe({
+      next: (data) => {
+        this.toastr.success('Your product has successfully been added to cart');
+      },
+      error: (err) => {
+        this.toastr.error('Failed to add product to cart, try again later');
+      },
+    });
   }
 
   addToWishList(product: Product) {
@@ -130,19 +139,15 @@ export class ProductDetailsComponent implements OnInit {
     //console.log(this.user?.id);
     //console.log(product);
     //console.log(this.user);
-    this.ws.addWishListItem(product.id, this.user?.id).subscribe((wish) => {
-      // const wishString = wish.body?.toString;
-      // console.log(wishString);
-      //console.log(this.products);
-      //console.log(this.user);
-      // the wish list service works in a way that it collects the user_id
-      // to then transport the user to their specific wishlist page
-      //
-
-      // this.products = wish.
-      // this.products.forEach(
-      //   (element) => this.wishProducts.push(element.product)
-      // );
+    this.ws.addWishListItem(product.id, this.user?.id).subscribe({
+      next: (data) => {
+        this.toastr.success('Product has successfully been added to wishlist');
+      },
+      error: (err) => {
+        this.toastr.error(
+          'Failed to add product to wishlist, please refresh and try again'
+        );
+      },
     });
   }
 }
