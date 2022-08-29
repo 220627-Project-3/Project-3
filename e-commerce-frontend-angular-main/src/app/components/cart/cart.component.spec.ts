@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ToastrModule } from 'ngx-toastr';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -33,7 +33,7 @@ describe('CartComponent', () => {
           preventDuplicates: true,
         }),
       ],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
       providers: [{ provide: ToastrService, useValue: mockToastrService }],
     }).compileComponents();
   });

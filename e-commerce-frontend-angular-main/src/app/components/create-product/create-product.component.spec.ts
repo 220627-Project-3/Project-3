@@ -5,7 +5,7 @@ import { CreateProductComponent } from './create-product.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CreateProductComponent', () => {
   let component: CreateProductComponent;
@@ -20,7 +20,7 @@ describe('CreateProductComponent', () => {
         ReactiveFormsModule,
         FormsModule,
       ],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
