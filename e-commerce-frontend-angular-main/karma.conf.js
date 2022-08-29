@@ -15,7 +15,7 @@ module.exports = function (config) {
     ],
     FirefoxHeadless:{
       base: 'Firefox', flags: ['--headless']
-    }
+    },
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
