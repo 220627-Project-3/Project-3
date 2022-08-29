@@ -144,6 +144,20 @@ export class NavbarComponent implements OnInit {
   }
 
   getCurrentUserInformation() {
+<<<<<<< HEAD
+    this.authService.getSession().subscribe({
+      next: (data: any) => {
+        this.currentUserInfo = data;
+        console.log(this.currentUserInfo);
+        this.passCurrentUserInfo.emit(data);
+      },
+      error: (err: any) => {
+        console.log('User is not logged on');
+        console.log(err);
+      },
+      complete: () => {},
+    });
+=======
     if (this._cookieService.get('JSESSIONID') != undefined) {
       console.log('%c[User is logged in]', 'color: blue');
       this.authService.getSession().subscribe({
@@ -184,5 +198,6 @@ export class NavbarComponent implements OnInit {
       default:
         break;
     }
+>>>>>>> origin/development
   }
 }

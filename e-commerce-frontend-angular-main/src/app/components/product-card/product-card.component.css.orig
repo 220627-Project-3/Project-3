@@ -1,0 +1,85 @@
+.card {
+  max-width: 320px;
+  min-width: 320px;
+  height: fit-content;
+  transition: .2s ease-out;
+
+}
+
+<<<<<<< HEAD
+img {
+=======
+.card img.card-img-top {
+  height: 240px;
+  object-fit: cover;
+}
+
+.card-img-loading-text {
+  z-index: -1;
+}
+
+/*
+.card img {
+>>>>>>> origin/development
+  justify-content: center;
+  height: auto;
+  width: auto;
+  max-height: 200px;
+  max-width: 307px;
+  left: 0;
+}
+
+div {
+  position: relative;
+  transition: .2s ease-out;
+}
+
+.card:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  transform: translate3d(0, -10px, 0);
+}
+
+input.form-control[disabled] {
+  background: none;
+  text-align: right;
+  padding: 0;
+}
+
+span#inputGroup-sizing-sm {
+  width: 64px;
+  justify-content: center;
+}
+<<<<<<< HEAD
+=======
+
+.card-img-container {
+  min-height: 200px;
+  position: relative;
+  background: #F8F9FA;
+}
+
+.card-header {
+  border: none;
+}
+
+p.card-text {
+  font-size: 14px;
+  height: 40px;
+  overflow: hidden;
+}
+.card-buttons {
+  gap: 8px;
+}
+
+.card-buttons button.btn {
+  font-size: 14px;
+}
+
+.card-title a {
+  color: #F26925;
+}
+
+.card-img, .card-img-top {
+  border-radius: calc(.25rem - 1px);
+}
+>>>>>>> origin/development

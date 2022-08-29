@@ -7,7 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UpdateProductsComponent } from './update-products.component';
 
 import { ToastrModule } from 'ngx-toastr';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('UpdateProductsComponent', () => {
   let component: UpdateProductsComponent;
@@ -27,7 +26,6 @@ describe('UpdateProductsComponent', () => {
           preventDuplicates: true,
         }),
       ],
-      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

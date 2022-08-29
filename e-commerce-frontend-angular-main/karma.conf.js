@@ -13,7 +13,7 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    FirefoxHeadless: {
+    FirefoxHeadless:{
       base: 'Firefox', flags: ['--headless']
     },
     client: {
@@ -41,7 +41,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Firefox', 'Chrome', 'FirefoxHeadless'],
+    browsers: ['Firefox','Chrome'],
     singleRun: true,
     restartOnFileChange: true
   });
