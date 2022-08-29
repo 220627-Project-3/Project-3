@@ -17,4 +17,18 @@ describe('DarkModeService', () => {
     //check the service for the toggle function
     expect(service.toggleDarkTheme).toMatch('toggleDarkTheme()');
   });
+
+  it('should toggle dark mode on', () => {
+    //toggle dark theme on
+    service.toggleDarkTheme(); //on
+    //check for 'dark-theme' class in body tag
+    expect(document.body.classList).toContain('dark-theme');
+    expect(localStorage.getItem('theme')).toMatch('dark');
+  });
+
+  it('should toggle dark mode off', () => {
+    service.toggleDarkTheme(); //off
+    expect(localStorage.getItem('theme')).toMatch('light');
+    expect(document.body.classList).toMatch('');
+  });
 });
