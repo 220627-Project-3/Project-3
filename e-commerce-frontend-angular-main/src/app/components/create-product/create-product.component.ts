@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
@@ -29,7 +29,8 @@ export class CreateProductComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _productService: ProductService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private router: Router,
   ) {
     this.formProductImage = this._fb.group({
       productimage: [null],
@@ -73,6 +74,9 @@ export class CreateProductComponent implements OnInit {
                   //console.log(response);
                   this.showSuccess = true;
                   this.showConfirmUpload = false;
+                  setTimeout(() => {
+                    this.router.navigate(['/home']);
+                  }, 2000);
                 },
                 error: (error) => {
                   console.log(error);
@@ -88,6 +92,9 @@ export class CreateProductComponent implements OnInit {
             this.showSuccess = true;
             this.showConfirmUpload = false;
             this.showLoading = false;
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 2000);
           }
         },
         error: (err) => {
