@@ -9,37 +9,37 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-class CartItemTest {
+class WishlistItemTest {
 
     @Mock
     private Product mockProduct;
     @Mock
     private User mockUser;
 
-    private CartItem cartItemUnderTest;
+    private WishlistItem wishlistItemUnderTest;
 
     @BeforeEach
     void setUp() {
-        cartItemUnderTest = new CartItem(0, mockProduct, mockUser, 0);
+        wishlistItemUnderTest = new WishlistItem(0, mockProduct, mockUser);
     }
 
     @Test
     void testEquals() {
-        assertThat(cartItemUnderTest.equals("o")).isFalse();
+        assertThat(wishlistItemUnderTest.equals("o")).isFalse();
     }
 
     @Test
     void testCanEqual() {
-        assertThat(cartItemUnderTest.canEqual("other")).isFalse();
+        assertThat(wishlistItemUnderTest.canEqual("other")).isFalse();
     }
 
     @Test
     void testHashCode() {
-        assertThat(cartItemUnderTest.hashCode()).isEqualTo(cartItemUnderTest.hashCode());
+        assertThat(wishlistItemUnderTest.hashCode()).isEqualTo(wishlistItemUnderTest.hashCode());
     }
 
     @Test
     void testToString() {
-        assertThat(cartItemUnderTest.toString()).isEqualTo(cartItemUnderTest.toString());
+        assertThat(wishlistItemUnderTest.toString()).isEqualTo(wishlistItemUnderTest.toString());
     }
 }
