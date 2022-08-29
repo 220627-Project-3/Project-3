@@ -1,6 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import * as exp from 'constants';
-
 import { DarkModeService } from './dark-mode.service';
 
 describe('DarkModeService', () => {
@@ -15,7 +13,8 @@ describe('DarkModeService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have a method for changing the theme', () => {
-    expect(service.toggleDarkTheme).toBeTruthy;
+  it('should have a method for changing the theme called toggleDarkTheme()', () => {
+    //check the service for the toggle function
+    expect(service.toggleDarkTheme).toMatch('toggleDarkTheme()');
   });
 });
