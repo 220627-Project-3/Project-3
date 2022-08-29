@@ -1,6 +1,7 @@
 # Project 3
 
-* E-Commerce
+* E-Commerce - Revature Swag Shop
+* Web Application URL (SSL Enabled) - https://revatureswag.shop
 
 ## Revature Staff
 
@@ -9,16 +10,30 @@
 
 ## Point of Contact
 
-* Dyllan Ellisor - dyllanellisor@gmail.com
+* Scrum Master - Dyllan Ellisor
+* Lead - Gerard Cruz
 
 ## Sub-Teams
 
 * https://docs.google.com/document/d/1dHq1IMZnwZWowL-XmdtRnbzX1CtWxd5Ycb-caPOaT4w/edit
 
-## Trello
+![Sub Teams](imgs/subteams.jpg)
+
+## Kanban Board
 
 * https://trello.com/b/JQGiHYqT/ben-p-commerce-capstone-1385
 
-## Tips
+## Requirements
 
-* Make sure you install https://projectlombok.org/download on your Spring Tools / Eclipse
+* Git
+* JDK 8
+* Gradle
+* NodeJS
+* NPM
+* Angular CLI
+* Spring Tools Suite
+* Lombok Plugin
+
+## How To Run Application In Local Machine
+
+* Follow the steps in [STARTUP.md](/STARTUP.md)
