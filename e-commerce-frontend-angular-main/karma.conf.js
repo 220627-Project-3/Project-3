@@ -13,6 +13,9 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    FirefoxHeadless: {
+      base: 'Firefox', flags: ['--headless']
+    },
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
@@ -38,7 +41,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Firefox','Chrome'],
+    browsers: ['Firefox', 'Chrome', 'FirefoxHeadless'],
     singleRun: true,
     restartOnFileChange: true
   });
