@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { environment } from 'src/environments/environment';
 
 describe('CreateProductComponent', () => {
   let component: CreateProductComponent;
@@ -41,5 +42,31 @@ describe('CreateProductComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`environment has default value`, () => {
+    expect(component.environment).toEqual(environment);
+  });
+
+  it(`showError has default value`, () => {
+    expect(component.showError).toEqual(false);
+  });
+
+  it(`showSuccess has default value`, () => {
+    expect(component.showSuccess).toEqual(false);
+  });
+
+  it(`showLoading has default value`, () => {
+    expect(component.showLoading).toEqual(false);
+  });
+
+  it(`imagePreviewUrl has default value`, () => {
+    expect(component.imagePreviewUrl).toEqual(
+      `assets/images/default-product-image.png`
+    );
+  });
+
+  it(`showConfirmUpload has default value`, () => {
+    expect(component.showConfirmUpload).toEqual(false);
   });
 });
