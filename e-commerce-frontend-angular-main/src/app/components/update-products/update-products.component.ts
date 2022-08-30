@@ -79,8 +79,6 @@ export class UpdateProductsComponent implements OnInit {
     form.classList.add('was-validated');
   }
 
-  updateImage() {}
-
   submitProductImage() {
     let formData: any = new FormData();
     this.showLoadingImage = true;
@@ -165,6 +163,4 @@ export class UpdateProductsComponent implements OnInit {
       },
     });
   }
-
-  selectProductPhoto(event: Event) {}
 }
