@@ -7,7 +7,7 @@ timestamps {
                 [credentialsId: 'cruzgsworks', url: 'https://github.com/220627-Project-3/Project-3.git']
             ]])
         }
-        stage('Unit Test') {
+        stage('Backend Unit Test') {
             dir('e-commerce-backend-main') {
                 try {
                     sh 'chmod +x gradlew'
@@ -28,9 +28,14 @@ timestamps {
                 sh 'docker run --name revatureswagshop_backend-container -d -p 8080:8080 -p 8443:8443 revatureswagshop_backend:v1'
             }
         }
-        stage('Angular Build & Deploy') {
+        stage('Frontend Unit Test') {
             dir('e-commerce-frontend-angular-main') {
                 sh 'npm install'
+                sh 'ng test --browsers=FirefoxHeadless --watch=false'
+            }
+        }
+        stage('Angular Build & Deploy') {
+            dir('e-commerce-frontend-angular-main') {
                 sh 'ng build --configuration production'
                 sh 'docker build -t revatureswagshop_frontend:v1 .'
 
