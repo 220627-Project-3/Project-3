@@ -45,7 +45,7 @@
                   <div class="my-3 h4" style="color: #F26925">{{ theProduct?.name }}</div>
                 </div>
               </div>
-              <div class="col-md">
+              <div class="col-md d-flex justify-content-center align-items-center">
                 <img [src]="environment.baseUrl + '/api/product/image/byProductId/' + productId"
                   alt="{{ theProduct?.name }}" class="img-fluid d-inline-block" />
               </div>
@@ -108,9 +108,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md d-flex align-items-center">
+              <div class="col-md d-flex justify-content-center align-items-center">
                 <img [src]="environment.baseUrl + '/api/product/image/byProductId/' + productId"
-                  alt="{{ theProduct?.name }}" class="img-fluid d-inline-block"/>
+                  alt="{{ theProduct?.name }}" class="img-fluid"/>
               </div>
             </div>
             <div class="row">
