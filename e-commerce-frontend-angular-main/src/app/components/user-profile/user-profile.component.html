@@ -86,8 +86,8 @@
             </div>
             <div class="row mt-3 text-center">
               <div class="col">
-                <button class="btn btn-info mx-2" (click)="edit = !edit">Edit User Information</button>
-                <button class="btn btn-info mx-2" routerLink="/change-password">Change Password</button>
+                <a class="btn btn-info mx-2" (click)="edit = !edit">Edit User Information</a>
+                <a class="btn btn-info mx-2" [routerLink]="['/change-password']">Change Password</a>
               </div>
             </div>
           </div>

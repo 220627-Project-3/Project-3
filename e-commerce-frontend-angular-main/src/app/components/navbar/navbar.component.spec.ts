@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductService } from 'src/app/services/product.service';
-import { ComponentRef } from '@angular/core';
+import { ComponentRef, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CookieModule } from 'ngx-cookie';
 
 describe('NavbarComponent', () => {
@@ -13,9 +16,14 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ], imports: [ HttpClientTestingModule, RouterTestingModule, CookieModule.forRoot() ]
+      declarations: [NavbarComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        CookieModule.forRoot(),
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-
     .compileComponents();
     service = TestBed.inject(ProductService);
   });
@@ -34,38 +42,37 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
   it('Big search in case of an empty search should Change the z to 1 and run the default search which is search all', () => {
-    component.Searching="";
+    component.Searching = '';
     component.BigSearch();
-    expect(service.NamePr=="").toBeTruthy();
-    expect(service.z==1).toBeTruthy();
+    expect(service.NamePr == '').toBeTruthy();
+    expect(service.z == 1).toBeTruthy();
   });
   it('Big search should change z to 2 if we choose ID', () => {
-    component.Searching="1";
-    component.searchByValue="Id"
+    component.Searching = '1';
+    component.searchByValue = 'Id';
     component.BigSearch();
-    expect(service.idPr==1).toBeTruthy();
-    expect(service.z==2).toBeTruthy();
+    expect(service.idPr == 1).toBeTruthy();
+    expect(service.z == 2).toBeTruthy();
   });
   it('Big search should change z to 3 if we choose Name', () => {
-    component.Searching="Sableye";
-    component.searchByValue="Name"
+    component.Searching = 'Sableye';
+    component.searchByValue = 'Name';
     component.BigSearch();
-    expect(service.NamePr=="Sableye").toBeTruthy();
-    expect(service.z==3).toBeTruthy();
+    expect(service.NamePr == 'Sableye').toBeTruthy();
+    expect(service.z == 3).toBeTruthy();
   });
   it('Big search should change z to 5 if we choose Any', () => {
-    component.Searching="Sableye";
-    component.searchByValue="Any"
+    component.Searching = 'Sableye';
+    component.searchByValue = 'Any';
     component.BigSearch();
-    expect(service.NamePr=="Sableye").toBeTruthy();
-    expect(service.z==5).toBeTruthy();
+    expect(service.NamePr == 'Sableye').toBeTruthy();
+    expect(service.z == 5).toBeTruthy();
   });
   it('Big search should change z to 4 if we choose Description', () => {
-    component.Searching="Pokemon";
-    component.searchByValue="Desc"
+    component.Searching = 'Pokemon';
+    component.searchByValue = 'Desc';
     component.BigSearch();
-    expect(service.NamePr=="Pokemon").toBeTruthy();
-    expect(service.z==4).toBeTruthy();
+    expect(service.NamePr == 'Pokemon').toBeTruthy();
+    expect(service.z == 4).toBeTruthy();
   });
-
 });

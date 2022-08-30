@@ -254,3 +254,7 @@ body.dark-theme {
   border-color: #B9B9BA;
   box-shadow: 0 0 0 0.2rem rgba(72, 76, 86, 0.25);
 }
+
+.dark-theme .btn-light:hover {
+  background-color: #191919;
+}

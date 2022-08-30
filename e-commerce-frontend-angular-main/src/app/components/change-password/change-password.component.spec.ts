@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,9 +16,22 @@ describe('ChangePasswordComponent', () => {
     'error',
   ]);
 
+  @Component({
+    selector: 'app-navbar',
+    template: '',
+  })
+  class MockNavComponent {}
+
+  @Component({
+    selector: 'app-footer',
+    template: '',
+  })
+  class MockFooterComponent {}
+
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ChangePasswordComponent],
+      declarations: [ChangePasswordComponent, MockNavComponent, MockFooterComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,

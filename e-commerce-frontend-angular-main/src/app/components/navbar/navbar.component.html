@@ -3,7 +3,7 @@
     <img class="align-middle mr-2" src="/assets/images/favicon.png" width="36" height="36" alt="Revature">
     <span class="h4 align-middle">Revature Swag Shop</span>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  <button class="navbar-toggler py-1 px-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +12,7 @@
       <ul class="navbar-nav mr-auto d-flex align-items-center">
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap" *ngIf="currentUserInfo.isAdmin">
           <div>
-            <button class="btn btn-light" routerLink="/create-product">
+            <button class="btn btn-light btn-sm" [routerLink]="['/create-product']">
               Create Product
             </button>
           </div>
@@ -27,21 +27,21 @@
 
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
           <div>
-            <button class="btn btn-light navbar-reg-btn" [routerLink]="['/wish-list']">
+            <button class="btn btn-light navbar-reg-btn btn-sm" [routerLink]="['/wish-list']">
               Wishlist <i class="fa fa-heart text-danger" aria-hidden="true"></i>
             </button>
           </div>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center text-nowrap">
           <div>
-            <button class="btn btn-light navbar-reg-btn" [routerLink]="['/cart']">
+            <button class="btn btn-light navbar-reg-btn btn-sm" [routerLink]="['/cart']">
               Cart
               <span class="badge badge-info">{{cartCount}}</span>
             </button>
           </div>
         </li>
         <li class="searchContainer justify-content-center nav-item d-flex align-items-center">
-          <div class="input-group flex-nowrap">
+          <div class="input-group input-group-sm flex-nowrap">
             <div class="input-group-prepend text-right">
               <div class="input-group-text p-1" id="searchTermLabel">
                 <select placeholder="Search by" name="searchBy" id="searchBy" (change)="resizeSelect($event)"
@@ -56,19 +56,19 @@
             <input class="form-control" type="text" placeholder="Search Products..." [(ngModel)]="Searching"
               name="Searching" (keyup.enter)="BigSearch()">
             <div class="input-group-append">
-              <button class="btn btn-light navbar-reg-btn" (click)="BigSearch()"><i class="fa fa-search"
+              <button class="btn btn-light navbar-reg-btn btn-sm" (click)="BigSearch()"><i class="fa fa-search"
                   aria-hidden="true"></i>
               </button>
             </div>
           </div>
         </li>
         <li class="nav-item justify-content-center nav-item d-flex align-items-center text-nowrap">
-          <div class="input-group flex-nowrap">
+          <div class="input-group input-group-sm flex-nowrap">
             <div class="input-group-prepend text-right">
               <div class="input-group-text"><i class="fa fa-moon-o" aria-hidden="true"></i></div>
             </div>
             <div class="form-control">
-              <div class="custom-control custom-switch" style="margin-right: -8px;">
+              <div class="custom-control custom-switch" style="margin-right: -8px; margin-top: -1px;">
                 <input type="checkbox" class="custom-control-input" id="customSwitch1" [checked]="isDarkMode">
                 <label class="custom-control-label" for="customSwitch1" (click)="localDarkTheme()"></label>
               </div>
@@ -76,13 +76,13 @@
           </div>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center">
-          <div class="input-group flex-nowrap">
+          <div class="input-group input-group-sm flex-nowrap">
             <div class="input-group-prepend text-right">
               <div class="input-group-text"><i class="fa fa-user-o" aria-hidden="true"></i></div>
             </div>
             <div class="form-control">
               <div>
-                <a class="welcome-user py-0" routerLink="/user-profile">
+                <a class="welcome-user py-0" [routerLink]="['/user-profile']">
                   <!-- <div class="welcome-text">Welcome,&nbsp;</div> -->
                   <div class="welcome-name text-nowrap">{{currentUserInfo != null ?
                     currentUserInfo.firstName :
@@ -100,7 +100,7 @@
           </div>
         </li>
         <li class="nav-item justify-content-center d-flex align-items-center text-nowrap">
-          <button class="btn btn-outline-danger" (click)="logout();">
+          <button class="btn btn-outline-danger btn-sm" (click)="logout();">
             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
         </li>
       </ul>

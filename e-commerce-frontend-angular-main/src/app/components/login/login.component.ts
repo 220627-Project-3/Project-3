@@ -20,13 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
-
   ngOnInit(): void {}
-
-  showToastr (){
-
-
-  }
 
   onSubmit(): void {
     this.authService

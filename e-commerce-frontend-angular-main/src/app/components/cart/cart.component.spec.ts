@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ToastrModule } from 'ngx-toastr';
+import { Component } from '@angular/core';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -18,9 +19,21 @@ describe('CartComponent', () => {
     'error',
   ]);
 
+  @Component({
+    selector: 'app-navbar',
+    template: '',
+  })
+  class MockNavComponent {}
+
+  @Component({
+    selector: 'app-footer',
+    template: '',
+  })
+  class MockFooterComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartComponent],
+      declarations: [CartComponent, MockNavComponent, MockFooterComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
