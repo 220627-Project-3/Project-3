@@ -8,24 +8,25 @@
 // import { environment } from 'src/environments/environment';
 // import { FormsModule } from '@angular/forms';
 // import { UpdateProductsComponent } from './update-products.component';
+// import { Product } from 'src/app/models/product';
 
 // describe('UpdateProductsComponent', () => {
 //   let component: UpdateProductsComponent;
 //   let fixture: ComponentFixture<UpdateProductsComponent>;
 
 //   beforeEach(() => {
-//     const activatedRouteStub = () => ({ params: { subscribe: f => f({}) } });
-//     const routerStub = () => ({ navigate: array => ({}) });
+//     const activatedRouteStub = () => ({ params: { subscribe: (f) => f({}) } });
+//     const routerStub = () => ({ navigate: (array) => ({}) });
 //     const productServiceStub = () => ({
-//       updateProduct: product => ({ subscribe: f => f({}) }),
-//       uploadProductImage: (id, formData) => ({ subscribe: f => f({}) }),
-//       getProductById: id => ({ subscribe: f => f({}) }),
-//       deleteProduct: product => ({ subscribe: f => f({}) })
+//       updateProduct: (product) => ({ subscribe: (f) => f({}) }),
+//       uploadProductImage: (id, formData) => ({ subscribe: (f) => f({}) }),
+//       getProductById: (id) => ({ subscribe: (f) => f({}) }),
+//       deleteProduct: (product) => ({ subscribe: (f) => f({}) }),
 //     });
-//     const formBuilderStub = () => ({ group: object => ({}) });
+//     const formBuilderStub = () => ({ group: (object) => ({}) });
 //     const toastrServiceStub = () => ({
 //       success: (string, string1) => ({}),
-//       error: (string, string1) => ({})
+//       error: (string, string1) => ({}),
 //     });
 //     TestBed.configureTestingModule({
 //       imports: [FormsModule],
@@ -36,8 +37,8 @@
 //         { provide: Router, useFactory: routerStub },
 //         { provide: ProductService, useFactory: productServiceStub },
 //         { provide: FormBuilder, useFactory: formBuilderStub },
-//         { provide: ToastrService, useFactory: toastrServiceStub }
-//       ]
+//         { provide: ToastrService, useFactory: toastrServiceStub },
+//       ],
 //     });
 //     fixture = TestBed.createComponent(UpdateProductsComponent);
 //     component = fixture.componentInstance;
@@ -77,34 +78,21 @@
 //     expect(component.showConfirmUpload).toEqual(false);
 //   });
 
-//   describe('ngOnInit', () => {
-//     it('makes expected calls', () => {
-//       spyOn(component, 'retrieveProductData').and.callThrough();
-//       component.ngOnInit();
-//       expect(component.retrieveProductData).toHaveBeenCalled();
-//     });
-//   });
-
-//   describe('submitProductImage', () => {
-//     it('makes expected calls', () => {
-//       const productServiceStub: ProductService = fixture.debugElement.injector.get(
-//         ProductService
-//       );
-//       spyOn(productServiceStub, 'uploadProductImage').and.callThrough();
-//       component.submitProductImage();
-//       expect(productServiceStub.uploadProductImage).toHaveBeenCalled();
-//     });
-//   });
-
 //   describe('deleteProduct', () => {
 //     it('makes expected calls', () => {
 //       const routerStub: Router = fixture.debugElement.injector.get(Router);
-//       const productServiceStub: ProductService = fixture.debugElement.injector.get(
-//         ProductService
-//       );
-//       const toastrServiceStub: ToastrService = fixture.debugElement.injector.get(
-//         ToastrService
-//       );
+//       const productServiceStub: ProductService =
+//         fixture.debugElement.injector.get(ProductService);
+//       const toastrServiceStub: ToastrService =
+//         fixture.debugElement.injector.get(ToastrService);
+//       component.product = {
+//         id: 1,
+//         name: 'name',
+//         quantity: 1,
+//         price: 1,
+//         description: 'description',
+//         image: 'image',
+//       };
 //       spyOn(routerStub, 'navigate').and.callThrough();
 //       spyOn(productServiceStub, 'deleteProduct').and.callThrough();
 //       spyOn(toastrServiceStub, 'success').and.callThrough();
