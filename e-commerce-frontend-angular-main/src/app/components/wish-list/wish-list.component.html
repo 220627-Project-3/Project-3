@@ -8,8 +8,8 @@
   </nav>
   <div class="container-fluid my-3 flex-grow-1">
     <div class="row">
-      <div class="col">
-        <table class="table table-striped text-center" id="cart-table">
+      <div class="col table-responsive">
+        <table class="table table-striped text-center text-nowrap" id="cart-table">
           <thead>
             <tr>
               <th scope="col" style="width: 1%">ID</th>
@@ -19,7 +19,7 @@
               <!-- <th scope="col" class="text-nowrap">Add to Cart</th>
               <th scope="col" class="text-nowrap">Remove from Wishlist</th> -->
               <th scope="col">Unit Price</th>
-              <th scope="col" class="text-nowrap">Actions</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody id="wishlist-table-body">
@@ -40,7 +40,7 @@
                   <i class="fa fa-times" aria-hidden="true"></i> Remove
                 </button>
               </td> -->
-              <td class="actions align-middle text-nowrap">
+              <td class="actions align-middle">
                 <div class="input-group input-group-sm flex-nowrap justify-content-center align-items-center w-100">
                   <div class="input-group-prepend">
                     <button class="btn btn-sm btn-success" (click)="addToCart(product.product)">
@@ -57,9 +57,11 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-danger mr-2" [routerLink]="['/home']">
-          Back
-        </button>
+        <div class="mb-3">
+          <button class="btn btn-danger mr-2" [routerLink]="['/home']">
+            Back
+          </button>
+        </div>
         <!-- <button class="btn btn-warning mr-2" (click)="addToCart(productInfo)">Add to Cart</button>-->
         <!-- <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button> -->
       </div>

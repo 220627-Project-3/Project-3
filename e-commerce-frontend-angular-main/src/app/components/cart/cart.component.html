@@ -8,8 +8,8 @@
   </nav>
   <div class="container-fluid my-3 flex-grow-1">
     <div class="row">
-      <div class="col">
-        <table class="table table-striped text-center" id="cart-table">
+      <div class="col table-responsive">
+        <table class="table table-striped text-center text-nowrap" id="cart-table">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -17,18 +17,19 @@
               <th scope="col">Quantity</th>
               <th scope="col">Description</th>
               <th scope="col">Unit Price</th>
-              <th scope="col" class="text-nowrap">Adjust Quantity</th>
+              <th scope="col">Adjust Quantity</th>
 
             </tr>
           </thead>
           <tbody id="cart-table-body">
             <tr *ngFor="let product of products;">
               <td class="align-middle">{{product.product.id}}</td>
-              <td class="align-middle"><a class="pd-link" [routerLink]="['/product-details/'+product.product.id]">{{product.product.name}}</a></td>
+              <td class="align-middle"><a class="pd-link"
+                  [routerLink]="['/product-details/'+product.product.id]">{{product.product.name}}</a></td>
               <td class="align-middle">{{product.quantity}}</td>
               <td class="align-middle">{{product.product.description}}</td>
-              <td class="text-right">${{product.product.price  | number : '1.2-2'}}</td>
-              <td class="align-middle text-nowrap">
+              <td class="text-right">${{product.product.price | number : '1.2-2'}}</td>
+              <td class="align-middle">
                 <div class="input-group input-group-sm flex-nowrap justify-content-center align-items-center w-100">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Qty</span>
@@ -48,10 +49,14 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
-        <button class="btn btn-warning mr-2" (click)="emptyCart()">Empty Cart</button>
-        <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout ( ${{totalPrice | number :
-          '1.2-2'}} )</button>
+        <div class="mb-3 text-nowrap">
+          <button class="btn btn-danger mr-2" [routerLink]="['/home']">Back</button>
+          <button class="btn btn-warning mr-2" (click)="emptyCart()">Empty Cart</button>
+          <button class="btn btn-primary mr-2" [routerLink]="['/checkout']">Proceed to Checkout ( ${{totalPrice | number
+            :
+            '1.2-2'}} )</button>
+        </div>
+
       </div>
     </div>
   </div>

@@ -7,14 +7,31 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UpdateProductsComponent } from './update-products.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { Component } from '@angular/core';
 
 describe('UpdateProductsComponent', () => {
   let component: UpdateProductsComponent;
   let fixture: ComponentFixture<UpdateProductsComponent>;
 
+  @Component({
+    selector: 'app-navbar',
+    template: '',
+  })
+  class MockNavComponent {}
+
+  @Component({
+    selector: 'app-footer',
+    template: '',
+  })
+  class MockFooterComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UpdateProductsComponent],
+      declarations: [
+        UpdateProductsComponent,
+        MockNavComponent,
+        MockFooterComponent,
+      ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,

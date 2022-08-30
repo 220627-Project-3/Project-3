@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, zip } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -29,7 +29,8 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private _cookieService: CookieService,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
+    private zone: NgZone
   ) {}
 
   SearchProductByID(id: number) {
@@ -64,10 +65,9 @@ export class NavbarComponent implements OnInit {
       this.productService.Changer(1);
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['home']);
-
       });
     } else {
-      window.location.href="/home"
+      this.router.navigate(['home']);
     }
   }
 
@@ -134,8 +134,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        // this.router.navigate(['login']);
-        window.location.href = "/";
+        this.router.navigate(['login']);
       },
       error: (data: any) => {
         //console.log(data);
@@ -154,18 +153,19 @@ export class NavbarComponent implements OnInit {
           this.passCurrentUserInfo.emit(data);
         },
         error: (err: any) => {
-          console.log('%c[User is not logged on]', 'color: orange');
-          this._cookieService.removeAll();
-          //this.router.navigate(['login']);
-          //console.log(err);
-          window.location.href = "/";
+          this.zone.run(() => {
+            this._cookieService.removeAll();
+            console.log('%c[User is not logged on]', 'color: orange');
+            this.router.navigate(['/login']);
+          });
         },
         complete: () => {},
       });
     } else {
-      console.log('%c[User is not logged on]', 'color: orange');
-      //this.router.navigate(['login']);
-      window.location.href = "/";
+      this.zone.run(() => {
+        console.log('%c[User is not logged on.]', 'color: orange');
+        this.router.navigate(['/login']);
+      });
     }
   }
 

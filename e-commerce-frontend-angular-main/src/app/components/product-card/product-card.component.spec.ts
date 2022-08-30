@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductCardComponent } from './product-card.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductCardComponent', () => {
   let component: ProductCardComponent;
@@ -14,6 +15,7 @@ describe('ProductCardComponent', () => {
       declarations: [ProductCardComponent],
       imports: [
         HttpClientTestingModule,
+        RouterTestingModule,
         ToastrModule.forRoot({
           positionClass: 'toast-bottom-right',
           preventDuplicates: true,
