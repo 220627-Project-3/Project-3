@@ -45,13 +45,6 @@ export class CheckoutComponent implements OnInit {
         this.cartProducts.push(element.product)
       );
       this.totalPrice = cart.totalPrice;
-      if (this.totalPrice == 0) {
-        this.router.navigate(['/cart']);
-        this.toastr.error(
-          'Add some items to your cart before checking out',
-          'Checkout failed'
-        );
-      }
     });
   }
 
@@ -61,28 +54,44 @@ export class CheckoutComponent implements OnInit {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      this.products.forEach((element) => {
-        const id = element.product.id;
-        const quantity = element.quantity;
-        this.finalProducts.push({ id, quantity });
-      });
-
-      if (this.finalProducts.length > 0) {
-        this.productService.purchase(this.finalProducts).subscribe({
-          next: (resp) => console.log(resp),
-          error: (err) => console.log(err),
-          complete: () => {
-            let cart = {
-              cartCount: 0,
-              products: [],
-              totalPrice: 0.0,
-            };
-            this.productService.setDetails(cart);
-            this.router.navigate(['/home']);
-          },
+      if (this.totalPrice > 0) {
+        this.products.forEach((element) => {
+          const id = element.product.id;
+          const quantity = element.quantity;
+          this.finalProducts.push({ id, quantity });
         });
+
+        if (this.finalProducts.length > 0) {
+          this.productService.purchase(this.finalProducts).subscribe({
+            next: (resp) => {
+              console.log(resp);
+              let cart = {
+                cartCount: 0,
+                products: [],
+                totalPrice: 0.0,
+              };
+              this.productService.setDetails(cart);
+              this.toastr.success('Thanks for purchasing!', 'Order Successful');
+              this.router.navigate(['/home']);
+            },
+            error: (err) => {
+              if (this.totalPrice == 0) {
+                this.router.navigate(['/cart']);
+                this.toastr.error(
+                  'Contact administrator if problem persists',
+                  'Checkout failed'
+                );
+              }
+            },
+          });
+        } else {
+          this.router.navigate(['/home']);
+        }
       } else {
-        this.router.navigate(['/home']);
+        this.toastr.error(
+          'Add some items to your cart before checking out',
+          'Checkout failed'
+        );
       }
     }
     form.classList.add('was-validated');
