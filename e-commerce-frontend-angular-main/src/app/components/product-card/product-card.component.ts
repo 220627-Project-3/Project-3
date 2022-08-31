@@ -82,7 +82,16 @@ export class ProductCardComponent implements OnInit {
     // this.productInfo
   }
 
-  addToCart(product: Product): void {
+  checkCartQty(event: Event) {
+    let elem = event.currentTarget as HTMLInputElement;
+    let parseVal = parseInt(elem.value);
+    // console.log(parseVal);
+    if (elem.value.length > 0 && (isNaN(parseVal) || parseVal < 1)) {
+      elem.value = '1';
+    }
+  }
+
+  addToCart(product: Product, quantity: string): void {
     // let inCart = false;
 
     // this.products.forEach((element) => {
@@ -117,20 +126,28 @@ export class ProductCardComponent implements OnInit {
     // };
     // this.productService.setDetails(cart);
 
-    let x = this.productService.addToCart(product, this.user);
+    let addQty: number = parseInt(quantity);
+
+    if (isNaN(addQty) || addQty < 1) {
+      addQty = 1;
+    }
+
+    let x = this.productService.addToCart(product, addQty, this.user);
     x.subscribe({
       next: (data) => {
         console.log(data);
-        if(data.status == 200) {
+        if (data.status == 200) {
           this.toastr.info('Cannot add more than stock', 'Information');
         } else {
           let cart = {
-            cartCount: this.cartCount + 1,
+            cartCount: this.cartCount + addQty,
             products: this.products,
             totalPrice: this.totalPrice + product.price,
           };
           this.productService.setDetails(cart);
-          this.toastr.success('Your product has successfully been added to cart');
+          this.toastr.success(
+            'Your product has successfully been added to cart'
+          );
         }
       },
       error: (err) => {

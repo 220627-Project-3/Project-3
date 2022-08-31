@@ -153,7 +153,7 @@ export class WishListComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
-    let x = this.productService.addToCart(product, this.user);
+    let x = this.productService.addToCart(product, 1, this.user);
     x.subscribe((data) => console.log(data));
   }
 

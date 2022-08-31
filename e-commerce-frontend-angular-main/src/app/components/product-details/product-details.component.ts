@@ -123,7 +123,7 @@ export class ProductDetailsComponent implements OnInit {
       };
       this.productService.setDetails(cart);
     }
-    let x = this.productService.addToCart(product, this.user);
+    let x = this.productService.addToCart(product, 1, this.user);
     x.subscribe({
       next: (data) => {
         this.toastr.success('Your product has successfully been added to cart');
