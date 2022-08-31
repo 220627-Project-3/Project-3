@@ -6,13 +6,14 @@
     </a>
   </div>
   <div class="card-body p-2">
-    <h5 class="card-title futura-medium text-center" ><a [routerLink]="['/product-details/'+ productInfo.id]">{{productInfo.name}}</a></h5>
+    <h5 class="card-title futura-medium text-center"><a
+        [routerLink]="['/product-details/'+ productInfo.id]">{{productInfo.name}}</a></h5>
     <!--<p class="card-text text-center">{{productInfo.description}}</p>-->
-    <div class="input-group input-group mb-3">
+    <div class="input-group input-group mb-2">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
       </div>
-      <input type="number" class="form-control" aria-label="Sizing example input"
+      <input type="number" class="form-control prodprice" aria-label="Sizing example input"
         [value]="productInfo.price | number : '1.2-2'" aria-describedby="inputGroup-sizing-sm" disabled>
     </div>
     <!--<div class="input-group input-group mb-3">
@@ -22,14 +23,34 @@
       <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity"
         aria-describedby="inputGroup-sizing-sm" disabled>
     </div>-->
-    <div class="card-buttons text-center d-flex">
-      <button class="btn btn-outline-success w-100" (click)="addToCart(productInfo)"><i class="fa fa-cart-plus"
-          aria-hidden="true"></i> Add</button>
-      <button class="btn btn-outline-danger w-100" (click)="addToWishList(productInfo)"><i class="fa fa-heart"
-          aria-hidden="true"></i> Save</button>
-      <button class="btn btn-outline-info w-100" *ngIf="user?.isAdmin"
-        [routerLink]="['/update-products/' + productInfo.id]"><i class="fa fa-pencil" aria-hidden="true"></i>
-        Update</button>
+    <div class="container px-0">
+      <div class="row">
+        <div class="col mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              </span>
+            </div>
+            <input type="number" class="form-control inputQty" min="1" value="1" (keyup)="checkCartQty($event)" #addQty />
+            <div class="input-group-append">
+              <button class="btn btn-outline-success w-100 text-nowrap" (click)="addToCart(productInfo, addQty.value)"> Add To
+                Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card-buttons text-center d-flex">
+            <button class="btn btn btn-outline-danger w-100" (click)="addToWishList(productInfo)"><i
+                class="fa fa-heart" aria-hidden="true"></i> Save</button>
+            <button class="btn btn btn-outline-info w-100" *ngIf="user?.isAdmin"
+              [routerLink]="['/update-products/' + productInfo.id]"><i class="fa fa-pencil" aria-hidden="true"></i>
+              Update</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
