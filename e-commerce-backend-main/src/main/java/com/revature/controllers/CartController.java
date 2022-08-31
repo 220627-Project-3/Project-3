@@ -76,8 +76,9 @@ public class CartController {
 			if (optionalProduct.isPresent() && optionalUser.isPresent()) {
 				Product product = optionalProduct.get();
 				// User user = optionalUser.get();
-
-				int newQty = ca.getQuantity() + 1;
+				System.out.println(cartItemDTO.toString());
+				int newQty = ca.getQuantity() + cartItemDTO.getQuantity();
+				System.out.println(newQty);
 				// Quantity should not go over stock
 				if (newQty > product.getQuantity()) {
 					newQty = product.getQuantity();

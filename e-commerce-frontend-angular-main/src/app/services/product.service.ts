@@ -91,14 +91,17 @@ export class ProductService {
     });
   }
 
-  addToCart(product: Product, user: User): Observable<any> {
+  addToCart(product: Product, addQty:number, user: User): Observable<any> {
     //   console.log("hey there");
     // this.as.getSession().subscribe((user: User) => {
     //   this.user.id = user.id;
     // });
     return this.http.post<any>(
       environment.baseUrl + this.cartUrl + '/' + user.id,
-      { productId: product.id },
+      { // DTO
+        productId: product.id,
+        quantity: addQty
+      },
       {
         headers: environment.headers,
         withCredentials: environment.withCredentials,

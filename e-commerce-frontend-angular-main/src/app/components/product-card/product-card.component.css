@@ -49,7 +49,18 @@ div.card {
 input.form-control[disabled] {
   background: none;
   text-align: right;
-  padding: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input.prodprice::-webkit-outer-spin-button,
+input.prodprice::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number].prodprice {
+  -moz-appearance: textfield;
 }
 
 span#inputGroup-sizing-sm {
@@ -72,6 +83,7 @@ p.card-text {
   height: 40px;
   overflow: hidden;
 }
+
 .card-buttons {
   gap: 8px;
 }
@@ -84,6 +96,14 @@ p.card-text {
   color: #F26925;
 }
 
-.card-img, .card-img-top {
+.card-img,
+.card-img-top {
   border-radius: calc(.25rem - 1px);
+}
+
+input[type=number].inputQty::-webkit-inner-spin-button,
+input[type=number].inputQty::-webkit-outer-spin-button {
+
+  opacity: 1;
+
 }
